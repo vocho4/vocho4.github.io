@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zrádci u bazénu — rodinná hra</title>
+<style>
+  :root {
+    --accent: #6B1F2A;
+    --accent2: #2C2C2C;
+    --bg: #FBF7F1;
+    --card: #FFFFFF;
+    --border: #E4D9C6;
+    --text: #2C2C2C;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+  }
+  .wrap {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+  header.hero {
+    text-align: center;
+    padding: 50px 20px 40px;
+    border-bottom: 3px solid var(--accent);
+    margin-bottom: 40px;
+  }
+  header.hero .eyebrow {
+    color: var(--accent2);
+    letter-spacing: 3px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  header.hero h1 {
+    font-size: 2.6rem;
+    color: var(--accent);
+    margin: 10px 0 6px;
+  }
+  header.hero .subtitle {
+    font-style: italic;
+    color: #5B4636;
+    font-size: 1.2rem;
+    margin: 0 0 10px;
+  }
+  header.hero .meta {
+    color: #5B4636;
+    font-size: 1rem;
+  }
+  h2 {
+    color: var(--accent2);
+    font-size: 1.5rem;
+    border-left: 5px solid var(--accent);
+    padding-left: 12px;
+    margin-top: 48px;
+  }
+  h3 {
+    color: var(--accent);
+    font-size: 1.15rem;
+    margin-top: 28px;
+    font-style: italic;
+  }
+  h4 {
+    color: #5B4636;
+    font-size: 1.05rem;
+    margin-top: 24px;
+  }
+  p { margin: 12px 0; }
+  ul, ol { padding-left: 24px; }
+  li { margin: 6px 0; }
+  blockquote {
+    border-left: 4px solid var(--accent);
+    margin: 16px 0;
+    padding: 8px 16px;
+    font-style: italic;
+    background: #FAF3EA;
+    border-radius: 0 6px 6px 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 28px;
+    background: var(--card);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: top;
+    font-size: 0.95rem;
+  }
+  th {
+    background: var(--accent);
+    color: white;
+    font-weight: 600;
+  }
+  tr:nth-child(even) td { background: #FAF6EF; }
+  .toc {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 40px;
+  }
+  .toc h2 { margin-top: 0; border: none; padding-left: 0; }
+  .toc ol { margin: 0; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .tip {
+    background: #EFE9DD;
+    border-radius: 6px;
+    padding: 10px 16px;
+    font-style: italic;
+    color: #5B4636;
+    margin: 16px 0;
+  }
+  section { margin-bottom: 20px; }
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0;
+  }
+  footer {
+    text-align: center;
+    color: #8A8A8A;
+    font-size: 0.85rem;
+    margin-top: 60px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">I Traditori</div>
+  <h1>Zrádci u bazénu</h1>
+  <p class="subtitle">Rodinná verze televizní hry Zrádci (Traitors)</p>
+  <p class="meta">Itálie · 14 hráčů od 7 do 67 let · tři verze podle délky hry</p>
+</header>
+
+<nav class="toc">
+  <h2>Obsah</h2>
+  <ol>
+    <li><a href="#princip">Princip hry ve zkratce</a></li>
+    <li><a href="#role">Role a obsazení</a></li>
+    <li><a href="#kolo">Průběh jednoho kola</a></li>
+    <li><a href="#mise">Mise na míru vašemu areálu</a></li>
+    <li><a href="#stul">Kulatý stůl — pravidla diskuze</a></li>
+    <li><a href="#konec">Konec hry a poklad</a></li>
+    <li><a href="#varianty">Tři verze podle délky hry</a></li>
+    <li><a href="#tipy">Tipy pro hostitele</a></li>
+  </ol>
+</nav>
+
+<section id="princip">
+<h2>Princip hry ve zkratce</h2>
+<p>Pár hráčů je tajně Zrádci, ostatní jsou Věrní. Věrní se ve společných misích a večerních poradách snaží zrádce odhalit a vyřadit. Zrádci naopak tajně vyřazují Věrné a snaží se zůstat neodhaleni až do konce. Dokument obsahuje tři verze: základní na celých 12 dní, a dvě zkrácené — na 1 den a na max. 3 dny.</p>
+<p>Hostitel a moderátor hry je <strong>Vláďa</strong> — nehraje o výhru, řídí losování, mise i večerní porady a jako jediný zná totožnost všech zrádců.</p>
+</section>
+
+<section id="role">
+<h2>1. Role a obsazení</h2>
+<table>
+<tr><th>Role</th><th>Kdo</th><th>Poznámka</th></tr>
+<tr><td>Hostitel / moderátor</td><td>Vláďa</td><td>Neúčastní se hlasování ani finálního pokladu, řídí hru</td></tr>
+<tr><td>Kandidáti na Zrádce</td><td>Lenka, Anna, Babička, Pavel, Pavla, Michal, Máťa (12), Jáša (12), Edita (12), Tobík (11), Nikola (11)</td><td>Losuje se jen mezi hráči 11+ let, aby zvládli udržet tajemství</td></tr>
+<tr><td>Vždy Věrní</td><td>Ema (8), Jáchymek (7)</td><td>Nejmladší hráči — automaticky Věrní, plně se účastní misí i hlasování</td></tr>
+</table>
+<p>Počet losovaných Zrádců se liší podle zvolené verze (viz kapitola 7).</p>
+
+<h3>Tajné losování</h3>
+<ol>
+<li>Vláďa připraví lístečky pro všechny kandidáty — na část napíše ZRÁDCE, na zbytek VĚRNÝ (konkrétní počet dle verze).</li>
+<li>Každý kandidát si v soukromí (postupně, mimo ostatní) vytáhne lísteček a nikomu ho neukáže.</li>
+<li>Vláďa v tichosti dá vědět Zrádcům, kdo jsou ti další, aby mohli spolupracovat.</li>
+</ol>
+</section>
+
+<section id="kolo">
+<h2>2. Průběh jednoho kola</h2>
+<p>Jedno kolo má tři části: den (mise), večer (porada a hlasování) a noc (tajná eliminace).</p>
+
+<h3>DEN — Mise</h3>
+<p>Celá rodina společně plní jeden týmový úkol (viz mise níže). Za úspěšné splnění mise přibude sladkost/drobnost do společného „pokladu“ (krabice nebo sklenice, na kterou všichni vidí). Zrádci se mohou nenápadně snažit misi lehce zpomalit nebo pokazit, aniž by je někdo nachytal — v tom je jejich tajná výhoda.</p>
+
+<h3>VEČER — Kulatý stůl</h3>
+<p>Celá rodina se sejde (např. u večeře nebo na terase). Každý má cca minutu na to, koho podezřívá a proč. Pak se hlasuje — tajně na papírcích, nebo veřejně zvednutím ruky. Hráč s nejvíce hlasy je vyloučen ze hry a jeho role (Zrádce/Věrný) se hned odhalí. Při remíze rozhoduje los.</p>
+
+<h3>NOC — Tajná eliminace</h3>
+<p>Pokud ve hře zůstal alespoň jeden Zrádce, Zrádci se v tichosti domluví, koho z Věrných chtějí vyřadit, a řeknou to potichu Vláďovi. Vláďa druhý den soukromě (bez publika) oznámí vyřazenému hráči, že byl „vyřazen“.</p>
+<blockquote>Vyřazený hráč dál normálně tráví dovolenou — bazén, moře, výlety — jen se dál neúčastní hlasování ani finálního pokladu. Aby se nenudil, dostane roli „Ducha“: jednou za hru smí napsat a nenápadně předat jednu anonymní nápovědu Věrným.</blockquote>
+</section>
+
+<section id="mise">
+<h2>3. Mise na míru vašemu areálu</h2>
+<p>Čtyři mise využívající zahradu, bytovky, chodníčky, parkoviště, bazén a pláž (500 m přes vesnici, odkud lze dojít i do sousední vesnice).</p>
+
+<h4>Mise 1 — Bazénová štafeta (u bazénu)</h4>
+<p>Celá rodina předává nafukovací kruh nebo míč štafetově napříč bazénem, aniž by ho upustila. Bez chyby v limitu = sladkost do pokladu. Zrádci mohou kruh nenápadně „upustit“ a svést to na náhodu.</p>
+
+<h4>Mise 2 — Poklad mezi bytovkami (na zahradě)</h4>
+<p>Vláďa předem schová podél chodníčků mezi bytovkami 10 očíslovaných kartiček. Rodina je musí najít a seřadit podle čísel v časovém limitu. Zrádci mohou tajně jednu kartičku přemístit jinam.</p>
+
+<h4>Mise 3 — Sběratelská výprava na pláž</h4>
+<p>Cestou na pláž (500 m vesnicí) rodina sbírá podle zadání barevné mušličky nebo kamínky (např. 3 bílé, 2 kulaté, 1 růžová). Kompletní sbírka do limitu = bonus do pokladu. Zrádci mohou jeden kousek sbírky cestou nenápadně „ztratit“.</p>
+
+<h4>Mise 4 — Večerní kvíz (na terase / u parkoviště)</h4>
+<p>Skupina společně řeší sadu hádanek nebo kvízových otázek o zážitcích z dovolené (kolik dní prší, jak se jmenuje sousední vesnice, co bylo k obědu apod.). Správné odpovědi = sladkosti do pokladu.</p>
+</section>
+
+<section id="stul">
+<h2>4. Kulatý stůl — pravidla diskuze</h2>
+<ul>
+<li>Každý dostane prostor říct, koho podezřívá a proč (cca 1 minuta, bez skákání do řeči).</li>
+<li>Hlasuje se tajně na papírcích se jménem — Vláďa je sečte a vyhlásí výsledek.</li>
+<li>Vyloučený hráč se hned dozví i ostatní, jestli byl Zrádce, nebo Věrný — to je moment velkého napětí.</li>
+<li>Při remíze rozhoduje los mezi hráči s nejvyšším počtem hlasů.</li>
+<li>Zrádci mohou při diskuzi klidně nahlas podezřívat i sebe navzájem, aby se neprozradili — čím přesvědčivější, tím lepší hra.</li>
+</ul>
+</section>
+
+<section id="konec">
+<h2>5. Konec hry a poklad</h2>
+<p>Hra končí jedním ze dvou způsobů:</p>
+<ul>
+<li>Věrní vyhrávají, pokud se jim podaří vyloučit všechny Zrádce — poklad si spravedlivě rozdělí všichni zbývající Věrní.</li>
+<li>Zrádci vyhrávají, pokud aspoň jeden z nich přežije až do posledního kola — poklad si nechají jen Zrádci, ostatní se dozví pravdu při závěrečném velkém odhalení.</li>
+</ul>
+<p>Poslední večer hry patří každopádně velkému odhalení: bez ohledu na to, kdo vyhrál, Vláďa přečte, kdo byli všichni Zrádci od začátku hry.</p>
+</section>
+
+<section id="varianty">
+<h2>6. Tři verze podle délky hry</h2>
+<p>Základní mechanika (role, kulatý stůl, mise, noční eliminace) je pro všechny tři verze stejná. Mění se jen počet kol, počet Zrádců a časový rozvrh.</p>
+
+<h3>Varianta A — Základní, na celých 12 dní</h3>
+<p>Obsazení: 3 Zrádci (losují se z 11 kandidátů 11+ let), 10 Věrných (včetně Emy a Jáchymka). Čtyři kola v pohodovém tempu mezi bazénem, výlety a večeřemi.</p>
+<table>
+<tr><th>Kdy</th><th>Co se děje</th></tr>
+<tr><td>Den 1 (příjezd, večer)</td><td>Vysvětlení pravidel, tajné losování 3 Zrádců</td></tr>
+<tr><td>Den 2–3</td><td>Kolo 1: Mise 1 (bazén) → Kulatý stůl a hlasování → noc: tajná eliminace</td></tr>
+<tr><td>Den 4–6</td><td>Kolo 2: Mise 2 (zahrada/bytovky) → Kulatý stůl → eliminace</td></tr>
+<tr><td>Den 7–9</td><td>Kolo 3: Mise 3 (výprava na pláž) → Kulatý stůl → eliminace</td></tr>
+<tr><td>Den 10–11</td><td>Kolo 4: Mise 4 (večerní kvíz) → Kulatý stůl → eliminace</td></tr>
+<tr><td>Poslední večer (den 12)</td><td>Velké finální odhalení a rozdělení pokladu</td></tr>
+</table>
+
+<h3>Varianta B — Na 1 den</h3>
+<p>Obsazení: 2 Zrádci (losují se z 11 kandidátů 11+ let), 11 Věrných (včetně Emy a Jáchymka). Se dvěma zrádci a jedním dnem stihnete dvě napínavá kola, aniž by rodina zůstala bez hráčů.</p>
+<table>
+<tr><th>Čas</th><th>Co se děje</th></tr>
+<tr><td>Ráno</td><td>Vysvětlení pravidel, tajné losování 2 Zrádců</td></tr>
+<tr><td>Dopoledne</td><td>Mise 1 — Bazénová štafeta (zkráceně, cca 30–45 min)</td></tr>
+<tr><td>Po obědě</td><td>Krátká „obědová porada“ — první dojmy a podezření, zatím bez hlasování</td></tr>
+<tr><td>Odpoledne</td><td>Mise 2 — Poklad mezi bytovkami nebo sběratelská výprava na pláž (zkráceně)</td></tr>
+<tr><td>Odpolední klid / siesta</td><td>Zrádci potichu vyberou 1 hráče k vyřazení a řeknou to Vláďovi</td></tr>
+<tr><td>Podvečer</td><td>Kulatý stůl č. 1 — diskuze, hlasování, vyloučení jednoho hráče a odhalení role</td></tr>
+<tr><td>Večer po večeři</td><td>Kulatý stůl č. 2 — finální hlasování, velké odhalení obou Zrádců, rozdělení pokladu</td></tr>
+</table>
+
+<h3>Varianta C — Na max. 3 dny</h3>
+<p>Obsazení: 3 Zrádci (stejně jako varianta A), 10 Věrných. Tři kola rozprostřená přes tři dny dají hře pořádný oblouk i s nočními eliminacemi.</p>
+<table>
+<tr><th>Den</th><th>Co se děje</th></tr>
+<tr><td>Den 1</td><td>Ráno: pravidla a losování 3 Zrádců. Dopoledne: Mise 1 (bazén). Večer: Kulatý stůl 1 — hlasování a odhalení. Noc: tajná eliminace.</td></tr>
+<tr><td>Den 2</td><td>Ráno: oznámení, kdo byl v noci vyřazen. Odpoledne: Mise 2 (zahrada/bytovky nebo pláž). Večer: Kulatý stůl 2 — hlasování a odhalení. Noc: tajná eliminace.</td></tr>
+<tr><td>Den 3</td><td>Ráno: oznámení + volitelná krátká Mise 3 (kvíz nebo pláž). Večer: finální Kulatý stůl, velké odhalení všech Zrádců a rozdělení pokladu.</td></tr>
+</table>
+<p class="tip">Tip: nevíte-li předem, kolik dní na hru bude, klidně začněte variantou B a pokud se rodině bude chtít pokračovat, plynule ji protáhněte do varianty C přidáním dalšího kola.</p>
+</section>
+
+<section id="tipy">
+<h2>7. Tipy pro hostitele (Vláďu)</h2>
+<ul>
+<li>Udržuj napětí, ale hlídej náladu nejmladších — Ema a Jáchymek jsou vždy Věrní a i po vyřazení někoho jiného čeká je normální bazén a moře, nikdo není vyloučen z dovolené, jen ze hry.</li>
+<li>Zrádcům můžeš diskrétně poradit s „alibi“, ať jejich role není hned prokouknutá.</li>
+<li>Poklad naplňuj postupně během misí, ať je na konci na co se těšit — sladkosti, italská čokoláda, drobné dárky.</li>
+<li>Finální odhalení dělej jako malou slavnostní scénu — přečti jména Zrádců nahlas, ať to má parádní tečku.</li>
+</ul>
+</section>
+
+<footer>Rodinná hra Zrádci — Itálie 2026</footer>
+
+</div>
+</body>
+</html>

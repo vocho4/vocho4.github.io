@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Výletní tipy — Wagrain a cesta z Itálie</title>
+<style>
+  :root {
+    --accent: #1F6B5C;
+    --accent2: #2C4A3E;
+    --bg: #F5F8F6;
+    --card: #FFFFFF;
+    --border: #DCE7E1;
+    --text: #263B33;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 40px 20px 80px; }
+  header.hero {
+    text-align: center;
+    padding: 40px 20px 30px;
+    border-bottom: 3px solid var(--accent);
+    margin-bottom: 40px;
+  }
+  header.hero .eyebrow {
+    color: var(--accent2);
+    letter-spacing: 3px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  header.hero h1 { font-size: 2.2rem; color: var(--accent); margin: 10px 0 6px; }
+  header.hero p.subtitle { font-style: italic; color: #4B5E55; font-size: 1.1rem; margin: 0; }
+  .section-label {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin: 40px 0 16px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 24px 24px;
+    margin-bottom: 26px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  }
+  .card h2 { margin: 0 0 4px; color: var(--accent2); font-size: 1.35rem; }
+  .card .tag { font-size: 0.85rem; color: var(--accent); font-weight: 600; margin-bottom: 10px; }
+  .card p { margin: 8px 0 14px; }
+  .photos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .photos figure { margin: 0; }
+  .photos img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    background: #E4EEE9;
+  }
+  .photos figcaption {
+    font-size: 0.72rem;
+    color: #7C8B84;
+    margin-top: 4px;
+    text-align: center;
+  }
+  .note {
+    background: #FDECEC;
+    border-left: 4px solid #C0392B;
+    padding: 10px 16px;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.95rem;
+    margin: 30px 0;
+  }
+  .maps-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1A73E8;
+    text-decoration: none;
+    margin-top: 2px;
+  }
+  .maps-link:hover { text-decoration: underline; }
+  @media (max-width: 560px) {
+    .photos { grid-template-columns: 1fr; }
+    .photos img { height: 220px; }
+  }
+  footer { text-align: center; color: #8A9A93; font-size: 0.85rem; margin-top: 50px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">Cesta Lido di Altanea → Wagrain → Kdyně</div>
+  <h1>Výletní tipy s fotkami</h1>
+  <p class="subtitle">Liechtensteinklamm, co dalšího stihnout s dětmi u Wagrainu, a jedna super zastávka cestou</p>
+</header>
+
+<div class="note">
+  ⚠️ Wagrainis Grafenberg (i s KUHbidu stezkou) je celé léto 2026 zavřené kvůli stavbě nové lanovky — proto tady chybí a je nahrazené alternativami.
+</div>
+
+<div class="section-label">U Wagrainu</div>
+
+<div class="card">
+  <h2>Liechtensteinklamm</h2>
+  <div class="tag">St. Johann im Pongau · vaše hlavní naplánovaná zastávka</div>
+  <div class="photos">
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Liechtensteinklamm-1.jpg" alt="Liechtensteinklamm soutěska" loading="lazy" onerror="this.parentElement.style.display='none'">
+      <figcaption>Liechtensteinklamm (Wikimedia Commons)</figcaption>
+    </figure>
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Liechtensteinklamm-2.jpg" alt="Liechtensteinklamm vodopád" loading="lazy" onerror="this.parentElement.style.display='none'">
+      <figcaption>Liechtensteinklamm — vodopád (Wikimedia Commons)</figcaption>
+    </figure>
+  </div>
+  <p>Působivá soutěska s lávkami vysoko nad divokou vodou a vodopádem na konci — jedna z nejznámějších klamm v Rakousku, skvělá i pro děti.</p>
+  <a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Liechtensteinklamm+St.+Johann+im+Pongau+Austria" target="_blank" rel="noopener">📍 Otevřít v Google Maps</a>
+</div>
+
+<div class="card">
+  <h2>Lucky Flitzer — Alpine Coaster, Flachau</h2>
+  <div class="tag">5 minut autem od Wagrainu · otevřeno 28. 6. – 26. 10. 2026</div>
+  <div class="photos">
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Imst_-_Alpine_Coaster_-_06.jpg" alt="Alpine coaster" loading="lazy" onerror="this.parentElement.style.display='none'">
+      <figcaption>Ilustrační foto — alpine coaster (Wikimedia Commons)</figcaption>
+    </figure>
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Imst_-_Alpine_Coaster_-_03.jpg" alt="Alpine coaster detail" loading="lazy" onerror="this.parentElement.style.display='none'">
+      <figcaption>Ilustrační foto — kolejová dráha (Wikimedia Commons)</figcaption>
+    </figure>
+  </div>
+  <p>Celoroční bobová dráha na kolejích, 1100 m s vlnami a skoky. U toho dětské hřiště s nafukovacími atrakcemi zdarma.</p>
+  <a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Lucky+Flitzer+Alpine+Coaster+Flachau+Austria" target="_blank" rel="noopener">📍 Otevřít v Google Maps</a>
+</div>
+
+<div class="card">
+  <h2>Geisterberg, Alpendorf (St. Johann im Pongau)</h2>
+  <div class="tag">kousek od Wagrainu, nahoru lanovkou</div>
+  <div class="photos">
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Spielplatz_Josefwiese.JPG" alt="Horské hřiště" loading="lazy" onerror="this.parentElement.style.display='none'">
+      <figcaption>Ilustrační foto — herní stanice (Wikimedia Commons)</figcaption>
+    </figure>
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Altenbrak_Spielplatz.JPG" alt="Dětské hřiště" loading="lazy" onerror="this.parentElement.style.display='none'">
+      <figcaption>Ilustrační foto — hřiště (Wikimedia Commons)</figcaption>
+    </figure>
+  </div>
+  <p>40 dobrodružných herních stanic na horské louce — přesně pro váš věk dětí (8–12 let).</p>
+  <a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Geisterberg+Alpendorf+St.+Johann+im+Pongau+Austria" target="_blank" rel="noopener">📍 Otevřít v Google Maps</a>
+</div>
+
+<div class="card">
+  <h2>Wasserwelt Amadé — koupaliště Wagrain</h2>
+  <div class="tag">přímo ve Wagrainu · otevřeno květen–září</div>
+  <div class="photos">
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Freibad_Aigen-Schl%C3%A4gl_06.jpg" alt="Rakouské koupaliště" loading="lazy" onerror="this.parentElement.style.display='none'">
+      <figcaption>Ilustrační foto — rakouské koupaliště (Wikimedia Commons)</figcaption>
+    </figure>
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Freibad_Pregarten.jpg" alt="Venkovní bazén" loading="lazy" onerror="this.parentElement.style.display='none'">
+      <figcaption>Ilustrační foto — venkovní bazén (Wikimedia Commons)</figcaption>
+    </figure>
+  </div>
+  <p>Klasické venkovní koupaliště na dny, kdy chcete zůstat ve Wagrainu bez dalšího přejíždění.</p>
+  <a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Wasserwelt+Amad%C3%A9+Wagrain+Austria" target="_blank" rel="noopener">📍 Otevřít v Google Maps</a>
+</div>
+
+<div class="card">
+  <h2>Rodinné túry Wagrain–Kleinarl</h2>
+  <div class="tag">20+ značených tras</div>
+  <div class="photos">
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Wagrain.JPG" alt="Wagrain" loading="lazy" onerror="this.parentElement.style.display='none'">
+      <figcaption>Wagrain (Wikimedia Commons)</figcaption>
+    </figure>
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Wagrain_Grie%C3%9Fenkareck_N-Panorama_20160130.JPG" alt="Panorama Wagrain" loading="lazy" onerror="this.parentElement.style.display='none'">
+      <figcaption>Panorama nad Wagrainem (Wikimedia Commons)</figcaption>
+    </figure>
+  </div>
+  <p>Klidnější den pro rodinu — síť značených tras různé náročnosti přímo z Wagrainu.</p>
+  <a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Wagrain-Kleinarl+Tourismus+Austria" target="_bla
