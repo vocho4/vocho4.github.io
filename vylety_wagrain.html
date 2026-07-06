@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Výletní tipy — Wagrain a cesta z Itálie</title>
+<title>Výletní tipy — Itálie → Triglav → Wagrain</title>
 <style>
   :root {
     --accent: #1F6B5C;
@@ -27,7 +27,7 @@
     text-align: center;
     padding: 40px 20px 30px;
     border-bottom: 3px solid var(--accent);
-    margin-bottom: 40px;
+    margin-bottom: 30px;
   }
   header.hero .eyebrow {
     color: var(--accent2);
@@ -38,6 +38,22 @@
   }
   header.hero h1 { font-size: 2.2rem; color: var(--accent); margin: 10px 0 6px; }
   header.hero p.subtitle { font-style: italic; color: #4B5E55; font-size: 1.1rem; margin: 0; }
+  .itinerary {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 24px 0 40px;
+    font-size: 0.85rem;
+  }
+  .itinerary .stop {
+    background: var(--accent2);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+  .itinerary .arrow { color: var(--accent); align-self: center; font-weight: 700; }
   .section-label {
     display: inline-block;
     background: var(--accent);
@@ -48,8 +64,9 @@
     text-transform: uppercase;
     padding: 4px 12px;
     border-radius: 20px;
-    margin: 40px 0 16px;
+    margin: 40px 0 6px;
   }
+  .section-note { font-size: 0.9rem; color: #4B5E55; margin: 0 0 16px; }
   .card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -128,16 +145,68 @@
 <div class="wrap">
 
 <header class="hero">
-  <div class="eyebrow">Cesta Lido di Altanea → Wagrain → Kdyně</div>
+  <div class="eyebrow">Rodinný výlet 2026</div>
   <h1>Výletní tipy s fotkami</h1>
-  <p class="subtitle">Zastávka cestou z Itálie, Liechtensteinklamm a co dalšího stihnout s dětmi u Wagrainu</p>
+  <p class="subtitle">Itálie → Triglavský národní park (přespání) → Wagrain (přespání) → Kdyně</p>
 </header>
 
-<div class="section-label">Zastávka cestou z Itálie</div>
+<div class="itinerary">
+  <span class="stop">Lido di Altanea</span>
+  <span class="arrow">→</span>
+  <span class="stop">Triglavský NP — noc 1</span>
+  <span class="arrow">→</span>
+  <span class="stop">Wagrain — noc 2</span>
+  <span class="arrow">→</span>
+  <span class="stop">Kdyně</span>
+</div>
+
+<div class="section-label">Den 1 — Itálie → Triglavský národní park</div>
+<p class="section-note">Bovec cca 180 km / 2–2,5 h od Lido di Altanea. Přespání přímo v Triglavském parku, takže na aktivity je klidně čas i odpoledne.</p>
+
+<div class="card">
+  <h2>Rafting na řece Soči, Bovec</h2>
+  <div class="tag">Family/Classic rafting — vhodné od cca 7–8 let</div>
+  <div class="photos">
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Soca_River_Slovenia.JPG" alt="Řeka Soča" loading="lazy" onerror="imgFallback(this,'Řeka Soča')">
+      <figcaption>Řeka Soča (Wikimedia Commons)</figcaption>
+    </figure>
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Whitewater_Rafting_Surfing.jpg" alt="Rafting" loading="lazy" onerror="imgFallback(this,'Rafting')">
+      <figcaption>Ilustrační foto — rafting (Wikimedia Commons)</figcaption>
+    </figure>
+  </div>
+  <p>Pověstná tyrkysová voda Soči. Family rafting berou agentury (Soča Rafting, Bovec Rafting, Aquatours) už od 5–7 let na klidnějším úseku, klasický s peřejemi od cca 7–8 let — vaše děti (8–12) na to věkově pohodlně stačí. Počítejte s 2–3 h včetně převlékání a přesunu k řece.</p>
+  <div class="links-row">
+    <a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=So%C4%8Da+Rafting+Bovec+Slovenia" target="_blank" rel="noopener">📍 Otevřít v Google Maps</a>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Vodopád Kozjak, Kobarid</h2>
+  <div class="tag">~7 km od Bovce · lehká procházka ~30 min od parkoviště</div>
+  <div class="photos">
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Kobarid_Kozjak-Fall_03.JPG" alt="Vodopád Kozjak" loading="lazy" onerror="imgFallback(this,'Vodopád Kozjak')">
+      <figcaption>Slap Kozjak (Wikimedia Commons)</figcaption>
+    </figure>
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Kobarid_Kozjak-Fall_09.JPG" alt="Vodopád Kozjak detail" loading="lazy" onerror="imgFallback(this,'Vodopád Kozjak detail')">
+      <figcaption>Slap Kozjak — detail (Wikimedia Commons)</figcaption>
+    </figure>
+  </div>
+  <p>15m vodopád ukrytý v jeskyni s omšelými stěnami — jeden z nejkrásnějších ve Slovinsku. Snadná procházka soutěskou, otevřeno duben–říjen. Skvělé na odpočinek po raftingu nebo jako náhrada, pokud by počasí raftingu nepřálo.</p>
+  <div class="links-row">
+    <a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Slap+Kozjak+Kobarid+Slovenia" target="_blank" rel="noopener">📍 Otevřít v Google Maps</a>
+  </div>
+</div>
+
+<div class="section-label">Den 2 — Triglav → Wagrain (cestou)</div>
+<p class="section-note">Z Bovce je to na Tarvisio jen ~30 min a na Villach ~50 min — Fusine jezera tak vyjdou prakticky po cestě. Pyramidenkogel a Minimundus jsou o kousek větší odbočka u Villachu, jen pokud zbyde čas.</p>
 
 <div class="card">
   <h2>Laghi di Fusine (Fusine Lakes), Tarvisio</h2>
-  <div class="tag">přímo na trase, těsně před rakouskými hranicemi · zdarma</div>
+  <div class="tag">prakticky na trase Bovec → Villach · zdarma</div>
   <div class="photos">
     <figure>
       <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Riflesso_al_Lago_di_Fusine.jpg" alt="Jezero Fusine" loading="lazy" onerror="imgFallback(this,'Lago di Fusine')">
@@ -175,7 +244,7 @@
 
 <div class="card">
   <h2>Minimundus, Klagenfurt</h2>
-  <div class="tag">stejná odbočka jako Pyramidenkogel — dá se spojit v jeden den</div>
+  <div class="tag">stejná odbočka jako Pyramidenkogel — dá se spojit</div>
   <div class="photos">
     <figure>
       <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Minimundus-Klagenfurt.jpg" alt="Minimundus Klagenfurt" loading="lazy" onerror="imgFallback(this,'Minimundus')">
@@ -186,7 +255,7 @@
       <figcaption>Miniatura v parku Minimundus (Wikimedia Commons)</figcaption>
     </figure>
   </div>
-  <p>Park s 150+ miniaturami slavných staveb světa v měřítku 1:25, u toho hřiště a atrakce pro děti. Skvělá další zastávka na stejné odbočce jako Pyramidenkogel — dá se stihnout obojí.</p>
+  <p>Park s 150+ miniaturami slavných staveb světa v měřítku 1:25, u toho hřiště a atrakce pro děti.</p>
   <div class="links-row">
     <a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Minimundus+Klagenfurt+Austria" target="_blank" rel="noopener">📍 Otevřít v Google Maps</a>
   </div>
@@ -312,7 +381,7 @@
   </div>
 </div>
 
-<footer>Fotky: Wikimedia Commons, licence Creative Commons (KUHbidu ilustrační, konkrétní fotky nejsou volně licencované) · Rodinný výlet Itálie → Wagrain → Kdyně 2026</footer>
+<footer>Fotky: Wikimedia Commons, licence Creative Commons (KUHbidu a Geisterberg ilustrační) · Rodinný výlet Itálie → Triglav → Wagrain → Kdyně 2026</footer>
 
 </div>
 <script>
