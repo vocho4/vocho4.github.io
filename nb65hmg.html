@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nižbor65 – Harmonogram rekonstrukce 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f7; color: #1d1d1f; font-size: 13px; }
+
+  h1 { font-size: 22px; font-weight: 700; padding: 18px 24px 4px; }
+  .subtitle { font-size: 13px; color: #6e6e73; padding: 0 24px 14px; }
+
+  .layout { display: flex; gap: 20px; padding: 0 24px 24px; align-items: flex-start; }
+
+  .calendar-section { flex: 1 1 0; min-width: 0; }
+  .month-block { margin-bottom: 18px; }
+  .month-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+  .day-header { text-align: center; font-size: 10px; font-weight: 600; color: #6e6e73; padding: 2px 0 4px; }
+  .day {
+    border-radius: 5px; padding: 3px 4px 4px;
+    min-height: 44px; background: #fff; border: 1px solid #e5e5ea;
+  }
+  .day.empty { background: transparent; border-color: transparent; }
+  .day .dn { font-size: 11px; font-weight: 600; color: #3a3a3c; }
+  .day .task-label { font-size: 8.5px; line-height: 1.2; margin-top: 2px; }
+  .day .md-label { font-size: 7.5px; color: #6e6e73; margin-top: 1px; }
+  .day.overload .md-label { color: #ff3b30; font-weight: 700; }
+
+  .day.blocked  { background: #d1d1d6; border-color: #aeaeb2; }
+  .day.blocked .dn { color: #636366; }
+  .day.work     { background: #d1f5d3; border-color: #34c759; }
+  .day.work .dn { color: #1a7a30; }
+  .day.prep     { background: #fff3b0; border-color: #ffcc00; }
+  .day.prep .dn { color: #7a5c00; }
+  .day.buffer   { background: #e5d6f5; border-color: #af52de; }
+  .day.buffer .dn { color: #5a1e8a; }
+  .day.done     { background: #e8f5e9; border-color: #81c784; opacity: .75; }
+  .day.done .dn { color: #2e7d32; }
+  .day.done .task-label { text-decoration: line-through; color: #4caf50; }
+  .day.mixed    { background: #d1f5d3; border-color: #34c759; }
+  .day.event    { background: #fff0e0; border-color: #ff9500; border-width: 2px; }
+  .day.event .dn { color: #c05000; }
+  .day.event .task-label { color: #c05000; font-weight: 600; }
+  .day.today    { border: 2px solid #007aff !important; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 10px; padding: 0 24px 14px; }
+  .leg-item { display: flex; align-items: center; gap: 5px; font-size: 12px; }
+  .leg-dot { width: 14px; height: 14px; border-radius: 3px; border: 1px solid rgba(0,0,0,.15); }
+
+  .activity-section { width: 310px; flex-shrink: 0; }
+  .group-title { font-size: 12px; font-weight: 700; color: #6e6e73; text-transform: uppercase; letter-spacing: .5px; margin: 14px 0 5px; }
+  .act-item {
+    background: #fff; border: 1px solid #e5e5ea; border-radius: 7px;
+    padding: 7px 10px; margin-bottom: 4px;
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 6px;
+  }
+  .act-item.done-item { opacity: .55; background: #f1f8f1; }
+  .act-item.done-item .act-name { text-decoration: line-through; color: #4caf50; }
+  .act-item.overload-item { border-color: #ff9500; background: #fff8f0; }
+  .act-item.event-item { background: #fff8ee; border-color: #ff9500; border-width: 2px; }
+  .act-item.event-item .act-name { color: #c05000; font-weight: 700; }
+  .act-name { font-size: 12px; font-weight: 500; }
+  .act-date { font-size: 11px; color: #6e6e73; }
+  .act-md { font-size: 11px; font-weight: 700; color: #007aff; white-space: nowrap; }
+  .act-md.over { color: #ff3b30; }
+
+  .stats { display: flex; gap: 10px; padding: 0 24px 14px; flex-wrap: wrap; }
+  .stat-box { background: #fff; border: 1px solid #e5e5ea; border-radius: 10px; padding: 10px 16px; }
+  .stat-val { font-size: 22px; font-weight: 700; color: #007aff; }
+  .stat-lbl { font-size: 11px; color: #6e6e73; }
+
+  @media (max-width: 900px) {
+    .layout { flex-direction: column; }
+    .activity-section { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Nižbor65 – Harmonogram rekonstrukce</h1>
+<p class="subtitle">Červen – Září 2026 &nbsp;·&nbsp; Deadline: 20. 9. 2026 &nbsp;·&nbsp; aktualizováno 16. 6. 2026</p>
+
+<div class="stats">
+  <div class="stat-box"><div class="stat-val">~15</div><div class="stat-lbl">MD zbývá</div></div>
+  <div class="stat-box"><div class="stat-val">5</div><div class="stat-lbl">úkoly hotové ✓</div></div>
+  <div class="stat-box"><div class="stat-val">20. 9.</div><div class="stat-lbl">Deadline</div></div>
+  <div class="stat-box"><div class="stat-val">6. 9.</div><div class="stat-lbl">Plán. dokončení</div></div>
+</div>
+
+<div class="legend">
+  <div class="leg-item"><div class="leg-dot" style="background:#d1d1d6;border-color:#aeaeb2"></div> S dětmi (blokováno)</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#d1f5d3;border-color:#34c759"></div> Plánovaná práce</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#e8f5e9;border-color:#81c784"></div> Hotovo ✓</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#e5d6f5;border-color:#af52de"></div> Rezerva</div>
+  <div class="leg-item"><div style="width:14px;height:14px;border-radius:3px;border:2px solid #ff9500;background:#fff8f0"></div> Přetlak MD ⚠</div>
+</div>
+
+<div class="layout">
+  <div class="calendar-section" id="calendar"></div>
+  <div class="activity-section" id="activities"></div>
+</div>
+
+<script>
+const BLOCKED = new Set([
+  '2026-06-01','2026-06-02','2026-06-03','2026-06-04','2026-06-05','2026-06-06','2026-06-07',
+  '2026-06-15','2026-06-16','2026-06-17','2026-06-18','2026-06-19','2026-06-20','2026-06-21',
+  '2026-06-29','2026-06-30',
+  '2026-07-01','2026-07-02','2026-07-03','2026-07-04','2026-07-05',
+  '2026-07-17','2026-07-18','2026-07-19','2026-07-20','2026-07-21','2026-07-22','2026-07-23',
+  '2026-07-24','2026-07-25','2026-07-26','2026-07-27','2026-07-28','2026-07-29','2026-07-30',
+  '2026-08-12','2026-08-13','2026-08-14','2026-08-15','2026-08-16',
+  '2026-08-24','2026-08-25','2026-08-26','2026-08-27','2026-08-28','2026-08-29','2026-08-30',
+  '2026-09-07','2026-09-08','2026-09-09','2026-09-10','2026-09-11','2026-09-12','2026-09-13',
+]);
+
+// Each day = array of tasks: { label, md, type: 'work'|'done'|'prep'|'buffer' }
+// Day capacity: Čt=0.25, Pá=0.5, So=1, Ne=1, extra srpen: St5.8/Čt6.8/Po10.8/Út11.8 = 1
+const WORK_DAYS = {
+  // === ČERVEN – HOTOVÉ ===
+  '2026-06-11': [{ label: '✓ Zábradlí balkon', md: 0.25, type: 'done' }],
+  '2026-06-12': [
+    { label: '✓ Wallbox', md: 0.5, type: 'done' },
+    { label: '✓ Elektřina', md: 0.5, type: 'done' },
+  ],
+  '2026-06-13': [{ label: '✓ Obložení pergoly', md: 1, type: 'done' }],
+  '2026-06-14': [{ label: '✓ Trám + střecha pergoly', md: 1, type: 'done' }],
+
+  // === ČERVEN – NAPLÁNOVÁNO ===
+  '2026-06-25': [{ label: 'Kuchyňská linka', md: 0.25, type: 'work' }],
+  '2026-06-26': [{ label: 'Umyvadlo venkovní', md: 0.5, type: 'work' }],
+  '2026-06-27': [{ label: 'Lesní divadlo ①', md: 1, type: 'work' }],
+  '2026-06-28': [{ label: 'Pergola střecha+obklad', md: 1, type: 'work' }],
+
+  // === ČERVENEC ===
+  '2026-07-09': [{ label: 'Oprava jezírka', md: 1, type: 'work' }],
+  '2026-07-10': [{ label: 'Podlaha ateliéru 🌧', md: 1, type: 'work' }],
+  '2026-07-11': [{ label: 'Vyklidit dílnu + Kůlna dveře', md: 1, type: 'work' }],
+  '2026-07-12': [{ label: 'Lesní divadlo ②', md: 1, type: 'work' }],
+
+  // === SRPEN ===
+  '2026-08-01': [{ label: 'Vybetonovat podlahu (domek)', md: 1, type: 'work' }],
+  '2026-08-02': [{ label: 'Rezerva', md: 1, type: 'buffer' }],
+  '2026-08-07': [{ label: 'Dveře venku', md: 0.5, type: 'work' }],
+  '2026-08-08': [{ label: 'Obklad domku', md: 1, type: 'work' }],
+  '2026-08-09': [{ label: 'Rezerva', md: 1, type: 'buffer' }],
+  '2026-08-10': [{ label: 'Kabinet + Obklad rohů 🌧', md: 1, type: 'work' }],
+  '2026-08-17': [{ label: 'Rezerva', md: 1, type: 'buffer' }],
+  '2026-08-22': [{ label: 'Obklad předsíně 🌧', md: 1, type: 'work' }],
+  '2026-08-23': [{ label: 'Schody do horní zahrady', md: 1, type: 'work' }],
+
+  // === ZÁŘÍ ===
+  '2026-09-03': [{ label: 'Příprava', md: 0.25, type: 'prep' }],
+  '2026-09-04': [{ label: 'Rezerva', md: 0.5, type: 'buffer' }],
+  '2026-09-05': [{ label: 'Zavlažování + Skleník', md: 1.5, type: 'work' }],
+  '2026-09-06': [{ label: 'Rezerva', md: 1, type: 'buffer' }],
+  '2026-09-17': [{ label: 'Příprava', md: 0.25, type: 'prep' }],
+  '2026-09-18': [{ label: 'Rezerva', md: 1, type: 'buffer' }],
+  '2026-09-19': [{ label: 'Rezerva', md: 1, type: 'buffer' }],
+  '2026-09-20': [{ label: '🏁 Deadline', md: 0, type: 'buffer' }],
+  '2026-09-26': [{ label: '🎉 Zahradní slavnost', md: 0, type: 'event' }],
+};
+
+const MONTHS = [
+  { year: 2026, month: 5, name: 'Červen 2026' },
+  { year: 2026, month: 6, name: 'Červenec 2026' },
+  { year: 2026, month: 7, name: 'Srpen 2026' },
+  { year: 2026, month: 8, name: 'Září 2026' },
+];
+const DAY_NAMES = ['Po','Út','St','Čt','Pá','So','Ne'];
+
+function pad(n) { return String(n).padStart(2,'0'); }
+function dateStr(y,m,d) { return `${y}-${pad(m+1)}-${pad(d)}`; }
+
+function getDayClass(tasks) {
+  if (!tasks || tasks.length === 0) return '';
+  const types = tasks.map(t => t.type);
+  const allDone = tasks.every(t => t.type === 'done');
+  if (allDone) return 'done';
+  // pure event (no work tasks)
+  if (types.every(t => t === 'event')) return 'event';
+  if (types.includes('work') && types.includes('done')) return 'mixed';
+  if (types.includes('work')) return 'work';
+  if (types.includes('event')) return 'event';
+  if (types.includes('prep')) return 'prep';
+  if (types.includes('buffer')) return 'buffer';
+  return 'work';
+}
+
+function renderCalendar() {
+  const cal = document.getElementById('calendar');
+  const today = new Date().toISOString().slice(0,10);
+
+  MONTHS.forEach(({ year, month, name }) => {
+    const block = document.createElement('div');
+    block.className = 'month-block';
+    block.innerHTML = `<div class="month-title">${name}</div>`;
+
+    const grid = document.createElement('div');
+    grid.className = 'cal-grid';
+    DAY_NAMES.forEach(d => {
+      const h = document.createElement('div');
+      h.className = 'day-header';
+      h.textContent = d;
+      grid.appendChild(h);
+    });
+
+    const firstDay = new Date(year, month, 1);
+    let startDow = firstDay.getDay();
+    startDow = startDow === 0 ? 6 : startDow - 1;
+    for (let i = 0; i < startDow; i++) {
+      const e = document.createElement('div');
+      e.className = 'day empty';
+      grid.appendChild(e);
+    }
+
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    for (let d = 1; d <= daysInMonth; d++) {
+      const ds = dateStr(year, month, d);
+      const tasks = WORK_DAYS[ds] || [];
+      const hasOverload = tasks.some(t => t.overload);
+
+      let cls = '';
+      if (BLOCKED.has(ds)) cls = 'blocked';
+      else cls = getDayClass(tasks);
+
+      const cell = document.createElement('div');
+      cell.className = 'day' + (cls ? ' ' + cls : '') + (hasOverload ? ' overload' : '') + (ds === today ? ' today' : '');
+
+      const dn = document.createElement('div');
+      dn.className = 'dn';
+      dn.textContent = d;
+      cell.appendChild(dn);
+
+      const totalMd = tasks.reduce((s, t) => s + (t.md || 0), 0);
+
+      tasks.forEach((t, i) => {
+        if (i === 0 || tasks.length <= 2) {
+          const tl = document.createElement('div');
+          tl.className = 'task-label';
+          const maxLen = tasks.length > 1 ? 18 : 22;
+          tl.textContent = (t.label || '').length > maxLen ? (t.label || '').slice(0, maxLen - 1) + '…' : (t.label || '');
+          if (t.type === 'done') tl.style.textDecoration = 'line-through';
+          cell.appendChild(tl);
+        }
+      });
+
+      if (totalMd > 0) {
+        const ml = document.createElement('div');
+        ml.className = 'md-label';
+        ml.textContent = totalMd + ' MD' + (hasOverload ? ' ⚠' : '');
+        cell.appendChild(ml);
+      }
+
+      grid.appendChild(cell);
+    }
+    block.appendChild(grid);
+    cal.appendChild(block);
+  });
+}
+
+// ========== ACTIVITY LIST ==========
+const ACTIVITIES = [
+  { group: '✓ Hotové', items: [
+    { date: '11. 6. Čt', name: '✓ Zábradlí balkon', md: '0,25 MD', done: true, border: '#81c784' },
+    { date: '12. 6. Pá', name: '✓ Wallbox', md: '0,5 MD', done: true, border: '#81c784' },
+    { date: '12. 6. Pá', name: '✓ Elektřina', md: '0,5 MD', done: true, border: '#81c784' },
+    { date: '13. 6. So', name: '✓ Obložení pergoly', md: '1 MD', done: true, border: '#81c784' },
+    { date: '14. 6. Ne', name: '✓ Trám a střecha pergoly', md: '1 MD', done: true, border: '#81c784' },
+  ]},
+  { group: '🎉 Cíl – Zahradní slavnost', items: [
+    { date: '26. 9. So', name: '🎉 Zahradní slavnost', md: '—', border: '#ff9500', event: true },
+  ]},
+  { group: 'Červen', items: [
+    { date: '25. 6. Čt', name: 'Kuchyňská linka', md: '0,25 MD', border: '#34c759' },
+    { date: '26. 6. Pá', name: 'Umyvadlo venkovní', md: '0,5 MD', border: '#34c759' },
+    { date: '27. 6. So', name: 'Lesní divadlo ①', md: '1 MD', border: '#34c759' },
+    { date: '28. 6. Ne', name: 'Pergola střecha+obklad', md: '1 MD', border: '#34c759' },
+  ]},
+  { group: 'Červenec', items: [
+    { date: '9. 7. Čt', name: 'Oprava jezírka', md: '1 MD', border: '#34c759' },
+    { date: '10. 7. Pá', name: 'Podlaha ateliéru 🌧', md: '1 MD', border: '#007aff' },
+    { date: '11. 7. So', name: 'Vyklidit dílnu + Kůlna dveře', md: '1 MD', border: '#34c759' },
+    { date: '12. 7. Ne', name: 'Lesní divadlo ②', md: '1 MD', border: '#34c759' },
+  ]},
+  { group: 'Srpen – exteriér', items: [
+    { date: '7. 8. Pá', name: 'Dveře venku', md: '0,5 MD', border: '#34c759' },
+  ]},
+  { group: 'Srpen – venkovní domek', items: [
+    { date: '1. 8. So', name: 'Vybetonovat podlahu', md: '1 MD', border: '#34c759' },
+    { date: '8. 8. So', name: 'Obklad domku', md: '1 MD', border: '#34c759' },
+  ]},
+  { group: 'Srpen – ostatní', items: [
+    { date: '10. 8. Po', name: 'Kabinet + Obklad rohů 🌧', md: '1 MD', border: '#007aff' },
+    { date: '22. 8. So', name: 'Obklad předsíně 🌧', md: '1 MD', border: '#007aff' },
+    { date: '23. 8. Ne', name: 'Schody do horní zahrady', md: '1 MD', border: '#34c759' },
+  ]},
+  { group: 'Září', items: [
+    { date: '5. 9. So', name: 'Zavlažovací systém + Skleník', md: '1,5 MD', border: '#34c759' },
+  ]},
+  { group: 'Rezerva / buffer', items: [
+    { date: '2. 8. Ne', name: 'Rezerva', md: '1 MD', border: '#af52de' },
+    { date: '9. 8. Ne', name: 'Rezerva', md: '1 MD', border: '#af52de' },
+    { date: '17. 8. So', name: 'Rezerva', md: '1 MD', border: '#af52de' },
+    { date: '4. 9. Pá', name: 'Rezerva', md: '0,5 MD', border: '#af52de' },
+    { date: '6. 9. Ne', name: 'Rezerva', md: '1 MD', border: '#af52de' },
+    { date: '17.–20. 9.', name: 'Rezerva / deadline buffer', md: '2,75 MD', border: '#af52de' },
+  ]},
+];
+
+function renderActivities() {
+  const el = document.getElementById('activities');
+  ACTIVITIES.forEach(({ group, items }) => {
+    const gt = document.createElement('div');
+    gt.className = 'group-title';
+    gt.textContent = group;
+    el.appendChild(gt);
+
+    items.forEach(({ date, name, md, done, border, overload, event }) => {
+      const item = document.createElement('div');
+      item.className = 'act-item' + (done ? ' done-item' : '') + (overload ? ' overload-item' : '') + (event ? ' event-item' : '');
+      item.style.borderLeft = `3px solid ${border || '#34c759'}`;
+      item.innerHTML = `
+        <div>
+          <div class="act-name">${name}</div>
+          <div class="act-date">${date}</div>
+        </div>
+        <div class="act-md${overload ? ' over' : ''}">${md}</div>
+      `;
+      el.appendChild(item);
+    });
+  });
+}
+
+renderCalendar();
+renderActivities();
+</script>
+</body>
+</html>
