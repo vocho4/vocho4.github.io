@@ -230,6 +230,100 @@
     .other-item .thumb, .other-item .thumb-placeholder { width: 100%; flex-basis: auto; height: 160px; }
   }
   footer { text-align: center; color: #8A9A93; font-size: 0.85rem; margin-top: 50px; }
+
+  .schedule { margin: 10px 0 20px; }
+  .sched-day {
+    position: relative;
+    padding: 4px 0 4px 32px;
+    margin-bottom: 8px;
+    border-left: 3px solid var(--accent);
+  }
+  .sched-day:last-child { border-left: 3px solid var(--border); }
+  .sched-day-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent2);
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin: 0 0 14px -47px;
+    position: relative;
+  }
+  .sched-day-title::before {
+    content: '';
+    position: absolute;
+    left: -32px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 3px solid var(--bg);
+  }
+  .sched-item {
+    position: relative;
+    margin: 0 0 12px;
+    padding-left: 4px;
+  }
+  .sched-item::before {
+    content: '';
+    position: absolute;
+    left: -32px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+  }
+  .sched-time {
+    display: inline-block;
+    background: var(--accent2);
+    color: white;
+    font-weight: 700;
+    font-size: 0.78rem;
+    padding: 2px 10px;
+    border-radius: 12px;
+    margin-right: 8px;
+    white-space: nowrap;
+  }
+  .sched-item .sched-text { font-size: 0.95rem; }
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 10px 0 6px -4px;
+  }
+  .option-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    background: var(--card);
+  }
+  .option-card.recommended { border: 2px solid var(--accent); }
+  .option-card h4 {
+    margin: 0 0 8px;
+    color: var(--accent2);
+    font-size: 0.95rem;
+  }
+  .option-card ul { margin: 0; padding-left: 18px; font-size: 0.88rem; }
+  .option-card li { margin-bottom: 4px; }
+  .sched-extra {
+    border: 1px dashed var(--accent);
+    border-radius: 10px;
+    padding: 10px 16px;
+    margin: 10px 0 4px -4px;
+    background: #EDF3F0;
+    font-size: 0.9rem;
+  }
+  .sched-extra strong { color: var(--accent2); }
+  @media (max-width: 560px) {
+    .options-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -238,7 +332,7 @@
 <header class="hero">
   <div class="eyebrow">Rodinný výlet 2026</div>
   <h1>Výletní tipy s fotkami</h1>
-  <p class="subtitle">Den 1: jezera v Itálii · Den 2: Wagrain — lanovka a dětský park · Den 3: soutěska</p>
+  <p class="subtitle">Den 1: jezera v Itálii · Den 2: Wagrain — lanovka a dětský park · Den 3: soutěska/jeskyně + Salzburg → domů do Kdyně</p>
 </header>
 
 <div class="itinerary">
@@ -248,9 +342,52 @@
   <span class="arrow">→</span>
   <span class="stop">Den 2 — Wagrain: lanovka a park</span>
   <span class="arrow">→</span>
-  <span class="stop">Den 3 — soutěska</span>
+  <span class="stop">Den 3 — soutěska/jeskyně + Salzburg</span>
   <span class="arrow">→</span>
   <span class="stop">Kdyně</span>
+</div>
+
+<div class="schedule">
+
+  <div class="sched-day">
+    <div class="sched-day-title">Den 1 — Lido di Altanea → Wagrain</div>
+    <div class="sched-item"><span class="sched-time">12:00</span><span class="sched-text">odjezd z Lido di Altanea</span></div>
+    <div class="sched-item"><span class="sched-time">cesta</span><span class="sched-text">zastávka Laghi di Fusine (Tarvisio) — procházka kolem jezera, ~45 min</span></div>
+    <div class="sched-item"><span class="sched-time">večer</span><span class="sched-text">příjezd do Wagrainu, ubytování</span></div>
+  </div>
+
+  <div class="sched-day">
+    <div class="sched-day-title">Den 2 — Wagrain: Geisterberg + odpočinek</div>
+    <div class="sched-item"><span class="sched-time">dopoledne</span><span class="sched-text">Geisterberg — lanovka nahoru, hřiště, oběd</span></div>
+    <div class="sched-item"><span class="sched-time">odpoledne</span><span class="sched-text">odpočinek u ubytování</span></div>
+    <div class="sched-extra">🔀 <strong>Volitelně:</strong> pokud zbyde energie, dá se ještě odpoledne stihnout Liechtensteinklamm (soutěska) — poslední vstup je tam v 18:00, čistý průchod trvá ~1,5 h.</div>
+  </div>
+
+  <div class="sched-day">
+    <div class="sched-day-title">Den 3 — Soutěska/jeskyně → Salzburg → domů do Kdyně</div>
+    <div class="options-grid">
+      <div class="option-card recommended">
+        <h4>Varianta A — se soutěskou</h4>
+        <ul>
+          <li>ráno: Liechtensteinklamm (soutěska), ~2,5 h vč. parkování a cesty</li>
+          <li>přejezd do Salzburgu (~1 h)</li>
+          <li>Hangar-7 (~1 h)</li>
+          <li>Zámek Hellbrunn — Wasserspiele</li>
+          <li>odjezd do Kdyně, příjezd v noci</li>
+        </ul>
+      </div>
+      <div class="option-card">
+        <h4>Varianta B — rovnou do Salzburgu</h4>
+        <ul>
+          <li>ráno rovnou odjezd do Salzburgu (soutěska se vynechá)</li>
+          <li>víc klidu na Hangar-7 i Hellbrunn, dřívější odjezd domů</li>
+          <li>odjezd do Kdyně, příjezd dřív večer</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sched-extra">🧊 <strong>Eisriesenwelt (obří ledová jeskyně)</strong> necháváme dál jako možnost — leží už směrem na Salzburg, ale je časově náročnější (~3 h vč. lanovky a prohlídky), takže reálně nahrazuje soutěsku, ne že by šlo přidat obojí. Detaily a vstupné níže.</div>
+  </div>
+
 </div>
 
 <div class="day-label">Den 1 — Jezera v Itálii</div>
@@ -281,15 +418,23 @@
   <div class="tag">kousek od Wagrainu, nahoru lanovkou</div>
   <div class="photos">
     <figure>
-      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Bludenz-Muttersbergseilbahn-Trasse-01ASD.jpg" alt="Kabinová lanovka" loading="lazy" onerror="imgFallback(this,'Kabinová lanovka')">
-      <figcaption>Ilustrační foto — kabinová lanovka, ne přímo Alpendorfbahn (Wikimedia Commons)</figcaption>
+      <img src="gondel-geisterberg-alpendorf.jpg" alt="Gondola Alpendorfbahn" loading="lazy" onerror="imgFallback(this,'Gondola Alpendorfbahn')">
+      <figcaption>Gondola Alpendorfbahn (Snow Space Salzburg)</figcaption>
     </figure>
     <figure>
-      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Abenteuerspielplatz_Sindelfingen_01.jpg" alt="Dobrodružné hřiště" loading="lazy" onerror="imgFallback(this,'Dobrodružné hřiště')">
-      <figcaption>Ilustrační foto — dobrodružné hřiště, ne přímo Geisterberg (Wikimedia Commons)</figcaption>
+      <img src="eingang-geisterdorf.jpg" alt="Vchod do Geisterdorfu" loading="lazy" onerror="imgFallback(this,'Vchod do Geisterdorfu')">
+      <figcaption>Vchod do Geisterdorfu (Snow Space Salzburg)</figcaption>
+    </figure>
+    <figure>
+      <img src="Geisterberg%20%284%29.jpg" alt="Geisterberg" loading="lazy" onerror="imgFallback(this,'Geisterberg')">
+      <figcaption>Geisterberg (Snow Space Salzburg)</figcaption>
+    </figure>
+    <figure>
+      <img src="titelbild-c-snow-space-salzburg_josalzburg-1200x900.jpg" alt="Geisterberg titulní foto" loading="lazy" onerror="imgFallback(this,'Geisterberg')">
+      <figcaption>Geisterberg (Snow Space Salzburg / JOSalzburg)</figcaption>
     </figure>
   </div>
-  <p>40 dobrodružných herních stanic na horské louce — přesně pro váš věk dětí (8–12 let). Skutečné fotky Geisterbergu najdete na oficiální stránce níže — na Wikimedia Commons volně licencované fotky přímo tohoto parku bohužel nejsou, proto jsou tu jen ilustrační.</p>
+  <p>40 dobrodružných herních stanic na horské louce — přesně pro váš věk dětí (8–12 let).</p>
   <div class="links-row">
     <a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Geisterberg+Alpendorf+St.+Johann+im+Pongau+Austria" target="_blank" rel="noopener">📍 Otevřít v Google Maps</a>
     <a class="info-link" href="https://www.snow-space.com/en/summer/adventure-mountain/geisterberg-alpendorf" target="_blank" rel="noopener">ℹ️ Oficiální stránka Geisterbergu</a>
@@ -314,7 +459,7 @@
   </details>
 </div>
 
-<div class="day-label">Den 3 — Soutěska</div>
+<div class="day-label">Den 3 — Soutěska nebo ledová jeskyně, pak Salzburg a cesta domů</div>
 
 <div class="card main">
   <h2>Liechtensteinklamm</h2>
@@ -343,106 +488,17 @@
   </details>
 </div>
 
-<div class="section-label">Další možnosti u Wagrainu</div>
-<p class="section-note">Kdyby zbyl čas navíc nebo se hodilo něco vyměnit.</p>
-
-<div class="other-list">
-  <div class="other-item">
-    <img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Imst_-_Alpine_Coaster_-_06.jpg" alt="Alpine coaster" loading="lazy" onerror="thumbFallback(this,'Alpine coaster')">
-    <div class="body">
-      <h3>Lucky Flitzer — Alpine Coaster, Flachau</h3>
-      <p>5 minut autem od Wagrainu, otevřeno 28. 6. – 26. 10. 2026. Celoroční bobová dráha na kolejích, 1100 m s vlnami a skoky, u toho dětské hřiště zdarma.</p>
-      <a href="https://www.google.com/maps/search/?api=1&query=Lucky+Flitzer+Alpine+Coaster+Flachau+Austria" target="_blank" rel="noopener">📍 Mapa</a>
-    </div>
+<div class="card">
+  <h2>Eisriesenwelt, Werfen</h2>
+  <div class="tag">alternativa k soutěsce · největší ledová jeskyně na světě · cca 40 min od Wagrainu</div>
+  <div class="photos">
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Eisriesenwelt_Werfen_Austria_01.jpg" alt="Eisriesenwelt vchod" loading="lazy" onerror="imgFallback(this,'Eisriesenwelt')">
+      <figcaption>Eisriesenwelt, Werfen (Wikimedia Commons)</figcaption>
+    </figure>
+    <figure>
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Eiss%C3%A4ule_in_der_Eisriesenwelt.jpg" alt="Ledová socha v jeskyni" loading="lazy" onerror="imgFallback(this,'Ledová socha v jeskyni')">
+      <figcaption>Ledový sloup uvnitř jeskyně (Wikimedia Commons)</figcaption>
+    </figure>
   </div>
-
-  <div class="other-item">
-    <img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Freibad_Aigen-Schl%C3%A4gl_06.jpg" alt="Koupaliště" loading="lazy" onerror="thumbFallback(this,'Koupaliště')">
-    <div class="body">
-      <h3>Wasserwelt Amadé — koupaliště Wagrain</h3>
-      <p>Přímo ve Wagrainu, otevřeno květen–září. Klasické venkovní koupaliště na dny bez přejíždění.</p>
-      <a href="https://www.google.com/maps/search/?api=1&query=Wasserwelt+Amad%C3%A9+Wagrain+Austria" target="_blank" rel="noopener">📍 Mapa</a>
-    </div>
-  </div>
-
-  <div class="other-item">
-    <img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Wagrain_Grie%C3%9Fenkareck_N-Panorama_20160130.JPG" alt="Panorama Wagrain" loading="lazy" onerror="thumbFallback(this,'Wagrain panorama')">
-    <div class="body">
-      <h3>Rodinné túry Wagrain–Kleinarl</h3>
-      <p>20+ značených tras různé náročnosti přímo z Wagrainu — klidnější den pro rodinu.</p>
-      <a href="https://www.google.com/maps/search/?api=1&query=Wagrain-Kleinarl+Tourismus+Austria" target="_blank" rel="noopener">📍 Mapa</a>
-    </div>
-  </div>
-
-  <div class="other-item">
-    <img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Kuehe_Weide_Cows_Pasture.jpg" alt="Alpské pastviny" loading="lazy" onerror="thumbFallback(this,'Alpské pastviny')">
-    <div class="body">
-      <h3>⚠️ KUHbidu stezka — Wagrainis Grafenberg (zavřeno 2026)</h3>
-      <p>Rodinná stezka o krávách a alpském životě, 10 stanic. Celé léto 2026 zavřeno kvůli stavbě nové lanovky (nová má jet od zimy 2026/2027). Foto jen ilustrační.</p>
-      <a class="info-link" href="https://www.salzburgersportwelt.com/en/blog/kuhbidu-family-adventure-trail-a-mooving-experience-for-all-ages.html" target="_blank" rel="noopener">ℹ️ Oficiální stránka</a>
-    </div>
-  </div>
-</div>
-
-<div class="section-label">Další možnosti po cestě</div>
-<p class="section-note">Alternativy nebo doplňky k trase Itálie → Wagrain, kdyby se hodily.</p>
-
-<div class="other-list">
-  <div class="other-item">
-    <img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Pyramidenkogel_Turm_01.jpg" alt="Pyramidenkogel" loading="lazy" onerror="thumbFallback(this,'Pyramidenkogel')">
-    <div class="body">
-      <h3>Pyramidenkogel, Wörthersee</h3>
-      <p>~20–30 min odbočka u Villachu. Nejvyšší dřevěná vyhlídková věž světa (100 m) se 120m tobogánem (od 130 cm výšky dítěte) a lanovkou Flying Fox.</p>
-      <a href="https://www.google.com/maps/search/?api=1&query=Pyramidenkogel+Keutschach+am+See+Austria" target="_blank" rel="noopener">📍 Mapa</a>
-    </div>
-  </div>
-
-  <div class="other-item">
-    <img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Minimundus-Klagenfurt.jpg" alt="Minimundus" loading="lazy" onerror="thumbFallback(this,'Minimundus')">
-    <div class="body">
-      <h3>Minimundus, Klagenfurt</h3>
-      <p>Stejná odbočka jako Pyramidenkogel — dá se spojit. Park s 150+ miniaturami slavných staveb světa v měřítku 1:25, u toho hřiště pro děti.</p>
-      <a href="https://www.google.com/maps/search/?api=1&query=Minimundus+Klagenfurt+Austria" target="_blank" rel="noopener">📍 Mapa</a>
-    </div>
-  </div>
-
-  <div class="other-item">
-    <img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Soca_River_Slovenia.JPG" alt="Řeka Soča" loading="lazy" onerror="thumbFallback(this,'Řeka Soča')">
-    <div class="body">
-      <h3>Rafting na řece Soči, Bovec (Triglavský národní park)</h3>
-      <p>Vyžaduje přespání navíc — Bovec je ~180 km / 2–2,5 h od Lido di Altanea a ~50 min od Villachu. Family/Classic rafting od cca 7–8 let, tyrkysová voda, 2–3 h včetně převlékání.</p>
-      <a href="https://www.google.com/maps/search/?api=1&query=So%C4%8Da+Rafting+Bovec+Slovenia" target="_blank" rel="noopener">📍 Mapa</a>
-    </div>
-  </div>
-
-  <div class="other-item">
-    <img class="thumb" src="https://commons.wikimedia.org/wiki/Special:FilePath/Kobarid_Kozjak-Fall_03.JPG" alt="Vodopád Kozjak" loading="lazy" onerror="thumbFallback(this,'Vodopád Kozjak')">
-    <div class="body">
-      <h3>Vodopád Kozjak, Kobarid</h3>
-      <p>~7 km od Bovce, lehká procházka ~30 min od parkoviště k 15m vodopádu ukrytému v jeskyni. Dobrá dvojka k raftingu, pokud byste přespání v Triglavu zařadili.</p>
-      <a href="https://www.google.com/maps/search/?api=1&query=Slap+Kozjak+Kobarid+Slovenia" target="_blank" rel="noopener">📍 Mapa</a>
-    </div>
-  </div>
-</div>
-
-<footer>Fotky: Wikimedia Commons, licence Creative Commons (u Geisterbergu a KUHbidu ilustrační, ne přímo dané místo) · Rodinný výlet Itálie → Wagrain → Kdyně 2026</footer>
-
-</div>
-<script>
-function imgFallback(img, label) {
-  img.onerror = null;
-  var ph = document.createElement('div');
-  ph.className = 'img-placeholder';
-  ph.textContent = '📷 ' + label;
-  img.replaceWith(ph);
-}
-function thumbFallback(img, label) {
-  img.onerror = null;
-  var ph = document.createElement('div');
-  ph.className = 'thumb-placeholder';
-  ph.textContent = '📷 ' + label;
-  img.replaceWith(ph);
-}
-</script>
-</body>
-</html>
+  <p>Obří ledová jeskyně s ledopády a ledovými útvary, přístupná lanovkou a pak vede prohlídka s průvodcem po dřevěných schodech a plynových lampách. Silný zážitek pro děti, ale je tam chladno (vezměte bundy) a prohlídka s chůzí trvá cca 1,5 h. <strong>Leží už na cestě směrem k Salzburgu</strong> (na rozdíl od Liechtensteinklammu, který je přímo u Wagrainu) — buď
