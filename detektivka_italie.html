@@ -2,7 +2,7 @@
 <html lang="cs">
 <head>
 <meta charset="UTF-8">
-<title>Vražda v našem apartmánu — Detektivní hra</title>
+<title>Kam se ztratil Míša? Byla to vražda?</title>
 <style>
   :root{
     --green:#007a3d;
@@ -30,7 +30,7 @@
     border-radius: 6px;
     margin-bottom: 40px;
   }
-  .cover h1{ font-size: 2.3em; margin-bottom: 0; color: var(--red); text-shadow: 1px 1px 0 #00000022;}
+  .cover h1{ font-size: 2.1em; margin-bottom: 0; color: var(--red); text-shadow: 1px 1px 0 #00000022;}
   .cover .subtitle{ font-size: 1.3em; color: var(--green); font-style: italic; margin-top: 4px;}
   .cover .meta{ margin-top: 20px; font-size:0.95em; color:#555;}
   h2{
@@ -87,31 +87,11 @@
     font-weight:bold;
     color: var(--red);
   }
-  .comic{
-    display:flex;
-    gap:8px;
-    margin: 12px 0;
-    flex-wrap: wrap;
-  }
-  .panel{
-    flex:1;
-    min-width:140px;
-    background: #fff;
-    border: 3px solid var(--ink);
-    border-radius: 8px;
-    padding: 10px;
-    text-align:center;
-  }
+  .comic{ display:flex; gap:8px; margin: 12px 0; flex-wrap: wrap; }
+  .panel{ flex:1; min-width:140px; background: #fff; border: 3px solid var(--ink); border-radius: 8px; padding: 10px; text-align:center; }
   .panel .emoji{ font-size:2.4em; display:block; margin-bottom:6px;}
   .panel .cap{ font-size:0.85em; font-weight:bold; }
-  .flavor{
-    background:#fff;
-    border: 3px solid var(--red);
-    border-radius: 10px;
-    padding: 12px 16px;
-    margin: 12px 0;
-    font-weight: bold;
-  }
+  .flavor{ background:#fff; border: 3px solid var(--red); border-radius: 10px; padding: 12px 16px; margin: 12px 0; font-weight: bold; }
   .adultcard{
     border: 3px solid var(--ink);
     border-radius: 12px;
@@ -127,30 +107,92 @@
   .adultcard .info{ flex:1; min-width:220px; }
   .adultcard h3{ margin-top:0; }
   .adultcard .realname{ font-size:0.85em; color:#777; }
-  .shoe-row{ display:flex; gap:18px; flex-wrap:wrap; align-items:flex-end; margin:14px 0; }
   .shoe-item{ text-align:center; }
   .shoe-item span{ display:block; font-size:0.8em; margin-top:4px; }
+
+  /* --- Přílohy karty --- */
+  .profilecard{
+    border: 3px double var(--ink);
+    border-radius: 12px;
+    background: var(--white);
+    padding: 14px 18px;
+    margin: 18px 0;
+    page-break-inside: avoid;
+    page-break-after: always;
+  }
+  .profilecard .top{ display:flex; gap:18px; align-items:center; flex-wrap:wrap; }
+  .profilecard h3{ margin: 0 0 4px 0; }
+  .survey{ margin-top:10px; border-top:2px dashed var(--gold); padding-top:8px; }
+  .survey label{ display:inline-block; width:100%; margin:4px 0; }
+  .checkbox{ display:inline-block; width:16px; height:16px; border:2px solid var(--ink); border-radius:3px; margin-right:8px; vertical-align:middle; }
+
+  /* --- Noviny --- */
+  .newspaper{
+    page-break-before: always;
+    border: 4px solid var(--ink);
+    background: #f6f0e2;
+    padding: 20px;
+    font-family: Georgia, serif;
+  }
+  .newspaper .masthead{
+    text-align:center;
+    border-bottom: 5px double var(--ink);
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+  }
+  .newspaper .masthead h1{
+    font-size: 2.3em;
+    letter-spacing: 2px;
+    margin: 0;
+    font-family: 'Times New Roman', serif;
+    text-transform: uppercase;
+  }
+  .newspaper .masthead .sub{ font-size:0.85em; display:flex; justify-content:space-between; margin-top:4px;}
+  .headline{
+    border-bottom: 2px solid var(--ink);
+    padding: 10px 0;
+    margin-bottom: 8px;
+  }
+  .headline h2ns{
+    font-size: 1.3em;
+    font-weight:bold;
+    display:block;
+    margin: 0 0 4px 0;
+    font-family: 'Trebuchet MS', sans-serif;
+  }
+  .headline .body{ columns: 2; column-gap: 20px; font-size:0.85em; }
+  .headline .icon{ font-size: 2.2em; float:left; margin-right:10px; }
+  .filler{ font-size:0.8em; font-style:italic; border-top: 1px dotted var(--ink); margin-top:6px; padding-top:4px; }
+  .notes-page{
+    page-break-before: always;
+    border: 2px dashed var(--ink);
+    padding: 20px;
+    min-height: 900px;
+  }
+  .notes-page .ruled p{ border-bottom: 1px solid #ccc; min-height: 34px; margin:0; }
 </style>
 </head>
 <body>
 
 <div class="cover">
-  <h1>🍝 VRAŽDA V NAŠEM APARTMÁNU 🍍</h1>
+  <h1>🍝 KAM SE ZTRATIL MÍŠA? 🍍<br>BYLA TO VRAŽDA?</h1>
   <div class="subtitle">Detektivní hra pro celou rodinu na dovolené u moře</div>
   <div class="meta">
-    Pro 7 dětí (8–12 let) a 4 dospělé &nbsp;•&nbsp; celodenní hra (cca 5–6 hodin)<br>
+    Pro 7 dětí (8–12 let) a 4–7 dospělých &nbsp;•&nbsp; celodenní hra (cca 5–6 hodin)<br>
     Připravil: Vláďa &nbsp;•&nbsp; Itálie, léto 2026
   </div>
 </div>
 
 <h2>0. Pro organizátora — přečti si jako první</h2>
 <div class="box">
-<p><strong>Oběť:</strong> Michal (soused/kamarád na dovolené, sousedy přezdívaný „Michal Ananasini"). Objednal si pizzu s <strong>ananasem</strong> a k tomu si u vás v kuchyni vařil špagety, které <strong>zlomil napůl</strong> — a to italskou komunitu v okolí tak urazilo, že „ho zabili". Ráno je v obýváku jen obrys těla, mouka, rozlámané špagety a nedojedená pizza. Michal je pryč.</p>
-<p><span class="badge">Twist</span> Vrazi jsou <strong>dva</strong> a spolčili se — děti to zjistí až na konci. Ještě větší twist: Michal <strong>vůbec není mrtvý</strong> — jen si na chvíli odskočil pro další pizzu. Na konci hry se sám vrátí, celý naštvaný, že mu to takhle zpackali, a přinese <strong>pizzu Margheritu, plechovku ananasu a hromadu šlehačky pro všechny</strong>.</p>
-<p><span class="badge">Nový systém</span> Děti sbírají jen <strong>4 indicie</strong> (slova/fráze) do vyšetřovacího deníku: <strong>VRAŽDA, ANANAS, PAN ŠPAGETKA LŽE, DVĚ ZÁSTĚRY</strong>. Žádná čísla, žádný kód.</p>
-<p><span class="badge">Podrážky</span> Každý dospělý dostane svou vlastní <strong>kartu postavy</strong> (kapitola 3) s obrázkem podrážky své boty. Kartu si nechá pro sebe a <strong>ukáže ji dětem, jen když se ho zeptají</strong> „jakou máš podrážku?". Děti pak porovnávají s otisky v mouce na místě činu — a samy zjistí, kdo tam skutečně byl.</p>
-<p><span class="badge">Stopy v bytě</span> Kromě hlavní scény v obýváku schováš ještě po jedné indicii v <strong>kuchyni</strong> (dvě) a v <strong>koupelně</strong> (jednu) — návod v kapitole 6.</p>
-<p><span class="badge">Humor</span> Jemně přisprostlý, komiksové kartičky ke stanovištím, klidně čti nahlas.</p>
+<p><strong>Nový příběh:</strong> Míša zmizel. Naposledy ho někdo viděl, jak si objednává pizzu s <strong>ananasem</strong> a láme si u vás v kuchyni <strong>špagety napůl</strong>. Ráno je na chodníku před vaším apartmánem jen obrys těla nakreslený křídou, mouka s otisky bot, rozlámané těstoviny — a Míša nikde. Místní to berou jako urážku italské kuchyně, která se „nesmí jen tak odpustit".</p>
+<p><span class="badge">Umělá krev</span> Na místo činu si nezapomeňte připravit <strong>kečup jako falešnou krev</strong> — pokapejte a rozmažte ho kolem křídového obrysu a na rozlámané špagety, ať to na chodníku vypadá pořádně dramaticky (a pak se to snadno smyje vodou z hadice).</p>
+<p><span class="badge">Twist</span> Vrahové jsou <strong>dva</strong> — Vláďa (jako Spaghettoni) a Lenka (jako Carbonara) — a spolčili se. Ještě větší twist: <strong>nikdo nikoho nezabil</strong>. Míša si jen odskočil pro další pizzu, protože mu ta první nestačila. Vrátí se úplně na konci s pizzou pro všechny.</p>
+<p><span class="badge">Podezřelí</span> Tentokrát jich je pět, každý s vlastním příběhem, alibi a otiskem boty: <strong>Vláďa Spaghettoni, Lenka Carbonara, Hanička Tůtobene, Ferda Knedlík, Babička Mamamia</strong>. Pokud na vaší dovolené není tolik dospělých, klidně nechte jednoho dospělého (nebo staršího teenagera) zahrát dvě role postupně — jen se mezi tím převlékne.</p>
+<p><span class="badge">Nový prvek</span> Přidal jsem satirický místní plátek <strong>„Deník Lido Altanea"</strong> (kapitola 3) — vtipné absurdní zprávy k přečtení na úvod, ať se hned naladí atmosféra. Zadní strana je prázdná na psaní indicií.</p>
+<p><span class="badge">Indicie</span> Děti sbírají do deníku: <strong>VRAŽDA, ANANAS, PAN ŠPAGETKA LŽE, DVĚ ZÁSTĚRY</strong> + bonus <strong>SPOLU</strong> od Jáchymka a Emičky.</p>
+<p><span class="badge">Bonus pro nejmenší</span> Jáchymek a Emička mají vlastní mini-stanoviště — hledání schované krabičky (kapitola 10).</p>
+<p><span class="badge">Přílohy</span> Na úplném konci dokumentu (kapitola 14) jsou tiskové karty pro každého dospělého — jméno, role, příběh, otisk boty, oblíbená pizza a pár vtipných kolonek k zaškrtnutí před hrou.</p>
 <p><span class="badge">Týmy</span></p>
 <table>
 <tr><th>Tým ANANAS 🍍</th><th>Tým ŠPAGETY 🍝</th></tr>
@@ -161,17 +203,18 @@
 <h3>Co si připravit předem</h3>
 <div class="box checklist">
 <ul>
-<li>Křída/provaz/lepicí páska na obrys těla v obýváku</li>
-<li>Mouka na obsypání obrysu + otisky bot (viz kapitola 4)</li>
-<li>Syrové špagety (pár zlomit napůl a rozházet kolem obrysu) + vařené špagety na finální úkol</li>
-<li>Prázdná krabice od pizzy + kousek papírové pizzy s ananasem</li>
-<li>Vytištěné karty postav pro 4 dospělé (kapitola 3) — každý dostane jen tu svou</li>
-<li>Účtenka za pizzu s ananasem (schovat v kuchyni), dvě utěrky/zástěry — jedna od omáčky, druhá od mouky (schovat v kuchyni), pomačkaná účtenka za nákup špaget se dvěma jmény (schovat v koupelně)</li>
-<li>Zašifrovaný vzkaz + klíč na vytištění (kapitola 5)</li>
-<li>Šátek na oči pro finální úkol</li>
+<li>Křída na obrys těla na chodníku před apartmánem, mouka na otisky bot hned vedle obrysu (šablony v kapitole 5)</li>
+<li><strong>Kečup jako umělá krev</strong> — pořádně pokapat/rozmazat kolem obrysu a na rozlámané špagety pro dramatický efekt</li>
+<li>Syrové špagety (pár zlomit napůl kolem obrysu) + vařené na finální úkol</li>
+<li>Prázdná krabice od pizzy + papírová pizza s ananasem</li>
+<li>Vytištěné karty postav pro 5 podezřelých (kapitola 4) — každý dostane jen tu svou</li>
+<li>Vytištěná titulní strana novin (kapitola 3) — jednu na tým, oboustranně, zadní strana na poznámky</li>
+<li>Účtenka za pizzu s ananasem (schovat v Míšově pokoji), dvě umazané utěrky (schovat v kuchyni), pomačkaná účtenka za nákup špaget se dvěma jmény (schovat v koupelně)</li>
+<li>Malá krabička s puzzle kartičkami pro Jáchymka a Emičku (kapitola 10)</li>
+<li>Zašifrovaný vzkaz a klíč (kapitola 8)</li>
+<li>Šátek na oči na finální úkol</li>
 <li>Vyšetřovací deník pro každý tým (poslední kapitola)</li>
-<li>Diplomy</li>
-<li>Pizza Margherita, plechovka ananasu a šlehačka na finále 🍕🍍🥛</li>
+<li>Diplomy, pizza, ananas a šlehačka na finále 🍕🍍🥛</li>
 </ul>
 </div>
 
@@ -179,27 +222,61 @@
 <div class="box">
 <table>
 <tr><th>Čas</th><th>Program</th></tr>
-<tr><td>9:00</td><td>Ranní scéna: objevení obrysu těla, briefing, rozdělení týmů</td></tr>
-<tr><td>9:15–10:15</td><td>Stanoviště 1 — Místo činu v obýváku (mouka, otisky, výslech dospělých na podrážky)</td></tr>
-<tr><td>10:15–10:30</td><td>Svačinová pauza</td></tr>
-<tr><td>10:30–11:15</td><td>Stanoviště 2 — Šifra u bazénu</td></tr>
-<tr><td>11:15–12:15</td><td>Stanoviště 3 — Pátrání po bytě: kuchyně a koupelna</td></tr>
+<tr><td>9:00</td><td>Ranní scéna, čtení titulní strany novin, rozdělení týmů</td></tr>
+<tr><td>9:15–10:00</td><td>Stanoviště 1 — Místo činu na chodníku před apartmánem (mouka, otisky)</td></tr>
+<tr><td>10:00–10:45</td><td>Stanoviště 2 — Výslechy a alibi (5 podezřelých)</td></tr>
+<tr><td>10:45–11:00</td><td>Svačina</td></tr>
+<tr><td>11:00–11:30</td><td>Stanoviště 3 — Šifra u bazénu</td></tr>
+<tr><td>11:30–12:15</td><td>Stanoviště 4 — Pátrání po bytě: Míšův pokoj, kuchyně a koupelna</td></tr>
 <tr><td>12:15–14:00</td><td>Oběd + siesta / koupání</td></tr>
-<tr><td>14:00–14:45</td><td>Stanoviště 4 — Poslední zkouška: uzel ze špaget poslepu</td></tr>
-<tr><td>14:45–15:15</td><td>Porada týmů nad vyšetřovacím deníkem, sepsání obvinění</td></tr>
-<tr><td>15:15–15:45</td><td>Velké finále, odhalení dvou viníků — a návrat Michala</td></tr>
-<tr><td>15:45</td><td>Oslavná pizza párty + diplomy</td></tr>
+<tr><td>14:00–14:20</td><td>Bonus pro Jáchymka a Emičku — tajná krabička</td></tr>
+<tr><td>14:20–15:00</td><td>Stanoviště 5 — Poslední zkouška: uzel ze špaget poslepu</td></tr>
+<tr><td>15:00–15:30</td><td>Porada nad vyšetřovacím deníkem, sepsání obvinění</td></tr>
+<tr><td>15:30–16:00</td><td>Velké finále, teatrální přiznání a návrat Míši</td></tr>
+<tr><td>16:00</td><td>Oslavná pizza párty + diplomy</td></tr>
 </table>
 </div>
 
 <h2>2. Úvodní scéna (přečíst dětem nahlas)</h2>
 <div class="box script">
-<p>„Detektivky a detektivové, vstávejte — a nelekejte se toho, co uvidíte v obýváku! Michal se sem včera večer přišel připojit na wifi, objednal si pizzu s <strong>ananasem</strong> a k tomu si vařil vlastní špagety, které <strong>zlomil napůl</strong> rovnou nad hrncem. A teď — je pryč. Zůstal po něm jen obrys na podlaze, mouka, rozlámané těstoviny a hrozně naštvaná sousedská nálada."</p>
-<p>„Někdo v okolí bere italskou kuchyni tak vážně, že by pro ni byl schopný pěkně se naštvat. Vaším úkolem je projít stanoviště, sbírat indicie do vyšetřovacího deníku a zjistit, kdo (nebo <em>kdo všechno</em>) za tím stojí. My dospělí vám budeme radit — ale pozor, možná víme víc, než přiznáme. Hodně štěstí, detektivové!"</p>
+<p>„Detektivky a detektivové, vstávejte — a nelekejte se toho, co uvidíte před domem! Míša se sem včera večer přišel připojit na wifi, objednal si pizzu s <strong>ananasem</strong> a k tomu si vařil vlastní špagety, které <strong>zlomil napůl</strong> rovnou nad hrncem. Ráno po něm zbyl na chodníku před apartmánem jen obrys nakreslený křídou, mouka a rozlámané těstoviny. A dokonce to prý dala i místní televize — mrkněte na dnešní noviny (kapitola 3), je to čím dál šílenější."</p>
+<p>„Někdo v okolí bere italskou kuchyni tak vážně, že by pro ni byl schopný pěkně se naštvat. Vaším úkolem je projít stanoviště, sbírat indicie do vyšetřovacího deníku a zjistit, kdo (nebo <em>kdo všechno</em>) za tím stojí — a co se vlastně stalo s Míšou. Hodně štěstí, detektivové!"</p>
 </div>
 
-<h2>3. Karty postav — pro každého dospělého jedna (vytiskni a rozstříhej)</h2>
-<p>Každý dospělý si vezme jen svou kartu a nikomu ji dopředu neukazuje. Podrážku ukáže dětem, jen když se ho zeptají.</p>
+<div class="newspaper">
+<div class="masthead">
+  <h1>Deník Lido Altanea</h1>
+  <div class="sub"><span>Speciální vydání — dnes ráno</span><span>Cena: 1 hezký úsměv</span></div>
+</div>
+
+<div class="headline">
+  <span class="icon">🍍🍕</span>
+  <span class="h2ns">SKANDÁL: Někdo si objednal PIZZU S ANANASEM!</span>
+  <div class="body">Očití svědkové potvrzují, že v klidné přímořské vesničce si turista objednal pizzu s ananasem a k tomu si troufl zlomit špagety napůl přímo před vařením. Místní kuchařská gilda svolala mimořádnou schůzi. „Tohle se nedělá," prohlásila jedna ze sousedek a odmítla se dál vyjadřovat.</div>
+</div>
+
+<div class="headline">
+  <span class="icon">😱🇮🇹</span>
+  <span class="h2ns">Italský prezident zděšen: „To je horší než ztráta mistrovství!"</span>
+  <div class="body">Zpráva o ananasové pizze se donesla až do Říma. Prezident na tiskové konferenci prohlásil, že vyhlašuje den smutku a osobně zvažuje diplomatickou nótu. „Špagety se lámou v puse, ne v hrnci," dodal se slzou v oku.</div>
+</div>
+
+<div class="headline">
+  <span class="icon">🔫🍝</span>
+  <span class="h2ns">Mafie prý „zastřelila" turistu, co lámal špagety napůl</span>
+  <div class="body">Podle neověřených zdrojů měla místní „kulinářská mafie" turistovi za zlomené špagety vyhlásit nejpřísnější trest. Policie zatím žádné tělo nenašla — jen podezřele hodně mouky na podlaze a ještě podezřelejší ticho od sousedů.</div>
+</div>
+
+<div class="filler"><strong>Ze světa:</strong> Na pláži poblíž vily bylo dnes ráno spatřeno hejno tajemných žížalek, které „prostě běhaly" — odborníci tápou. Český turista v resortu Lido Altanea dnes v noci ucpal záchod tak důkladně, že museli povolat místní hasiče. V jednom ze záchodů v resortu byl navíc spatřen had — majitel penzionu tvrdí, že „to je normální, to je jen Alfredo, ten tu bydlí odjakživa". V Benátkách se prý narodilo dítě s hlavou ve tvaru fotbalového míče — porodnice to odmítla komentovat, ale prohlásila, že „gól by dalo hlavičkou už teď".</div>
+</div>
+
+<div class="notes-page ruled">
+<h3 style="margin-top:0;">Poznámky detektiva (zadní strana)</h3>
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+</div>
+
+<h2>4. Karty postav — pět podezřelých (vytiskni a rozstříhej)</h2>
+<p>Každý dospělý si vezme jen svou kartu a nikomu ji dopředu neukazuje. Podrážku ukáže dětem, jen když se ho zeptají „jakou máš podrážku?".</p>
 
 <div class="adultcard">
 <svg width="80" height="150" viewBox="0 0 90 170">
@@ -209,9 +286,9 @@
 <div class="info">
 <h3>Vláďa Spaghettoni</h3>
 <div class="realname">(hraje: Vláďa)</div>
-<p><strong>Role:</strong> Mladík od vedle, bývalý Michalův kamarád, uražený, protože ho Michal minule nazval „nedovařeným špagetákem". Zároveň vede celý den jako vrchní vypravěč.</p>
-<p><strong>Co říká dětem (nápověda/alibi):</strong> <span class="script">„Já? Byl jsem na ryby. Úplně sám. Nic jsem nechytil, ale to je jedno. Paní Carbonarovou jsem neviděl už tak týden, možná měsíc, kdo to má počítat!"</span></p>
-<p><strong>Podrážka:</strong> pruhovaná sportovní tenisska</p>
+<p><strong>Příběh:</strong> Mladík od vedle, s Míšou se minule pohádal, protože ho nazval „nedovařeným špagetákem". Zároveň vede celý den jako vrchní vypravěč.</p>
+<p><strong>Alibi:</strong> <span class="script">„Já? Byl jsem na ryby. Úplně sám. Nic jsem nechytil, ale to je jedno. Paní Carbonaru jsem neviděl už tak týden, možná měsíc, kdo to má počítat!"</span></p>
+<p><strong>Podrážka:</strong> pruhovaná sportovní tenisska <em>(sedí s otiskem v mouce)</em></p>
 </div>
 </div>
 
@@ -222,11 +299,11 @@
   <circle cx="30" cy="80" r="5"/><circle cx="55" cy="80" r="5"/><circle cx="45" cy="105" r="5"/><circle cx="30" cy="130" r="5"/><circle cx="55" cy="130" r="5"/>
 </svg>
 <div class="info">
-<h3>Lenka Carbonarová</h3>
+<h3>Lenka Carbonara</h3>
 <div class="realname">(hraje: Lenka)</div>
-<p><strong>Role:</strong> Přísná strážkyně receptů, den před zločinem se s Michalem pohádala kvůli smetaně v carbonaře — brala to jako osobní urážku.</p>
-<p><strong>Co říká dětem (nápověda/alibi):</strong> <span class="script">„Byla jsem doma, vařila jsem guláš, sama sama sama. Marka Spaghettoniho jsem neviděla už celou věčnost, proč se pořád ptáte zrovna na něj?"</span></p>
-<p><strong>Podrážka:</strong> puntíkovaná sandálka</p>
+<p><strong>Příběh:</strong> Přísná strážkyně receptů, den před zločinem se s Míšou pohádala kvůli smetaně v carbonaře — brala to jako osobní urážku.</p>
+<p><strong>Alibi:</strong> <span class="script">„Byla jsem doma, vařila jsem guláš, sama sama sama. Vláďu Spaghettoniho jsem neviděla už celou věčnost, proč se pořád ptáte zrovna na něj?"</span></p>
+<p><strong>Podrážka:</strong> puntíkovaná sandálka <em>(sedí s otiskem v mouce)</em></p>
 </div>
 </div>
 
@@ -237,11 +314,11 @@
   <polyline points="70,30 45,45 70,60 45,75 70,90 45,105 70,120 45,135" fill="none" stroke="#2b2116" stroke-width="4"/>
 </svg>
 <div class="info">
-<h3>Hanička Bazilicová</h3>
+<h3>Hanička Tůtobene</h3>
 <div class="realname">(hraje: Hanička)</div>
-<p><strong>Role:</strong> Sousedka, pěstuje bazalku na balkoně, drbna. Její kočka Olivka byla tu noc venku a „všechno viděla", ale kočičí svědectví se u soudu nepočítá.</p>
-<p><strong>Co říká dětem (nápověda/alibi):</strong> <span class="script">„Spala jsem tvrdě jako špalek, akorát mi trochu vrzala postel — asi jsem si ve snu dávala třetí porci knedlíků."</span></p>
-<p><strong>Podrážka:</strong> klikatá pracovní bota <em>(nesedí s otiskem v mouce — je mimo podezření)</em></p>
+<p><strong>Příběh:</strong> Sousedka, pěstuje bazalku na balkoně, drbna. Její kočka Olivka byla tu noc venku a „všechno viděla", ale kočičí svědectví se u soudu nepočítá.</p>
+<p><strong>Alibi:</strong> <span class="script">„Spala jsem tvrdě jako špalek, akorát mi trochu vrzala postel — asi jsem si ve snu dávala třetí porci knedlíků."</span></p>
+<p><strong>Podrážka:</strong> klikatá pracovní bota <em>(nesedí s otiskem v mouce)</em></p>
 </div>
 </div>
 
@@ -253,19 +330,33 @@
   <line x1="20" y1="80" x2="70" y2="80" stroke="#2b2116" stroke-width="2"/>
 </svg>
 <div class="info">
-<h3>Míša Mozzarelková</h3>
-<div class="realname">(hraje: Míša)</div>
-<p><strong>Role:</strong> Sousedka posedlá sýrem, věčně hladová, v noci ji viděli postávat kolem vaší kuchyně v pyžamu — prý jen cítila vůni pizzy.</p>
-<p><strong>Co říká dětem (nápověda/alibi):</strong> <span class="script">„Přiznávám se — chodila jsem kolem vaší kuchyně v noci! Ale jen jsem čichala, přísahám na svou čest mozzarelly!"</span></p>
-<p><strong>Podrážka:</strong> hladké žabky <em>(nesedí s otiskem v mouce — je mimo podezření)</em></p>
+<h3>Ferda Knedlík</h3>
+<div class="realname">(hraje: kterýkoliv volný dospělý)</div>
+<p><strong>Příběh:</strong> Český turista z vedlejšího apartmánu, na dovolené hlavně kvůli jídlu. V noci ho viděli postávat kolem vaší kuchyně v pyžamu — prý jen čichal.</p>
+<p><strong>Alibi:</strong> <span class="script">„Byl jsem vzhůru celou noc, protože jsem měl hlad. Mám pořád hlad. I teď mám hlad. Vlastně — máte něco k jídlu?"</span></p>
+<p><strong>Podrážka:</strong> hladké žabky <em>(nesedí s otiskem v mouce)</em></p>
 </div>
 </div>
 
-<h2>4. Šablony na otisky do mouky (jen pro organizátora)</h2>
+<div class="adultcard">
+<svg width="80" height="150" viewBox="0 0 90 170">
+  <defs><pattern id="check" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="7" height="7" fill="#2b2116"/><rect x="7" y="7" width="7" height="7" fill="#2b2116"/></pattern></defs>
+  <path d="M45 5 C20 5 12 40 15 80 C17 110 10 130 20 150 C30 165 60 165 70 150 C80 130 73 110 75 80 C78 40 70 5 45 5 Z" fill="url(#check)" stroke="#2b2116" stroke-width="3"/>
+</svg>
+<div class="info">
+<h3>Babička Mamamia</h3>
+<div class="realname">(hraje: kterýkoliv volný dospělý)</div>
+<p><strong>Příběh:</strong> Stará sousedka o dům dál, vaří prý nejlepší omáčku v okolí a tvrdí, že zná „lidi od mafie", i když jí to nikdo nevěří. Ví o všech sousedech úplně všechno.</p>
+<p><strong>Alibi:</strong> <span class="script">„Byla jsem doma, pletla jsem svetr a dívala se na zprávy o tom hroznému ananasu. Hrůza, hrůza, moje ubohé srdce to sotva vydrželo."</span></p>
+<p><strong>Podrážka:</strong> kostičkované ortopedické pantofle <em>(nesedí s otiskem v mouce)</em></p>
+</div>
+</div>
+
+<h2>5. Šablony na otisky do mouky (jen pro organizátora)</h2>
 <div class="secret">
 <details>
 <summary>🔒 Návod — které otisky opravdu otisknout do mouky</summary>
-<p>Vystřihni podrážky z karet postav v kapitole 3. Do mouky kolem obrysu těla otiskni <strong>jen</strong> podrážku Vláďi (pruhy) a Lenky (puntíky) — to jsou skuteční viníci. Podrážky Haničky a Míši do mouky <strong>neotiskuj</strong>, protože na místě činu nebyly. Navíc přidej otisk kočičí packy (Haniččina kočka Olivka), ať mají děti jednu neškodnou červenou slečnu.</p>
+<p>Vystřihni podrážky z karet postav v kapitole 4. Do mouky na chodníku kolem křídového obrysu těla otiskni <strong>jen</strong> podrážku Vláďi (pruhy) a Lenky (puntíky) — to jsou skuteční viníci. Podrážky Haničky, Ferdy a Babičky do mouky <strong>neotiskuj</strong>. Navíc přidej otisk kočičí packy (Haniččina kočka Olivka), ať mají děti jednu neškodnou stopu navíc. Otisky dělej brzy ráno a na klidnějším místě chodníku, ať je vítr nebo kolemjdoucí hned nerozfoukají.</p>
 <svg width="90" height="90" viewBox="0 0 90 90">
   <ellipse cx="45" cy="55" rx="26" ry="22" fill="#2b2116"/>
   <circle cx="20" cy="20" r="11" fill="#2b2116"/>
@@ -276,119 +367,40 @@
 </details>
 </div>
 
-<h2>5. Stanoviště 1 — Místo činu v obýváku</h2>
+<h2>6. Stanoviště 1 — Místo činu na chodníku před apartmánem</h2>
 <div class="comic">
-  <div class="panel"><span class="emoji">😱</span><span class="cap">Ráno v obýváku: obrys těla, mouka všude jak po sněhové bouři</span></div>
+  <div class="panel"><span class="emoji">😱</span><span class="cap">Ráno na chodníku před apartmánem: obrys těla nakreslený křídou, kolem mouka všude jak po sněhové bouři</span></div>
   <div class="panel"><span class="emoji">👞👣</span><span class="cap">V mouce dva páry cizích šlápot a jedna kočičí packa</span></div>
   <div class="panel"><span class="emoji">🕵️‍♀️💨</span><span class="cap">„Někdo tu nadělal víc stop než po Vánoční pečení!"</span></div>
 </div>
 <div class="flavor">Vtipná hláška: „Kdyby zločin páchala jen jedna osoba, proč jsou v mouce dva úplně jiné páry bot? Leda by měl vrah čtyři nohy... nebo je jich víc!"</div>
 <div class="box">
-<strong>Zadání pro děti:</strong> „Kolem obrysu těla jsou otisky v mouce. Zeptejte se postupně každého dospělého: ‚Jakou máš podrážku?' Ať vám ji ukáže na své kartě a vy ji porovnejte s otisky v mouce. Kolik dospělých bylo skutečně na místě činu?"<br><br>
-<strong>Nápověda (po 5 min):</strong> „Přiložte kartu s podrážkou přímo do otisku v mouce — vzor musí sedět úplně přesně."<br>
+<strong>Zadání:</strong> „Venku na chodníku je křídou obkreslený obrys těla a kolem něj mouka s otisky. Zapamatujte si jejich vzory — na dalším stanovišti se zeptáte dospělých na jejich podrážky a porovnáte."<br>
 Naše indicie: <span class="indicie-slot">VRAŽDA</span>
 </div>
 <div class="secret">
 <details><summary>🔒 Řešení</summary>
-<p>V mouce sedí jen podrážky Vláďi (pruhy) a Lenky (puntíky) + kočičí packa (náhoda). Hanička a Míša jsou vyloučeny. Odměna: indicie <strong>VRAŽDA</strong> — potvrzeno, že tu skutečně někdo byl a šlo o dvě osoby, ne jednu.</p>
+<p>V mouce jsou dva různé páry bot + kočičí packa. Odměna: indicie <strong>VRAŽDA</strong> — potvrzeno, že tu skutečně někdo byl, a šlo o dvě osoby, ne o jednu.</p>
 </details>
 </div>
 
-<h2>6. Stanoviště 2 — Šifra u bazénu</h2>
+<h2>7. Stanoviště 2 — Výslechy a alibi</h2>
 <div class="comic">
-  <div class="panel"><span class="emoji">🏊‍♂️📩</span><span class="cap">Pod lehátkem u bazénu našli zalepenou obálku</span></div>
-  <div class="panel"><span class="emoji">🔐</span><span class="cap">Uvnitř tajný vzkaz plný divných symbolů</span></div>
-  <div class="panel"><span class="emoji">🍍</span><span class="cap">Vzkaz posílá detektivy rovnou do kuchyně!</span></div>
+  <div class="panel"><span class="emoji">🎭</span><span class="cap">Pět podezřelých, pět příběhů, pět alibi</span></div>
+  <div class="panel"><span class="emoji">👣❓</span><span class="cap">„Jakou máš podrážku?" — a porovnání s moukou</span></div>
+  <div class="panel"><span class="emoji">😲</span><span class="cap">Jen dvě podrážky opravdu sedí!</span></div>
 </div>
-<div class="flavor">Vtipná hláška: „Kdo píše tajné vzkazy vodě odolnou fixou k bazénu, ten to s pomstou myslí vážně — nebo se prostě nudil na dovolené víc než děti bez wifi."</div>
+<div class="flavor">Vtipná hláška: „Babička Mamamia tvrdí, že zná lidi od mafie — jistě, stejně jako já znám papeže. Ale její pantofle rozhodně v mouce nebyly!"</div>
 <div class="box">
-<strong>Klíč (symboly → písmena):</strong> ★=K, ●=D, ▲=O, ■=Z, ♥=N, ✿=A, ♦=Š, ✚=I, ☾=U, ✦=E, ◆=T, ♣=P, ✂=L, ✈=Y, ❤=H<br><br>
-<strong>Zašifrovaný vzkaz</strong> (uprav symboly tak, aby vyluštěním vyšlo): <em>„HLEDEJTE V KUCHYNI DŮKAZ O ANANASU"</em><br><br>
-<strong>Zadání:</strong> „Rozluštěte vzkaz pomocí klíče. Kam vás posílá?"<br>
-<em>Tato šifra nedává vlastní indicii — jen vás navede na další stanoviště (kuchyň).</em>
+<strong>Zadání:</strong> Obejděte postupně všech pět podezřelých (kapitola 4). Každý vám vypráví svůj příběh a alibi. Zeptejte se každého: „Jakou máš podrážku?" — ukáže vám ji na kartě. Porovnejte s otisky z místa činu (stanoviště 1). Kteří dva podezřelí mají podrážku, která sedí?<br><br>
+Zapište do deníku: <strong>Podezřelí, jejichž stopy sedí:</strong> <span class="indicie-slot">&nbsp;</span>
 </div>
 <div class="secret">
 <details><summary>🔒 Řešení</summary>
-<p>Vzkaz zní „HLEDEJTE V KUCHYNI DŮKAZ O ANANASU" — pošli týmy rovnou do kuchyně na stanoviště 3.</p>
+<p>Sedí jen Vláďa Spaghettoni (pruhy) a Lenka Carbonara (puntíky). Hanička, Ferda a Babička jsou vyloučeni.</p>
 </details>
 </div>
 
-<h2>7. Stanoviště 3 — Pátrání po bytě: kuchyně a koupelna</h2>
+<h2>8. Stanoviště 3 — Šifra u bazénu</h2>
 <div class="comic">
-  <div class="panel"><span class="emoji">🍕🧾</span><span class="cap">V troubě schovaná účtenka za pizzu s ananasem</span></div>
-  <div class="panel"><span class="emoji">🧺👕</span><span class="cap">Na věšáku dvě podezřele umazané utěrky</span></div>
-  <div class="panel"><span class="emoji">🚽🧾</span><span class="cap">V koupelně v koši na prádlo pomačkaná účtenka ze špagetárny</span></div>
-</div>
-<div class="flavor">Vtipná hláška: „Kdo schovává důkazy v koši na špinavé prádlo, ten buď nemá fantazii, nebo doufá, že se tam nikdo nebude hrabat — chyba, detektivové se nebojí ani smradu!"</div>
-
-<div class="box">
-<h3>Kuchyně — 2 indicie</h3>
-<p><strong>Příprava:</strong> Do trouby (nebo za kávovar) schovej účtenku: „Pizzeria Bella Italia — 1× Margherita, 1× HAWAII (s ananasem) — objednávka 21:47". Na věšák u sporáku pověs dvě utěrky/zástěry — jednu pocákanou kečupem/omáčkou, druhou pomoučenou.</p>
-<strong>Zadání:</strong> „Prohledejte kuchyň. Najděte účtenku za pizzu — jaké přísady si Michal objednal? A na věšáku visí dvě umazané utěrky — kdo mohl vařit dvě různé věci ve stejný večer?"<br>
-Naše indicie: <span class="indicie-slot">ANANAS</span>
-Naše indicie: <span class="indicie-slot">DVĚ ZÁSTĚRY</span>
-</div>
-
-<div class="box">
-<h3>Koupelna — 1 indicie</h3>
-<p><strong>Příprava:</strong> Do koše na špinavé prádlo (nebo za zrcadlo) schovej pomačkanou účtenku: „Špagetárna U Vidličky — 2 balení špaget — L. Carbonarová, V. Spaghettoni — dnes ráno."</p>
-<strong>Zadání:</strong> „Prohledejte koupelnu. Najděte účtenku — kdo na ní je podepsaný a co to znamená pro toho, kdo tvrdil, že byl ‚celý večer sám na rybách'?"<br>
-Naše indicie: <span class="indicie-slot">PAN ŠPAGETKA LŽE</span>
-</div>
-<div class="secret">
-<details><summary>🔒 Řešení</summary>
-<p>Účtenka z kuchyně dokazuje objednávku pizzy s ananasem (indicie <strong>ANANAS</strong>) a dvě utěrky dokazují, že v kuchyni vařili dva různí lidé (indicie <strong>DVĚ ZÁSTĚRY</strong>). Účtenka z koupelny dokazuje, že Vláďa (Spaghettoni) byl ráno se stejnou Lenkou (Carbonarovou) nakupovat špagety — takže jeho tvrzení „byl jsem sám" je lež (indicie <strong>PAN ŠPAGETKA LŽE</strong>).</p>
-</details>
-</div>
-
-<h2>8. Stanoviště 4 — Poslední zkouška: Uzel ze špaget poslepu</h2>
-<div class="comic">
-  <div class="panel"><span class="emoji">🙈</span><span class="cap">Jeden detektiv z týmu dostane pásku přes oči</span></div>
-  <div class="panel"><span class="emoji">🍝🪢</span><span class="cap">Musí poslepu nahmatat vařenou špagetu a uvázat uzel</span></div>
-  <div class="panel"><span class="emoji">📣</span><span class="cap">Zbytek týmu radí jen slovy — bez sahání!</span></div>
-</div>
-<div class="flavor">Vtipná hláška: „Pokud vaše špageta při uzlování prdla a rozlomila se, gratulujeme — právě jste spáchali stejný zločin jako Michal!"</div>
-<div class="box">
-<strong>Zadání:</strong> Z každého týmu se jeden detektiv nechá zavázat oči šátkem. Před ním je miska teplých vařených špaget. Poslepu, jen podle rad ostatních (nikdo jiný se nesmí dotknout), musí nahmatat jednu špagetu a uvázat na ní uzel, aniž by se přelomila. Kdo se to povede jako první, vyhrává bod pro tým — ale hlavně: hodně legrace a omáčky na rukou.
-</div>
-
-<h2>9. Finále: Velké odhalení — a návrat Michala</h2>
-<div class="box">
-<p><strong>Postup:</strong> Týmy se sejdou u vyšetřovacího deníku a přečtou nahlas všechny čtyři indicie: <strong>VRAŽDA, ANANAS, PAN ŠPAGETKA LŽE, DVĚ ZÁSTĚRY</strong>. Necháme děti nejdřív nahlas hádat, kdo je viník — a kolik jich vlastně je.</p>
-</div>
-
-<div class="box script">
-<p><strong>Scénář pro vypravěče (Vláďa):</strong></p>
-<p>„Detektivové, dejte indicie dohromady... VRAŽDA... ANANAS... DVĚ ZÁSTĚRY... a PAN ŠPAGETKA LŽE. Vypadá to, že jste hledali JEDNOHO viníka. Jenže — <em>(dramatická pauza)</em> — byli dva! Lenka Carbonarová a Vláďa Spaghettoni spojili síly, aby pomstili čest italské kuchyně. Ona ho učila vařit, on ji ctil jako svou mistryni — a když Michal objednal ananasovou pizzu a zlomil špagety přímo u vás v kuchyni, řekli si: ‚Basta, dost bylo!'"</p>
-<p><em>(Zde Vláďa a Lenka v kostýmech předvedou krátkou přehnaně dramatickou zpověď — italský přízvuk, gesta, vidlička v ruce jako zbraň.)</em></p>
-<p>„Ale nebojte se — Michalovi se nic vážného nestalo. Jen ho na noc postrašili se vzkazem, aby si to rozmyslel. A hle — už jde!"</p>
-<p><em>(Michal vejde s krabicí pizzy Margherity, plechovkou ananasu a hromadou šlehačky.)</em></p>
-<p><strong>Michal:</strong> <span class="script">„Co? Já jsem si jen odskočil pro další pizzu, protože ta předchozí mi nestačila! Vy jste si vážně mysleli, že jsem mrtvý? No dobře, aspoň jsem vám donesl náhradu — a ano, je tam i ananas, ať mě zase někdo nezavraždí."</span></p>
-</div>
-
-<h2>10. Oslava a diplomy</h2>
-<div class="box">
-<p>Po odhalení následuje společná pizza párty s Michalovou Margheritou, ananasem a šlehačkou pro všechny, a předání diplomů.</p>
-</div>
-
-<div class="diploma">
-<h3 style="border:none; color:var(--green);">🕵️ DETEKTIVNÍ DIPLOM 🕵️</h3>
-<p>uděluje se</p>
-<p style="font-size:1.4em; font-weight:bold;">___________________________</p>
-<p>za statečné vyřešení případu<br><em>„Vražda v našem apartmánu"</em><br>a odhalení DVOU záludných viníků</p>
-<p>Itálie, léto 2026</p>
-</div>
-
-<h2>11. Vyšetřovací deník (vytiskni pro každý tým)</h2>
-<div class="box">
-<p><strong>Tým: </strong>______________________</p>
-<p>Indicie 1 — místo činu: <span class="indicie-slot">&nbsp;</span></p>
-<p>Indicie 2 — kuchyně (účtenka): <span class="indicie-slot">&nbsp;</span></p>
-<p>Indicie 3 — kuchyně (utěrky): <span class="indicie-slot">&nbsp;</span></p>
-<p>Indicie 4 — koupelna: <span class="indicie-slot">&nbsp;</span></p>
-<p><strong>Naše obvinění — kdo je vrah/vrazi?</strong></p>
-<p><span class="indicie-slot">&nbsp;</span></p>
-</div>
-
-</body>
-</html>
+  <div class="panel"><span class="emoji">🏊‍♂️📩</spa
