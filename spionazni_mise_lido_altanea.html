@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Špionážní mise Lido Altanea — Případ: Zlatá mušle</title>
+<style>
+  :root {
+    --accent: #1B3A4B;
+    --accent2: #C99A2E;
+    --bg: #F7F5EF;
+    --card: #FFFFFF;
+    --border: #E1DCC9;
+    --text: #262421;
+    --light: #EFE7D2;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    line-height: 1.65;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 40px 20px 80px; }
+  header.hero {
+    text-align: center;
+    padding: 34px 20px 26px;
+    border-bottom: 3px solid var(--accent2);
+    margin-bottom: 26px;
+  }
+  header.hero .eyebrow {
+    color: var(--accent2);
+    letter-spacing: 3px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  header.hero h1 { font-size: 2.1rem; color: var(--accent); margin: 10px 0 6px; }
+  header.hero p.subtitle { font-style: italic; color: #55524a; font-size: 1.05rem; margin: 0; }
+  nav.toc {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 22px 0 40px;
+    font-size: 0.85rem;
+  }
+  nav.toc a {
+    background: var(--accent);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  nav.toc a:hover { background: var(--accent2); color: var(--accent); }
+  h2 {
+    color: var(--accent);
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--accent2);
+    padding-bottom: 8px;
+    margin: 48px 0 18px;
+    scroll-margin-top: 20px;
+  }
+  h3 { color: var(--accent2); font-size: 1.15rem; margin: 26px 0 10px; }
+  p { margin: 10px 0; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 16px 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 0.92rem;
+  }
+  th, td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--accent); color: white; font-weight: 700; }
+  tr:nth-child(even) td { background: #FBFAF6; }
+  blockquote {
+    border-left: 4px solid var(--accent2);
+    margin: 16px 0;
+    padding: 6px 18px;
+    font-style: italic;
+    color: #4a4740;
+    background: #FBFAF6;
+  }
+  ul { padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  .cipher {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    color: var(--accent);
+    background: var(--card);
+    border: 1px dashed var(--accent2);
+    border-radius: 10px;
+    padding: 16px;
+    margin: 16px 0;
+  }
+  details.solution {
+    background: var(--light);
+    border: 1px solid var(--accent2);
+    border-radius: 10px;
+    margin: 14px 0;
+    padding: 10px 16px;
+  }
+  details.solution summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  details.solution[open] summary { margin-bottom: 8px; }
+  details.solution p { margin: 6px 0 0; }
+  .tag {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--accent2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  footer { text-align: center; color: #9a9788; font-size: 0.85rem; margin-top: 60px; }
+  @media (max-width: 560px) {
+    .cipher { font-size: 1.1rem; letter-spacing: 1px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">Detektivně-únikový program pro děti</div>
+  <h1>★ Špionážní mise Lido Altanea ★</h1>
+  <p class="subtitle">Případ: Zlatá mušle — pláže Krab · Želva · Delfín</p>
+</header>
+
+<nav class="toc">
+  <a href="#pribeh">Příběh</a>
+  <a href="#priprava">Příprava</a>
+  <a href="#role">Role</a>
+  <a href="#start">Zahájení</a>
+  <a href="#krab">1. Krab</a>
+  <a href="#zelva">2. Želva</a>
+  <a href="#delfin">3. Delfín</a>
+  <a href="#finale">Finále</a>
+  <a href="#tipy">Tipy</a>
+  <a href="#prilohy">Přílohy</a>
+</nav>
+
+<h2 id="pribeh">Příběh</h2>
+<p>Každé léto se v Lido Altanea předává „Zlatá mušle“ — putovní trofej pro nejlepší pískový hrad sezóny. Trofej celý rok hlídá recepce u pláže Delfín ve skleněné vitríně.</p>
+<p>Ráno před vyhlášením ale vitrína zeje prázdnotou — Zlatá mušle je pryč! Recepční je zoufalá, obřad je na programu už dnes večer.</p>
+<p>Naštěstí je tu tajná dětská agentura, která se specializuje přesně na tyhle případy. Vaši agenti mají za úkol prohledat všechny tři pláže, vyslechnout podezřelé a najít trofej dřív, než se setmí.</p>
+<blockquote>„Potřebujeme vaši pomoc. Kdokoli z místních by mohl být pachatel — zloděj má náskok, ale vy máte něco lepšího: tým špionů.“ — vzkaz od recepce</blockquote>
+
+<h2 id="priprava">Co budete potřebovat (příprava předem)</h2>
+<p>Hra je navržená pro pláže Krab, Želva a Delfín v Lido di Altanea — počítá s tím, že máte základnu (lehátka) na Delfínu. Většinu rekvizit uděláte z věcí po ruce. Poklad se na konci <strong>neodemyká zámkem s kódem</strong>, ale došlape se k němu podle tří pokynů — takže žádný visací zámek nepotřebujete.</p>
+<table>
+  <tr><th>Rekvizita</th><th>K čemu</th><th>Jak na to</th></tr>
+  <tr><td>3× plastová krabička/sáček se zipem</td><td>úkryt stopy na každé pláži</td><td>cokoli vodotěsného, co se dá schovat do písku/za kámen</td></tr>
+  <tr><td>Kartička s 1. pokynem („4 kroky k moři“)</td><td>první část cesty k pokladu</td><td>napsat fixem na kamínek, víčko, kartičku</td></tr>
+  <tr><td>Kartička s 2. pokynem („7 kroků doprava podél vody“)</td><td>druhá část cesty k pokladu</td><td>stejně jako výše</td></tr>
+  <tr><td>Kartička se šifrou A (Krab)</td><td>posune agenty na Želvu</td><td>vytištěná z přílohy níže</td></tr>
+  <tr><td>Kartička se šifrou B (Želva) + legenda symbolů</td><td>posune agenty na Delfín</td><td>vytištěná z přílohy níže</td></tr>
+  <tr><td>Kousek červenobílé látky</td><td>důkaz A — barva vesty půjčovny šlapadel</td><td>ustřihnout ze starého hadříku/ponožky</td></tr>
+  <tr><td>„Účtenka“ z půjčovny šlapadel</td><td>důkaz B — čas 21:30</td><td>napsat rukou na papírek</td></tr>
+  <tr><td>Svědecký lístek od paní Concetty</td><td>důkaz C — vidí Marca v 23:30 u Delfína</td><td>napsat rukou na papírek</td></tr>
+  <tr><td>4 karty podezřelých s alibi</td><td>výslech na Delfínu</td><td>vytištěné z přílohy níže</td></tr>
+  <tr><td>Bonus karta „Tommaso“ (nepovinná)</td><td>dodatečné potvrzení, že zloděj je Marco</td><td>jen pokud máte navíc jednoho herce, jinak vynechat</td></tr>
+  <tr><td>Citron + vatová tyčinka + fén/lampa</td><td>neviditelný inkoust — 3. pokyn („2 kroky k lehátkům“)</td><td>napsat citronovou šťávou na zadní stranu Marcovy karty, teplem se text objeví</td></tr>
+  <tr><td>Pevný výchozí bod na pláži Delfín (vstup na pláž / plavčíkovská vlajka)</td><td>start pro odkrokování pokynů</td><td>vyberte cokoliv stálého, co tam bude celou dobu</td></tr>
+  <tr><td>Krabice nebo truhla bez zámku</td><td>úkryt trofeje na konci</td><td>obyčejná krabice s víkem, klidně ozdobená</td></tr>
+  <tr><td>„Zlatá mušle“</td><td>trofej v krabici</td><td>velká mušle/kámen přetřený zlatou barvou nebo fixem</td></tr>
+  <tr><td>Diplomy „Tajný agent Lido Altanea“</td><td>odměna na konci</td><td>šablona v příloze, vytisknout/vybarvit</td></tr>
+</table>
+<p><strong>Před hrou si cestu prošlápněte:</strong> postavte se na vybraný výchozí bod a odkrokujte 4 kroky k moři, 7 kroků doprava podél vody a 2 kroky k lehátkům — přesně tam pak schovejte krabici s trofejí. Směry si klidně upravte podle skutečného rozložení vaší pláže, hlavně ať sedí s tím, kam krabici doopravdy schováte.</p>
+
+<h2 id="role">Role</h2>
+<h3>Řídící důstojník (host / vedoucí)</h3>
+<p>Čte briefing, vede agenty mezi stanovišti, hraje hlasy podezřelých (nebo je nechá hrát dalším dospělým) a hlídá, aby hra plynula. Řešení šifer jsou schovaná v rozklikávacích rámečkách ★ — jen pro vedoucího.</p>
+<h3>Agenti (děti)</h3>
+<p>Každé dítě si na začátku vybere krycí jméno (Agent Krab, Agent Vlna, Agent Písek...). Mladší děti (7–8 let) je dobré spárovat se staršími do dvojice.</p>
+<h3>Podezřelí (volitelně další dospělí)</h3>
+<p>Čtyři role — kapitán Marco (půjčovna šlapadel), paní Concetta (stánek s mušlemi), zmrzlinář Guido, instruktor windsurfingu Dario. Klidně je může všechny nadabovat i sám vedoucí, hraní jinými dospělými je ale zábavnější.</p>
+<p>Pátá role — malý Tommaso — je bonusová a nepovinná (vysvětlení u stanoviště 3). Pokud na ni nemáte herce, hra funguje úplně stejně i bez ní.</p>
+
+<h2 id="start">Zahájení mise</h2>
+<p>Sesaďte agenty na základnu (lehátka na Delfínu) a přečtěte nahlas:</p>
+<blockquote>„Vítejte, agenti. Dnes v noci zmizela Zlatá mušle z vitríny u recepce. Máme tři stopy po celém Lido Altanea a čtyři podezřelé. Vaším úkolem je posbírat všechny stopy, vyslechnout podezřelé a zjistit tři pokyny, které vás dovedou přímo k pokladu. Máte špionské jméno, oči a uši — teď je čas je použít.“</blockquote>
+<p>Rozdejte agentům papír a tužku („špionský notes“) na zapisování pokynů a stop.</p>
+
+<h2 id="krab">Stanoviště 1 — Pláž Krab</h2>
+<p>Předem schovejte krabičku do písku nebo za kámen na pláži Krab. Uvnitř: kartička se šifrou A, kartička s 1. pokynem („4 kroky k moři“), kousek červenobílé látky (důkaz A).</p>
+<h3>Šifra A — Caesarova šifra (posun o 3)</h3>
+<p>Agentům dejte kartičku s tímto zašifrovaným textem a jednoduchou abecedou A→D, B→E, C→F... (každé písmeno se posune o 3 dál):</p>
+<div class="cipher">GDOVL VWRSD MH X FHOYB</div>
+<p>Tip pro mladší děti: přiložte abecední „dekódovací kotouč“ nebo tabulku A–Z posunutou o 3 (v příloze).</p>
+<details class="solution">
+  <summary>★ Řešení šifry A</summary>
+  <p>Dekódovaný text: „DALSI STOPA JE U ZELVY“ (Další stopa je u želvy). Agenti se přesouvají na pláž Želva. „4 kroky k moři“ je první pokyn k pokladu — zapsat do notesu.</p>
+</details>
+
+<h2 id="zelva">Stanoviště 2 — Pláž Želva</h2>
+<p>Schovejte druhou krabičku na pláži Želva. Uvnitř: kartička se symbolovou šifrou B, legenda symbolů, kartička s 2. pokynem („7 kroků doprava podél vody“).</p>
+<h3>Šifra B — symbolová šifra (pro mladší agenty)</h3>
+<p>Legenda (rozdejte agentům):</p>
+<table>
+  <tr><th>Symbol</th><th>Písmeno</th><th>Symbol</th><th>Písmeno</th></tr>
+  <tr><td>☀ sluníčko</td><td>H</td><td>♠ mušlička</td><td>I</td></tr>
+  <tr><td>▲ vlna</td><td>L</td><td>☆ hvězdička</td><td>J</td></tr>
+  <tr><td>♥ srdce</td><td>E</td><td>● kolečko</td><td>U</td></tr>
+  <tr><td>♦ diamant</td><td>D</td><td>♫ notička</td><td>F</td></tr>
+  <tr><td>★ hvězda</td><td>A</td><td>⚓ kotva</td><td>N</td></tr>
+</table>
+<p>Zašifrovaná zpráva:</p>
+<div class="cipher">☀ ▲ ♥ ♦ ♥ ☆ &nbsp;&nbsp; ● &nbsp;&nbsp; ♦ ♥ ▲ ♫ ♠ ⚓ ★</div>
+<details class="solution">
+  <summary>★ Řešení šifry B</summary>
+  <p>Dekódovaný text: „HLEDEJ U DELFINA“ (Hledej u Delfína). Agenti se přesouvají na základnu — pláž Delfín. „7 kroků doprava podél vody“ je druhý pokyn k pokladu.</p>
+</details>
+
+<h2 id="delfin">Stanoviště 3 — Pláž Delfín: Výslech podezřelých</h2>
+<p>Na základně už čekají čtyři podezřelí (dospělí v rolích, nebo jen čtyři přečtené kartičky). Přečtěte/zahrajte jejich alibi:</p>
+<table>
+  <tr><th>Podezřelý</th><th>Alibi</th></tr>
+  <tr><td>Kapitán Marco (půjčovna šlapadel)</td><td>„Celou noc jsem byl na pláži Krab, opravoval jsem šlapadlo. Nikam jsem nešel.“</td></tr>
+  <tr><td>Paní Concetta (stánek s mušlemi)</td><td>„Byla jsem doma a spala od desíti večer. Ale cestou domů jsem viděla kapitána Marca — šel směrem k Delfínu, bylo kolem půl dvanácté.“</td></tr>
+  <tr><td>Zmrzlinář Guido</td><td>„Zavíral jsem zmrzlinárnu ve 22:00 a šel jsem rovnou domů. Nic jsem neviděl.“</td></tr>
+  <tr><td>Instruktor Dario (windsurfing)</td><td>„Od šesti večer jsem na moři učil windsurfovat jednu rodinu, skončili jsme až po setmění. Klidně se jich zeptejte, dosvědčí to.“</td></tr>
+</table>
+<p>Dario má na první pohled motiv (chtěl by prý taky jednou vyhrát soutěž o nejlepší hrad), ale jeho alibi má svědky — celou rodinu, kterou učil. Je to tu jako slepá stopa, ať si agenti musí věci skutečně ověřit a nezaseknou se na první podezřelé osobě.</p>
+<p>Agentům dejte i dva důkazy, které už mají z krabiček, plus třetí, co je nový:</p>
+<ul>
+  <li><strong>Důkaz A</strong> (z pláže Krab): kousek červenobílé látky — přesně barva vest půjčovny šlapadel.</li>
+  <li><strong>Důkaz B</strong> (nový, dejte teď): „účtenka“ půjčovny šlapadel — poslední šlapadlo bylo vráceno ve 21:30, pak byla půjčovna zavřená.</li>
+</ul>
+<p>Nechte agenty srovnat fakta: Marco tvrdí, že byl na Krabu celou noc a opravoval šlapadlo — ale účtenka říká, že půjčovna byla od 21:30 zavřená. A paní Concetta ho navíc viděla u Delfína kolem 23:30, přesně tam, kde byla trofej. Guido i Dario mají svá alibi bez trhlin. Marco lže — a látka od jeho vesty to potvrzuje.</p>
+<details class="solution">
+  <summary>★ Řešení — pachatel</summary>
+  <p>Zloděj je kapitán Marco. Jeho alibi ("celou noc na Krabu") je vyvrácené účtenkou (půjčovna zavřená od 21:30) i svědectvím Concetty (viděla ho u Delfína v 23:30). Barva látky sedí na jeho vestu. Guido a Dario jsou v pořádku — jejich alibi nikdo nevyvrací.</p>
+</details>
+<p>Na zadní straně Marcovy karty je citronovou šťávou napsaný text „2 kroky k lehátkům“ — třetí a poslední pokyn k pokladu. Přidržte kartičku u žehličky, fénu nebo lampy (teplo), aby se neviditelný text objevil.</p>
+<details class="solution">
+  <summary>★ 3. pokyn k pokladu</summary>
+  <p>Text napsaný citronem se po zahřátí zbarví do hnědé — objeví se „2 kroky k lehátkům“.</p>
+</details>
+
+<h3>Bonusový pátý podezřelý — malý Tommaso (nepovinné)</h3>
+<p>Pokud máte k dispozici ještě jednoho „herce“ (třeba staršího sourozence nebo dalšího dospělého), přidejte pátou postavu: Tommaso, syn plavčíka Enza, co v noci nemůže spát a courá se po molu.</p>
+<table>
+  <tr><th>Podezřelý</th><th>Výpověď</th></tr>
+  <tr><td>Malý Tommaso (syn plavčíka)</td><td>„Nemůžu v noci spát, tak jsem se coural po molu u Delfína. Kolem půlnoci jsem viděl někoho v červenobílé pruhované vestě, jak leze oknem od recepce ven. Do obličeje jsem mu ale neviděl.“</td></tr>
+</table>
+<p>Tommaso je jen svědek, ne skutečný podezřelý — jeho výpověď je bonusová nápověda navíc, která barvu vesty (důkaz A) přímo spojí s Marcem. Je to hezké potvrzení pro agenty, kteří si nejsou úplně jistí.</p>
+<details class="solution">
+  <summary>★ Tommaso je nepovinný</summary>
+  <p>Pokud pro tuto roli nemáte herce, klidně ji úplně vynechte — Marca usvědčí i bez ní kombinace důkazu A, důkazu B a svědectví Concetty. Tommaso jen dělá závěr jistější a hru o něco delší.</p>
+</details>
+
+<h2 id="finale">Finále — cesta k pokladu</h2>
+<p>Agenti teď mají všechny tři pokyny: <strong>4 kroky k moři</strong> (Krab) · <strong>7 kroků doprava podél vody</strong> (Želva) · <strong>2 kroky k lehátkům</strong> (Delfín — Marco).</p>
+<p>Postaví se na dohodnutý výchozí bod (např. vstup na pláž Delfín nebo plavčíkovská vlajka) a pokyny postupně odkrokují jeden po druhém. Kde skončí, tam je poklad — zahrabaný v písku nebo v krabici položené na místě.</p>
+<details class="solution">
+  <summary>★ Kde je poklad</summary>
+  <p>Krabice s trofejí je na místě, kam agenty dovede přesná posloupnost kroků z vašeho vybraného výchozího bodu — to je místo, které jste si předem prošlápli a kde jste krabici schovali. Pokud by se agenti spletli ve směru, jemně je navigujte („zkus to teď doleva“ apod.), ať finále nezabere celou hodinu.</p>
+</details>
+<p>Truhla/krabice je schovaná přímo na základně — třeba pod lehátky nebo poblíž nich. Uvnitř: Zlatá mušle a diplomy pro každého agenta.</p>
+<blockquote>„Případ uzavřen, agenti. Zlatá mušle je zpátky ve vitríně — a dnes večer bude patřit vám.“</blockquote>
+
+<h2 id="tipy">Tipy pro vedoucího</h2>
+<ul>
+  <li>Hra trvá přirozeně 1,5–2 hodiny se všemi třemi stanovišti a výslechem — dá se hrát i jako procházka mezi plážemi místo statického posedávání.</li>
+  <li>Pro mladší agenty (7–8 let) párovat se staršími, případně jim více napovídat u Caesarovy šifry.</li>
+  <li>Pokud nechcete zapojovat další dospělé jako podezřelé, klidně všechny čtyři role odehraje sám vedoucí různými hlasy. Tommaso (bonusová pátá role) je jediná, kterou je opravdu v pořádku úplně vynechat, pokud na ni nemáte lidi.</li>
+  <li>Neviditelný inkoust: citronová šťáva napsaná vatovou tyčinkou zezadu na kartičku, po zahřátí (fén, žehlička na nízko, silná lampa) zhnědne a je vidět.</li>
+  <li>Cestu k pokladu si nutně vyzkoušejte předem sami — u dětí se „krok“ hodně liší podle věku, tak počítejte s kroky nejmladšího agenta, ať trefí cíl všichni stejně.</li>
+  <li>Hru lze hrát i za deště — stanoviště přesuňte do apartmánu/zahrady, výchozí bod a kroky nahraďte třeba pokojíčky/dveřmi a jen popište, že jsou „na pláži“.</li>
+  <li>Zlatou mušli klidně schovejte společně s malou odměnou (bonbony, zmrzlina navíc) jako bonus k vyřešení případu.</li>
+</ul>
+
+<h2 id="prilohy">Přílohy k vytištění</h2>
+<h3>Dekódovací tabulka pro šifru A (posun +3 / -3)</h3>
+<table>
+  <tr><th>Zašifrováno</th><th>Skutečné</th></tr>
+  <tr><td>A B C D E F G H I J K L M</td><td>X Y Z A B C D E F G H I J</td></tr>
+  <tr><td>N O P Q R S T U V W X Y Z</td><td>K L M N O P Q R S T U V W</td></tr>
+</table>
+<p>(Použití: najdi písmeno z šifrovaného textu v horním řádku, přečti odpovídající písmeno ve spodním řádku.)</p>
+<h3>Legenda symbolové šifry B</h3>
+<p>Viz tabulka symbolů u stanoviště 2 výše — vytiskněte samostatně jako kartičku pro agenty.</p>
+<h3>Šablona diplomu</h3>
+<div class="card" style="text-align:center;">
+  <p style="font-weight:700; font-size:1.2rem; color:var(--accent); margin-bottom:6px;">★ DIPLOM TAJNÉHO AGENTA ★</p>
+  <p>Agent/ka: ______________________</p>
+  <p style="font-style:italic;">úspěšně vyřešil/a případ „Zlatá mušle“</p>
+  <p style="color:#8a8776; font-size:0.9rem;">Lido di Altanea, léto 2026</p>
+</div>
+
+<footer>Špionážní mise Lido Altanea — Případ: Zlatá mušle · rodinná dovolená 2026</footer>
+
+</div>
+</body>
+</html>
