@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<title>Kdo zabil Jáchymka?</title>
+<style>
+  :root{
+    --green:#0a7a6b;
+    --white:#fefaf3;
+    --red:#e0522a;
+    --ink:#26332e;
+    --cream:#fdf6ea;
+    --gold:#e0a527;
+    --pink:#c2478a;
+  }
+  body{
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--cream);
+    color: var(--ink);
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 30px;
+    line-height: 1.55;
+  }
+  h1,h2,h3{ font-family: 'Trebuchet MS', sans-serif; }
+  .cover{
+    text-align:center;
+    padding: 40px 20px;
+    background: linear-gradient(180deg, var(--green) 0 8px, var(--white) 8px 8px, var(--white) calc(100% - 8px), var(--red) calc(100% - 8px));
+    border: 3px solid var(--ink);
+    border-radius: 6px;
+    margin-bottom: 40px;
+  }
+  .cover h1{ font-size: 2.1em; margin-bottom: 0; color: var(--red); text-shadow: 1px 1px 0 #00000022;}
+  .cover .subtitle{ font-size: 1.3em; color: var(--green); font-style: italic; margin-top: 4px;}
+  .cover .meta{ margin-top: 20px; font-size:0.95em; color:#555;}
+  h2{
+    color: var(--white);
+    background: var(--green);
+    padding: 10px 16px;
+    border-radius: 6px;
+    border-left: 8px solid var(--red);
+    page-break-before: always;
+  }
+  .cover + h2 { page-break-before: avoid; }
+  h3{ color: var(--red); border-bottom: 2px dashed var(--gold); padding-bottom:4px; margin-top:28px;}
+  .box{
+    background: var(--white);
+    border: 2px solid var(--ink);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 14px 0;
+  }
+  .secret{
+    background: #f2ecd8;
+    border: 2px dashed var(--red);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 14px 0;
+  }
+  .secret summary{ cursor:pointer; font-weight:bold; color: var(--red); }
+  .editka-card{
+    background: #fdeef6;
+    border: 3px solid var(--pink);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 14px 0;
+  }
+  .editka-card summary{ cursor:pointer; font-weight:bold; color: var(--pink); font-size:1.1em; }
+  table{ border-collapse: collapse; width:100%; margin:10px 0;}
+  th, td{ border:1px solid var(--ink); padding:6px 10px; text-align:left;}
+  th{ background: var(--green); color:white;}
+  .checklist li{ margin-bottom:4px; }
+  .badge{
+    display:inline-block;
+    background: var(--gold);
+    color: var(--ink);
+    font-weight:bold;
+    border-radius: 4px;
+    padding: 2px 10px;
+    font-size:0.85em;
+  }
+  .optional{
+    display:inline-block;
+    background: #ddd;
+    color: var(--ink);
+    font-weight:bold;
+    border-radius: 4px;
+    padding: 2px 10px;
+    font-size:0.85em;
+    border: 1px dashed #999;
+  }
+  .script{ font-style: italic; color:#444; }
+  .diploma{
+    border: 6px double var(--gold);
+    padding: 30px;
+    text-align:center;
+    background: var(--white);
+    margin: 20px 0;
+  }
+  .indicie-slot{
+    display:block;
+    border-bottom: 2px dotted var(--ink);
+    min-height: 28px;
+    margin: 10px 0 18px 0;
+    font-weight:bold;
+    color: var(--red);
+  }
+  .comic{ display:flex; gap:8px; margin: 12px 0; flex-wrap: wrap; }
+  .panel{ flex:1; min-width:140px; background: #fff; border: 3px solid var(--ink); border-radius: 8px; padding: 10px; text-align:center; }
+  .panel .emoji{ font-size:2.4em; display:block; margin-bottom:6px;}
+  .panel .cap{ font-size:0.85em; font-weight:bold; }
+  .flavor{ background:#fff; border: 3px solid var(--red); border-radius: 10px; padding: 12px 16px; margin: 12px 0; font-weight: bold; }
+  .adultcard{
+    border: 3px solid var(--ink);
+    border-radius: 12px;
+    background: var(--white);
+    padding: 16px 20px;
+    margin: 18px 0;
+    page-break-inside: avoid;
+    display:flex;
+    gap: 20px;
+    align-items:center;
+    flex-wrap: wrap;
+  }
+  .adultcard.opt{ border-style: dashed; opacity: 0.9; }
+  .adultcard.star{ border-color: var(--pink); border-width:4px; }
+  .adultcard .info{ flex:1; min-width:220px; }
+  .adultcard h3{ margin-top:0; }
+  .adultcard .realname{ font-size:0.85em; color:#777; }
+
+  /* --- Přílohy karty --- */
+  .profilecard{
+    border: 3px double var(--ink);
+    border-radius: 12px;
+    background: var(--white);
+    padding: 14px 18px;
+    margin: 18px 0;
+    page-break-inside: avoid;
+    page-break-after: always;
+  }
+  .profilecard .top{ display:flex; gap:18px; align-items:center; flex-wrap:wrap; }
+  .profilecard h3{ margin: 0 0 4px 0; }
+  .survey{ margin-top:10px; border-top:2px dashed var(--gold); padding-top:8px; }
+  .survey label{ display:inline-block; width:100%; margin:4px 0; }
+  .checkbox{ display:inline-block; width:16px; height:16px; border:2px solid var(--ink); border-radius:3px; margin-right:8px; vertical-align:middle; }
+
+  /* --- Noviny --- */
+  .newspaper{
+    page-break-before: always;
+    border: 4px solid var(--ink);
+    background: #f6f0e2;
+    padding: 20px;
+    font-family: Georgia, serif;
+  }
+  .newspaper .masthead{
+    text-align:center;
+    border-bottom: 5px double var(--ink);
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+  }
+  .newspaper .masthead h1{
+    font-size: 2.3em;
+    letter-spacing: 2px;
+    margin: 0;
+    font-family: 'Times New Roman', serif;
+    text-transform: uppercase;
+  }
+  .newspaper .masthead .sub{ font-size:0.85em; display:flex; justify-content:space-between; margin-top:4px;}
+  .headline{
+    border-bottom: 2px solid var(--ink);
+    padding: 10px 0;
+    margin-bottom: 8px;
+  }
+  .headline h2ns{
+    font-size: 1.3em;
+    font-weight:bold;
+    display:block;
+    margin: 0 0 4px 0;
+    font-family: 'Trebuchet MS', sans-serif;
+  }
+  .headline .body{ columns: 2; column-gap: 20px; font-size:0.85em; }
+  .headline .icon{ font-size: 2.2em; float:left; margin-right:10px; }
+  .filler{ font-size:0.8em; font-style:italic; border-top: 1px dotted var(--ink); margin-top:6px; padding-top:4px; }
+  .notes-page{
+    page-break-before: always;
+    border: 2px dashed var(--ink);
+    padding: 20px;
+    min-height: 900px;
+  }
+  .notes-page .ruled p{ border-bottom: 1px solid #ccc; min-height: 34px; margin:0; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>🍅 KDO ZABIL JÁCHYMKA? 🕵️</h1>
+  <div class="subtitle">Detektivní hra pro celou rodinu na dovolené v Lido Altanea</div>
+  <div class="meta">
+    Pro 6 detektivů (10–12 let) a 5–8 dospělých &nbsp;•&nbsp; celodenní hra (cca 5–6 hodin)<br>
+    Připravil: Vláďa &nbsp;•&nbsp; léto 2026
+  </div>
+</div>
+
+<h2>0. Pro organizátora — přečti si jako první</h2>
+<div class="box">
+<p><strong>Příběh:</strong> Včera večer si dal Jáchymek ve sprše naprosto nezapomenutelné vystoupení — zpíval z plných plic, tancoval tak nadšeně, že to bylo slyšet přes celou ulici, a na závěr se z otevřeného okna předvedl sousedům holým zadkem. Slyšeli a viděli to úplně všichni v okolí, včetně sousedů. A jako naschvál kolem zrovna procházela slavná tanečnice <strong>Magdalena Dračice</strong>, která ten večer měla v hotelu vystupovat — Jáchymkovo nadšené (a nečekaně rytmické) představení ve sprše zahlédla oknem. Večer pak na jevišti úplně ztratila koncentraci, protože jí došlo, že ve vesnici Lido Altanea žije mnohem lepší tanečník, než je ona sama. Katastrofální vystoupení, o kterém se bude mluvit ještě dlouho.</p>
+<p><span class="badge">Drsný start hry</span> Hra <strong>nezačíná</strong> hledáním nezvěstného — začíná tím, že děti najdou Jáchymka <strong>ležet na zemi v koupelně jednoho z bytů, celého politého kečupem, se zavřenýma očima a bez hnutí</strong>. Kolem něj mokrá podlaha od sprchy, přehozená sprchová opona a malý reproduktor, ze kterého tiše hraje pozastavená romantická píseň. Po pár minutách dramatického „ležení" (ideálně stihněte pár fotek) ho nenápadně odveďte se umýt a převléknout — zbytek dne je „mimo hru" a čeká na svůj velký návrat ve finále.</p>
+<p><span class="badge">VELKÝ TWIST</span> Skutečným viníkem <strong>není žádný dospělý</strong> — je to jedna z dětí-detektivů, <strong>Editka</strong>! Jáchymek jí totiž při své sprchové show nakonec z okna vykřikl vyznání lásky (už potřetí za tento týden), a Editka, znechucená tím, že ji všichni sousedi teď budou navěky škádlit, se s Jáchymkem (kterému se nápad strašně líbil) domluvila na dokonalé pomstě: fingované vraždě. Ostatní detektivové budou celý den logicky podezírat dospělé — a hlavně tanečnici Magdalenu, která má nejsilnější motiv ze všech. Nikoho ani nenapadne podezírat vlastní kamarádku ve svém týmu.</p>
+<p><span class="badge">Tajná role</span> Editka musí od začátku hry vědět, že je viníkem — dej jí to vědět předem v soukromí podle instrukcí v kapitole 0b. Po celý den hraje normálně detektivku, jen potají svádí podezření na Magdalenu.</p>
+<p><span class="badge">Podezřelí</span> Hlavní podezřelá s pádným motivem je <strong>Magdalena Dračice</strong> (uražená profesionální hrdost). Vedle ní pětice běžných svědků/podezřelých: <strong>Babička, Vláďa, Lenka, Michal, Anička</strong>. <span class="optional">Volitelní</span> <strong>Pavel a Pavla</strong> jsou bonusoví podezřelí navíc — zapojte je jen tehdy, pokud budou opravdu na dovolené hrát.</p>
+<p><span class="badge">Bezpečnost a úklid</span> Použijte běžný kečup, pod Jáchymka dejte starou osušku nebo igelit na ochranu podlahy a oblečte ho do něčeho, co se nebojí zašpinit. Kečup se snadno umyje vodou a mýdlem.</p>
+<p><span class="badge">Indicie</span> Děti sbírají do deníku: <strong>VRAŽDA, MALÁ STOPA, VYZNÁNÍ LÁSKY, ALIBI TANEČNICE, TAJNÝ PLÁN</strong> + finální <strong>STOPA SEDÍ JEDNOMU Z VÁS</strong>.</p>
+<p><span class="badge">Místa</span> Hra využívá celý areál: <strong>2 byty</strong> (kde bydlíte), <strong>hotelový areál se zahradou a bazénem</strong> vedle, obchodní galerii <strong>„Louvre" se zmrzlinou</strong> a <strong>pláž</strong>.</p>
+<p><span class="badge">Týmy</span></p>
+<table>
+<tr><th>Tým DISCO 🕺</th><th>Tým TANGO 💃</th></tr>
+<tr><td>Editka (12), Jáša (12), Nikola (11)</td><td>Máťa (12), Tobík (11), Ema (10)</td></tr>
+</table>
+</div>
+
+<h2 id="editka-secret">0b. 🔒 Tajná instrukce pro Editku — NEUKAZOVAT OSTATNÍM DĚTEM</h2>
+<div class="editka-card">
+<details>
+<summary>Otevřít jen s Editkou o samotě, před začátkem hry</summary>
+<p><strong>Editko, ahoj — dnes jsi tajně vrahem!</strong></p>
+<p>Jáchymek ti už potřetí tento týden vyznal lásku, a k tomu to včera navíc vykřikl z okna při sprchování tak nahlas, že to slyšela celá vesnice — i sousedi, i slavná tanečnice, co šla zrovna kolem. Bylo ti to trapné, tak jste se s Jáchymkem tajně domluvili na skvělé pomstě: udělá, že je „zavražděný" — polejete ho kečupem a on bude celé dopoledne dramaticky ležet v koupelně. Nikdo netuší, že za tím stojíš zrovna ty!</p>
+<p><strong>Tvůj úkol na celý den:</strong></p>
+<ul>
+<li>Hraj normální detektivku spolu se svým týmem, ptej se, pátrej, piš si indicie do deníku jako všichni ostatní.</li>
+<li>Nikomu nepřiznávej, že jsi vrah — ani když se tě budou přímo ptát. Klidně si vymýšlej vlastní teorie a nahlas podezírej tanečnici Magdalenu, ať odvedeš pozornost jinam.</li>
+<li>Dávej pozor na svoje boty/žabky — otisk u „těla" v kečupu je udělaný přesně podle nich. Když k tomu dojde řeč, snaž se nenápadně schovat nohy nebo změnit téma.</li>
+<li>Na konci hry, až organizátor řekne, že otisk sedí „někomu přímo mezi vámi", si klidně nech chvíli, než se přizná — ať je to pořádně dramatické!</li>
+</ul>
+<p>Užij si to — dnes jsi hlavní hvězda celého případu, i když to nikdo z dětí zatím netuší. 🤫</p>
+</details>
+</div>
+
+<h3>Co si připravit předem</h3>
+<div class="box checklist">
+<ul>
+<li>Kečup (dostatek na politou postavu a pár otisků žabky navíc), stará osuška nebo igelit pod Jáchymka na ochranu podlahy v koupelně</li>
+<li>Staré oblečení nebo plavky pro Jáchymka, co se nebojí zašpinit, a náhradní oblečení na převlečení hned po úvodní scéně</li>
+<li>Malý reproduktor s pozastavenou romantickou písničkou, přehozená sprchová opona, mokrá podlaha — dokreslí atmosféru sprchového dramatu</li>
+<li>Před hrou si nenápadně otiskni podrážku Editčiny vlastní žabky/sandálku do kečupu u těla (kapitola 5) — je to jediný skutečný otisk na místě činu</li>
+<li>Vytištěné karty postav pro dospělé podezřelé (kapitola 4) — každý dostane jen tu svou, plus 2 volitelné karty pro Pavla a Pavlu, pokud budou hrát</li>
+<li>Vytištěná titulní strana novin (kapitola 3) — jednu na tým, oboustranně, zadní strana na poznámky</li>
+<li>Dvě až tři pomačkané „vyznání lásky" od Jáchymka pro Editku, schované ve druhém bytě (kapitola 9)</li>
+<li>Vytištěný plakát/program vystoupení Magdaleny Dračice na dnešní večer (její alibi), pověšený na nástěnce v galerii Louvre</li>
+<li>Zmuchlaný, nepodepsaný lístek psaný dětským písmem s náznakem „plánu pomsty", schovaný na pláži</li>
+<li>Zašifrovaný vzkaz a klíč, schovaný ve druhém bytě (kapitola 8)</li>
+<li>Šátek na oči na finální taneční zkoušku u bazénu</li>
+<li>Vyšetřovací deník pro každý tým (poslední kapitola)</li>
+<li>Diplomy a zmrzlina z Louvru pro všechny na finále 🍦🎉</li>
+</ul>
+</div>
+
+<h2>1. Harmonogram dne</h2>
+<div class="box">
+<table>
+<tr><th>Čas</th><th>Program</th></tr>
+<tr><td>9:00</td><td>Ranní scéna — nález „těla" v koupelně, rozdělení týmů, čtení titulní strany novin</td></tr>
+<tr><td>9:15–10:00</td><td>Stanoviště 1 — Místo činu v koupelně</td></tr>
+<tr><td>10:00–10:45</td><td>Stanoviště 2 — Výslechy a alibi v hotelové zahradě</td></tr>
+<tr><td>10:45–11:00</td><td>Svačina</td></tr>
+<tr><td>11:00–11:30</td><td>Stanoviště 3 — Šifra ve druhém bytě</td></tr>
+<tr><td>11:30–12:15</td><td>Stanoviště 4 — Pátrání ve druhém bytě, v galerii Louvre a na pláži</td></tr>
+<tr><td>12:15–14:00</td><td>Oběd + siesta / koupání</td></tr>
+<tr><td>14:00–14:45</td><td>Stanoviště 5 — Poslední zkouška u bazénu: Tanec poslepu</td></tr>
+<tr><td>14:45–15:15</td><td>Porada nad vyšetřovacím deníkem, sepsání obvinění</td></tr>
+<tr><td>15:15–15:45</td><td>Velké finále, překvapivé odhalení a „vzkříšení" Jáchymka</td></tr>
+<tr><td>16:00</td><td>Oslavná zmrzlinová párty + diplomy</td></tr>
+</table>
+</div>
+
+<h2>2. Úvodní scéna (přečíst dětem nahlas)</h2>
+<div class="box script">
+<p>„Detektivky a detektivové... tohle se bude číst těžko. Pojďte za mnou do koupelny, ale připravte se na hodně drsný pohled." <em>(Dovede děti ke dveřím koupelny, kde na zemi leží nehybný, kečupem politý Jáchymek. Kolem mokrá podlaha, přehozená sprchová opona a tichý reproduktor s pozastavenou písničkou.)</em> „Jáchymek tu leží od rána. Poslední, co o něm víme, je, že si včera večer dal ve sprše pořádné divadlo — zpíval, tancoval, dokonce se předvedl z okna celé ulici. A od té doby ho nikdo neviděl naživu. Podívejte se na dnešní noviny (kapitola 3), i ty píší, že je to čím dál šílenější — a že kvůli tomu měla mizerný večer i slavná tanečnice, co bydlí v hotelu vedle."</p>
+<p>„Vaším úkolem je projít stanoviště, sbírat indicie do vyšetřovacího deníku a zjistit, kdo za tím stojí. Varuji vás — možná to nebude ten, koho byste čekali. Jáchymka teď v klidu necháme odpočívat a umýt se — vy máte celý den na to, abyste přišli na to, kdo to udělal. Hodně štěstí, detektivové!"</p>
+</div>
+
+<div class="newspaper">
+<div class="masthead">
+  <h1>Pobřežní deník</h1>
+  <div class="sub"><span>Speciální vydání — dnes ráno</span><span>Cena: 1 kopeček zmrzliny</span></div>
+</div>
+
+<div class="headline">
+  <span class="icon">🍅😱</span>
+  <span class="h2ns">DRAMA V BYTĚ: Chlapec nalezen politý kečupem!</span>
+  <div class="body">Očití svědkové potvrzují, že v klidném přímořském apartmánu došlo k naprosto dramatické scéně. Vedle nehybného těla ležela přehozená sprchová opona a tiše hrající reproduktor. Místní kečupářský cech svolal mimořádnou schůzi. „Takhle plýtvat kečupem se prostě nedělá," prohlásila jedna z uklízeček a odmítla se dál vyjadřovat.</div>
+</div>
+
+<div class="headline">
+  <span class="icon">🚿🕺</span>
+  <span class="h2ns">Sprchový skandál: Kdo to včera tak nadšeně tančil v okně?!</span>
+  <div class="body">Desítky sousedů hlásí, že včera večer slyšely nezapomenutelný zpěv a viděly nečekané „představení" přímo v okně jednoho z bytů. „Já jsem toho tolik neviděla za celý svůj život," prohlásila jedna z pamětnic a odmítla upřesnit, co přesně měla na mysli.</div>
+</div>
+
+<div class="headline">
+  <span class="icon">💃😭</span>
+  <span class="h2ns">Slavná tanečnice Magdalena Dračice: „Nejhorší vystoupení mého života!"</span>
+  <div class="body">Hotelové publikum bylo v šoku, když tanečnice Magdalena Dračice včera večer na jevišti úplně ztratila krok. Podle zdrojů blízkých umělkyni prý cestou na vystoupení zahlédla oknem „amatérské, ale nečekaně talentované" taneční číslo, které jí sebralo veškerou sebedůvěru. „Roky tréninku, a pak tohle," měla prý zašeptat do zákulisí.</div>
+</div>
+
+<div class="filler"><strong>Ze světa:</strong> Na pláži poblíž hotelu bylo dnes ráno spatřeno hejno tajemných krabů, kteří „prostě pochodovali" — odborníci tápou. V bazénu hotelu dnes v noci někdo nafoukl tak obří kruh, že museli povolat plavčíka na žebříku. V galerii Louvre byl navíc spatřen had — prodavač zmrzliny tvrdí, že „to je normální, to je jen Pistáček, ten tu bydlí odjakživa". Nedaleko se prý narodilo mimino, které prý „už ve tři měsíce tancuje lépe než většina dospělých" — porodnice to odmítla komentovat.</div>
+</div>
+
+<div class="notes-page ruled">
+<h3 style="margin-top:0;">Poznámky detektiva (zadní strana)</h3>
+<p>Nápověda 1: &nbsp;</p>
+<p>Nápověda 2: &nbsp;</p>
+<p>Nápověda 3: &nbsp;</p>
+<p>Nápověda 4: &nbsp;</p>
+<p>Nápověda 5: &nbsp;</p>
+<p>Nápověda 6: &nbsp;</p>
+<p>Nápověda 7: &nbsp;</p>
+<p>Nápověda 8: &nbsp;</p>
+</div>
+
+<h2>4. Karty postav — podezřelí dospělí (vytiskni a rozstříhej)</h2>
+<p>Každý dospělý si vezme jen svou kartu a nikomu ji dopředu neukazuje. Podrážku žabky ukáže dětem, jen když se ho zeptají „jakou máš žabku?". Žádná z jejich žabek nebude sedět s otiskem na místě činu — a to je záměr!</p>
+
+<div class="adultcard star">
+<svg width="80" height="150" viewBox="0 0 90 170">
+  <path d="M45 5 C20 5 12 40 15 80 C17 110 10 130 20 150 C30 165 60 165 70 150 C80 130 73 110 75 80 C78 40 70 5 45 5 Z" fill="#fce4f0" stroke="#c2478a" stroke-width="3"/>
+  <path d="M45 100 L35 130 L55 130 Z" fill="#c2478a"/>
+</svg>
+<div class="info">
+<h3>Magdalena Dračice <span class="badge">hlavní podezřelá</span></h3>
+<div class="realname">(hraje: kterýkoliv volný dospělý — ideálně s glitrovým doplňkem a dramatickým gestem)</div>
+<p><strong>Příběh:</strong> Slavná profesionální tanečnice, dočasně ubytovaná v hotelu kvůli večerním vystoupením. Včera cestou na jeviště zahlédla oknem Jáchymkovo „taneční číslo" ve sprše — a od té doby je z toho úplně mimo, protože jí došlo, že tančí lépe než ona.</p>
+<p><strong>Alibi:</strong> <span class="script">„Byla jsem přece na jevišti, celý hotel mě viděl! I když — přiznávám, byl to nejhorší výkon mé kariéry. Ale vraždit? Za koho mě máte?"</span></p>
+<p><strong>Žabka:</strong> třpytivá taneční sandálka na podpatku <em>(rozhodně nesedí s otiskem v kečupu — je příliš velká a jiného tvaru)</em></p>
+</div>
+</div>
+
+<div class="adultcard">
+<svg width="80" height="150" viewBox="0 0 90 170">
+  <defs><pattern id="check" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="7" height="7" fill="#26332e"/><rect x="7" y="7" width="7" height="7" fill="#26332e"/></pattern></defs>
+  <path d="M45 5 C20 5 12 40 15 80 C17 110 10 130 20 150 C30 165 60 165 70 150 C80 130 73 110 75 80 C78 40 70 5 45 5 Z" fill="url(#check)" stroke="#26332e" stroke-width="3"/>
+</svg>
+<div class="info">
+<h3>Babička</h3>
+<div class="realname">(hraje: kterýkoliv volný dospělý)</div>
+<p><strong>Příběh:</strong> Nejstarší z rodiny, celý večer seděla na terase a „slyšela úplně všechno" — o sprchovém koncertu má obzvlášť barvitou verzi.</p>
+<p><strong>Alibi:</strong> <span class="script">„Seděla jsem na terase, pletla jsem svetr a najednou slyším zpěv jako z muzikálu. Otočím se — a to okno! Moje ubohé srdce to sotva vydrželo."</span></p>
+<p><strong>Žabka:</strong> kostičkované ortopedické pantofle <em>(nesedí s otiskem v kečupu)</em></p>
+</div>
+</div>
+
+<div class="adultcard">
+<svg width="80" height="150" viewBox="0 0 90 170">
+  <path d="M45 5 C20 5 12 40 15 80 C17 110 10 130 20 150 C30 165 60 165 70 150 C80 130 73 110 75 80 C78 40 70 5 45 5 Z" fill="#fff" stroke="#26332e" stroke-width="3"/>
+  <rect x="25" y="30" width="40" height="15" fill="#26332e"/>
+  <rect x="25" y="55" width="40" height="15" fill="#26332e"/>
+  <rect x="25" y="80" width="40" height="15" fill="#26332e"/>
+</svg>
+<div class="info">
+<h3>Vláďa</h3>
+<div class="realname">(hraje: Vláďa)</div>
+<p><strong>Příběh:</strong> Vrchní vypravěč celého dne a soused z vedlejšího bytu. Sprchový koncert slyšel taky, ale bere to s humorem — sám prý ve sprše zpívá ještě hůř.</p>
+<p><strong>Alibi:</strong> <span class="script">„Byl jsem na terase a četl si detektivku. Náhoda, že? Slyšel jsem zpěv, ale to přece není důvod někoho podezírat z vraždy."</span></p>
+<p><strong>Žabka:</strong> vzorovaná gumová sandálka <em>(nesedí s otiskem v kečupu)</em></p>
+</div>
+</div>
+
+<div class="adultcard">
+<svg width="80" height="150" viewBox="0 0 90 170">
+  <path d="M45 5 C20 5 12 40 15 80 C17 110 10 130 20 150 C30 165 60 165 70 150 C80 130 73 110 75 80 C78 40 70 5 45 5 Z" fill="#fff" stroke="#26332e" stroke-width="3"/>
+  <circle cx="45" cy="45" r="18" fill="none" stroke="#26332e" stroke-width="4"/>
+  <circle cx="45" cy="95" r="18" fill="none" stroke="#26332e" stroke-width="4"/>
+</svg>
+<div class="info">
+<h3>Lenka</h3>
+<div class="realname">(hraje: Lenka)</div>
+<p><strong>Příběh:</strong> Přísně dbá na slušné chování, mooning z okna považuje za „naprostou ostudu celé rodiny" a Jáchymkovi to hodlala druhý den pěkně vyčíst.</p>
+<p><strong>Alibi:</strong> <span class="script">„Byla jsem v bytě, připravovala jsem ovocný salát na zítřek. S tím oknem ani s kečupem nemám nic společného, to je přece jasné z principu."</span></p>
+<p><strong>Žabka:</strong> jednoduchá kožená sandálka <em>(nesedí s otiskem v kečupu)</em></p>
+</div>
+</div>
+
+<div class="adultcard">
+<svg width="80" height="150" viewBox="0 0 90 170">
+  <path d="M45 5 C20 5 12 40 15 80 C17 110 10 130 20 150 C30 165 60 165 70 150 C80 130 73 110 75 80 C78 40 70 5 45 5 Z" fill="#fff" stroke="#26332e" stroke-width="3"/>
+  <line x1="20" y1="40" x2="70" y2="40" stroke="#26332e" stroke-width="2"/>
+  <line x1="20" y1="60" x2="70" y2="60" stroke="#26332e" stroke-width="2"/>
+  <line x1="20" y1="80" x2="70" y2="80" stroke="#26332e" stroke-width="2"/>
+</svg>
+<div class="info">
+<h3>Michal</h3>
+<div class="realname">(hraje: Michal)</div>
+<p><strong>Příběh:</strong> Plavčík od hotelového bazénu, sprchový koncert slyšel z okna svého pokoje. Nejvíc ho mrzí, že si to nenatočil.</p>
+<p><strong>Alibi:</strong> <span class="script">„Byl jsem ve svém pokoji, poslouchal jsem to představení oknem. Upřímně, bavil jsem se skvěle. Vraždit bych ho za to teda nešel."</span></p>
+<p><strong>Žabka:</strong> hladká sportovní sandálka <em>(nesedí s otiskem v kečupu)</em></p>
+</div>
+</div>
+
+<div class="adultcard">
+<svg width="80" height="150" viewBox="0 0 90 170">
+  <path d="M45 5 C20 5 12 40 15 80 C17 110 10 130 20 150 C30 165 60 165 70 150 C80 130 73 110 75 80 C78 40 70 5 45 5 Z" fill="#fff" stroke="#26332e" stroke-width="3"/>
+  <polyline points="20,30 45,45 20,60 45,75 20,90 45,105 20,120 45,135" fill="none" stroke="#26332e" stroke-width="4"/>
+  <polyline points="70,30 45,45 70,60 45,75 70,90 45,105 70,120 45,135" fill="none" stroke="#26332e" stroke-width="4"/>
+</svg>
+<div class="info">
+<h3>Anička</h3>
+<div class="realname">(hraje: Anička)</div>
+<p><strong>Příběh:</strong> Sestřenice, natáčela na pláži video na sociální sítě, když jí do záběru dolehl sprchový zpěv z dálky. Teď má nejlepší zvukovou stopu z celé aféry.</p>
+<p><strong>Alibi:</strong> <span class="script">„Byla jsem na pláži, mám to dokonce nahrané na videu! Klidně vám to přehraju, jestli chcete slyšet, jak falešně zpívá."</span></p>
+<p><strong>Žabka:</strong> klikatá gumová žabka <em>(nesedí s otiskem v kečupu)</em></p>
+</div>
+</div>
+
+<h3 style="margin-top:40px;">Volitelní podezřelí — zapojte jen, pokud budou hrát</h3>
+
+<div class="adultcard opt">
+<svg width="80" height="150" viewBox="0 0 90 170">
+  <defs><pattern id="stripes" width="10" height="10" patternTransform="rotate(45)" patternUnits="userSpaceOnUse"><rect width="10" height="5" fill="#26332e"/></pattern></defs>
+  <path d="M45 5 C20 5 12 40 15 80 C17 110 10 130 20 150 C30 165 60 165 70 150 C80 130 73 110 75 80 C78 40 70 5 45 5 Z" fill="url(#stripes)" stroke="#26332e" stroke-width="3"/>
+</svg>
+<div class="info">
+<h3>Pavel <span class="optional">volitelný</span></h3>
+<div class="realname">(hraje: Pavel)</div>
+<p><strong>Příběh:</strong> Soused, kterému sprchový koncert zkazil klidný večer u televize. Stěžoval si na to celé ráno, ale s vraždou nemá nic společného.</p>
+<p><strong>Alibi:</strong> <span class="script">„Já? Byl jsem u bazénu na lehátku, snažil jsem se to přeslechnout. Marně."</span></p>
+<p><strong>Žabka:</strong> pruhovaná plážová žabka <em>(nesedí s otiskem v kečupu)</em></p>
+</div>
+</div>
+
+<div class="adultcard opt">
+<svg width="80" height="150" viewBox="0 0 90 170">
+  <path d="M45 5 C20 5 12 40 15 80 C17 110 10 130 20 150 C30 165 60 165 70 150 C80 130 73 110 75 80 C78 40 70 5 45 5 Z" fill="#fff" stroke="#26332e" stroke-width="3"/>
+  <circle cx="30" cy="30" r="5"/><circle cx="55" cy="30" r="5"/><circle cx="30" cy="55" r="5"/><circle cx="55" cy="55" r="5"/>
+  <circle cx="30" cy="80" r="5"/><circle cx="55" cy="80" r="5"/><circle cx="45" cy="105" r="5"/><circle cx="30" cy="130" r="5"/><circle cx="55" cy="130" r="5"/>
+</svg>
+<div class="info">
+<h3>Pavla <span class="optional">volitelná</span></h3>
+<div class="realname">(hraje: Pavla)</div>
+<p><strong>Příběh:</strong> Byla to ona, kdo večer volal na recepci hotelu si stěžovat na hluk. Otráveně sleduje veškeré dění, ale k dnešní scéně v koupelně nemá žádný vztah.</p>
+<p><strong>Alibi:</strong> <span class="script">„Byla jsem v bytě, skládala jsem plavky, když se ozval ten zpěv. Rovnou jsem volala na recepci."</span></p>
+<p><strong>Žabka:</strong> puntíkovaná žabka <em>(nesedí s otiskem v kečupu)</em></p>
+</div>
+</div>
+
+<h2>5. Šablony na otisky do kečupu (jen pro organizátora)</h2>
+<div class="secret">
+<details>
+<summary>🔒 Návod — čí otisk opravdu otisknout</summary>
+<p>Na místě činu je jen <strong>jeden</strong> otisk žabky v kečupu — a je to otisk <strong>samotné Editky</strong> (vzato z jejích vlastních sandálů/žabek, které bude mít na sobě celý den). Žabky žádného z dospělých do kečupu neotiskuj — všechny jsou záměrně příliš velké nebo jiného vzoru. Až přijde čas na finální srovnání (kapitola 11), použij tento skutečný otisk k porovnání s botami všech dětí najednou.</p>
+<p><em>Tip: otisk udělej těsně před hrou, ať kečup nezaschne a vzor zůstane čitelný celý den.</em></p>
+</details>
+</div>
+
+<h2>6. Stanoviště 1 — Místo činu v koupelně</h2>
+<div class="comic">
+  <div class="panel"><span class="emoji">😱</span><span class="cap">V koupelně bytu 1: Jáchymek nehybně leží na zemi, celý politý kečupem</span></div>
+  <div class="panel"><span class="emoji">🚿👣</span><span class="cap">Mokrá podlaha, přehozená sprchová opona a v kečupu jeden nápadně malý otisk žabky</span></div>
+  <div class="panel"><span class="emoji">🕵️‍♀️💨</span><span class="cap">„Ten otisk je fakt malý — na dospěláka nějak moc malý!"</span></div>
+</div>
+<div class="flavor">Vtipná hláška: „Sprchová opona přehozená přes celou tyč, reproduktor s láskyplnou písničkou a kečup všude kolem — vypadá to spíš jako scéna z muzikálu než z detektivky."</div>
+<div class="box">
+<strong>Zadání:</strong> „V kečupu kolem Jáchymka je jasně čitelný otisk žabky — ale je nápadně malý. Zapamatujte si jeho vzor — na dalším stanovišti se zeptáte dospělých na jejich žabky a porovnáte, jestli se najde shoda."<br>
+Naše indicie: <span class="indicie-slot">VRAŽDA</span>
+</div>
+<div class="secret">
+<details><summary>🔒 Řešení</summary>
+<p>Otisk je jasně dětské velikosti, ne dospělácké. Odměna: indicie <strong>VRAŽDA</strong> — potvrzeno, že tu skutečně někdo byl. Nechte děti tuhle malou nesrovnalost zaznamenat, i když jí teď nebudou rozumět — vyplatí se to až ve finále.</p>
+</details>
+</div>
+
+<h2>7. Stanoviště 2 — Výslechy a alibi v hotelové zahradě</h2>
+<div class="comic">
+  <div class="panel"><span class="emoji">🎭</span><span class="cap">Podezřelí, jejich příběhy a alibi ke sprchovému skandálu</span></div>
+  <div class="panel"><span class="emoji">🩴❓</span><span class="cap">„Jakou máš žabku?" — a porovnání s otiskem v kečupu</span></div>
+  <div class="panel"><span class="emoji">😲</span><span class="cap">Ani jedna dospělácká žabka nesedí!</span></div>
+</div>
+<div class="flavor">Vtipná hláška: „Magdalena Dračice má nejsilnější důvod ze všech dospělých — ale její třpytivé sandály na podpatku by v kečupu vypadaly úplně jinak. Divné, že?"</div>
+<div class="box">
+<strong>Zadání:</strong> Obejděte postupně všechny podezřelé dospělé (kapitola 4) v hotelové zahradě u bazénu. Každý vám vypráví svůj příběh a alibi. Zeptejte se každého: „Jakou máš žabku?" — ukáže vám ji na kartě. Porovnejte s otiskem z místa činu (stanoviště 1). Sedí někomu z nich?<br><br>
+Zapište do deníku: <strong>Podezřelý dospělý, jehož stopa sedí:</strong> <span class="indicie-slot">&nbsp;</span>
+</div>
+<div class="secret">
+<details><summary>🔒 Řešení</summary>
+<p>Nesedí <strong>nikdo</strong> z dospělých — ani Magdalena, přestože má nejsilnější motiv. Nechte děti chvíli tápat a nechte je nahlas přemýšlet, jestli náhodou nepřehlédly něco — nebo někoho — mnohem bližšího.</p>
+</details>
+</div>
+
+<h2>8. Stanoviště 3 — Šifra ve druhém bytě</h2>
+<div class="comic">
+  <div class="panel"><span class="emoji">🏠📩</span><span class="cap">Pod polštářem ve druhém bytě našli zalepenou obálku</span></div>
+  <div class="panel"><span class="emoji">🔐</span><span class="cap">Uvnitř tajný vzkaz plný divných symbolů</span></div>
+  <div class="panel"><span class="emoji">📋</span><span class="cap">Vzkaz posílá detektivy rovnou k nástěnce v galerii Louvre!</span></div>
+</div>
+<div class="flavor">Vtipná hláška: „Kdo píše tajné vzkazy v šifře a schovává je pod polštář, ten to s vyšetřováním myslí vážně — nebo se prostě nudil na dovolené víc než děti bez wifi."</div>
+<div class="box">
+<strong>Klíč (symboly → písmena):</strong><br>
+✦=H &nbsp; ✂=L &nbsp; ●=E &nbsp; ◆=D &nbsp; ♪=J &nbsp; ☆=V &nbsp; ▲=O &nbsp; ☾=U &nbsp; ♥=R &nbsp; ♦=N &nbsp; ✜=A &nbsp; ✤=S &nbsp; ◐=T &nbsp; ❖=K<br><br>
+<strong>Zašifrovaný vzkaz:</strong><br>
+<span style="font-size:1.3em; letter-spacing:2px;">✦✂●◆●♪ &nbsp; ♦✜✤◐●♦❖☾ &nbsp; ☆ &nbsp; ✂▲☾☆♥☾</span><br><br>
+<strong>Nápověda k šifře (po 5 minutách):</strong> „Přepisujte jeden symbol po druhém podle klíče, mezery mezi slovy nechte tak, jak jsou — vyjde vám věta o čtyřech slovech. První slovo začíná na H."<br><br>
+<strong>Zadání:</strong> „Rozluštěte vzkaz pomocí klíče. Kam vás posílá?" <em>(Řešení: „HLEDEJ NASTENKU V LOUVRU". Tato šifra nedává vlastní indicii, jen navádí na další stanoviště — nástěnku v obchodní galerii Louvre.)</em>
+</div>
+
+<h2>9. Stanoviště 4 — Pátrání ve druhém bytě, v galerii Louvre a na pláži</h2>
+<div class="comic">
+  <div class="panel"><span class="emoji">💌</span><span class="cap">Ve druhém bytě schované pomačkané vzkazy s vyznáním lásky</span></div>
+  <div class="panel"><span class="emoji">📋💃</span><span class="cap">V galerii Louvre na nástěnce plakát s programem vystoupení Magdaleny Dračice</span></div>
+  <div class="panel"><span class="emoji">📝🦀</span><span class="cap">Na pláži zahrabaný nepodepsaný lístek s plánem</span></div>
+</div>
+<div class="flavor">Vtipná hláška: „Kdo píše vyznání lásky a pak je nedopatřením nechává povalovat po celém bytě, ten buď fakt hoří láskou, nebo chce, aby ho někdo přistihl."</div>
+
+<div class="box">
+<h3>Druhý byt — 1 indicie</h3>
+<p><strong>Příprava:</strong> Do polštáře na gauči nebo do zásuvky schovej dva až tři pomačkané papírky psané neohrabaným dětským písmem: „Editko, miluju tě víc než pistáciovou zmrzlinu!" a „Editko, tohle je moje třetí vyznání tento týden, ale myslím to vážně!"</p>
+Naše indicie: <span class="indicie-slot">VYZNÁNÍ LÁSKY</span>
+</div>
+
+<div class="box">
+<h3>Galerie Louvre — nástěnka — 1 indicie</h3>
+<p><strong>Příprava:</strong> Na nástěnku v galerii pověs plakát: „DNES VEČER — TANEČNÍ VYSTOUPENÍ — Magdalena Dračice — začátek 20:00, hotelové pódium" s razítkem/podpisy několika desítek diváků potvrzujících, že ji tou dobou skutečně viděli tančit.</p>
+Naše indicie: <span class="indicie-slot">ALIBI TANEČNICE</span>
+</div>
+
+<div class="box">
+<h3>Pláž — 1 indicie</h3>
+<p><strong>Příprava:</strong> Do písku nebo pod lehátko schovej zmuchlaný, nepodepsaný lístek psaný dětským písmem: „Když mi to řekne ještě jednou přede všemi, tak mu to pěkně vrátím. Kečup mám doma dost." Bez jména — jen náznak, že plán vymyslelo dítě, ne dospělý.</p>
+Naše indicie: <span class="indicie-slot">TAJNÝ PLÁN</span>
+</div>
+<div class="secret">
+<details><summary>🔒 Řešení</summary>
+<p>Vzkazy lásky dokazují, že Jáchymek Editce opakovaně vyznával lásku (indicie <strong>VYZNÁNÍ LÁSKY</strong>). Plakát s podpisy diváků dokazuje, že Magdalena byla v době „vraždy" na jevišti před stovkou svědků — má tedy pádný motiv, ale neprůstřelné alibi (indicie <strong>ALIBI TANEČNICE</strong>). Nepodepsaný lístek z pláže naznačuje, že plán vymyslelo dítě, ne dospělý — ale bez podpisu si zatím nikdo netroufne hádat kdo (indicie <strong>TAJNÝ PLÁN</strong>).</p>
+</details>
+</div>
+
+<h2>10. Stanoviště 5 — Poslední zkouška u bazénu: Tanec poslepu</h2>
+<div class="comic">
+  <div class="panel"><span class="emoji">🙈</span><span class="cap">Jeden detektiv z týmu dostane pásku přes oči</span></div>
+  <div class="panel"><span class="emoji">🕺❓</span><span class="cap">Musí poslepu předvést tanec podle slovních povelů týmu</span></div>
+  <div class="panel"><span class="emoji">😂</span><span class="cap">„Zamávej rukama! Teď se otoč! Teď dřepni!"</span></div>
+</div>
+<div class="flavor">Vtipná hláška: „Pokud právě někdo z vás předvedl tanec, který by rozesmál i Magdalenu Dračici, gratulujeme — přesně tohle Jáchymek předvedl včera večer v okně."</div>
+<div class="box">
+<strong>Zadání:</strong> Jeden detektiv z týmu má u bazénu zavázané oči šátkem. Zbytek týmu mu jen slovy (bez dotýkání) předává povely — jaké taneční pohyby má udělat („zvedni ruce", „zatoč se", „udělej výskok"). Cílem je předvést co nejzábavnější tanec jen podle slovních instrukcí. Který tým rozesměje porotu (dospělé) nejvíc, vyhrává bod.
+</div>
+
+<h2>11. Finále: Velké odhalení — a „vzkříšení" Jáchymka</h2>
+<div class="box">
+<p><strong>Postup:</strong> Týmy se sejdou u vyšetřovacího deníku a přečtou nahlas indicie: <strong>VRAŽDA, MALÁ STOPA, VYZNÁNÍ LÁSKY, ALIBI TANEČNICE, TAJNÝ PLÁN</strong>. Necháme děti nejdřív nahlas hádat, kdo je viník — většina bude dál podezírat Magdalenu, i když má alibi.</p>
+</div>
+
+<div class="box script">
+<p><strong>Scénář pro vypravěče (Vláďa):</strong></p>
+<p>„Detektivové, dejte indicie dohromady... Magdalena měla motiv, ale byla na jevišti před stovkou lidí — ta se z toho ven nedostane, ale ani se do koupelny nedostala. Otisk v kečupu je navíc nápadně malý — na dospěláka moc malý. A ten nepodepsaný lístek z pláže? Psalo ho dítě. Co když... vrah není mezi dospělými vůbec?"</p>
+<p><em>(Vláďa vytáhne otisk žabky z místa činu a požádá všechny detektivy, ať si sundají botu/žabku a přiloží ji k otisku — jednu po druhé, přede všemi.)</em></p>
+<p>„Zkusme si teda porovnat úplně všechny boty, co tu dnes máme na nohou — i vaše."</p>
+<p><em>(Organizátor nechá napětí gradovat — porovnávají se boty Jáši, Máti, Tobíka, Nikoly, Emy... a nakonec Editky. Její žabka sedí přesně.)</em></p>
+<p><strong>Editka:</strong> <span class="script">„Dobře, DOBŘE! Přiznávám se! Vyznal mi lásku potřetí tenhle týden — a ne někde potichu, ale z okna, před celou vesnicí, se zpěvem a tancem a... a holým zadkem! Co jsem si podle vás měla myslet, že mi udělá příště?!"</span></p>
+<p>„A teď to nejdůležitější — protože Jáchymek... <em>(dramatická pauza, pohled ke dveřím)</em> ...vůbec neumřel. Byl to jeho nápad snad ještě víc než její!"</p>
+<p><em>(Jáchymek vejde — pořád trochu od kečupu, ale s velkým úsměvem a s obří zmrzlinou z Louvru pro celý tým.)</em></p>
+<p><strong>Jáchymek:</strong> <span class="script">„Jasně že jsem do toho šel dobrovolně! Když jsem Editce řekl, jak moc mě ten sprchový koncert mrzí, vymyslela tohle, a mně přišlo skvělé si zahrát mrtvého! Vy jste si vážně mysleli, že mě někdo zabil kečupem? No dobře, aspoň jsem vám donesl náhradu — a slibuju, že příště budu zpívat potichu!"</span></p>
+</div>
+
+<h2>12. Oslava a diplomy</h2>
+<div class="box">
+<p>Po odhalení následuje společná zmrzlinová párty s Jáchymkovou obří zmrzlinou pro všechny, a předání diplomů.</p>
+</div>
+
+<div class="diploma">
+<h3 style="border:none; color:var(--green);">🕵️ DETEKTIVNÍ DIPLOM 🕵️</h3>
+<p>uděluje se</p>
+<p style="font-size:1.4em; font-weight:bold;">___________________________</p>
+<p>za statečné vyřešení případu<br><em>„Kdo zabil Jáchymka?"</em><br>a odhalení viníka i přesto, že se skrýval přímo mezi detektivy</p>
+<p>Léto 2026, Lido Altanea</p>
+</div>
+
+<h2>13. Přílohy — tiskové karty pro dospělé</h2>
+<p>Vytiskni každou kartu zvlášť a dej ji příslušnému dospělému. Kolonky dole si každý může vyplnit narychlo před hrou, ať je do role hned naladěný (a je to hlavně švanda). Karta pro Editku zde záměrně chybí — její role je tajná a je popsaná jen v kapitole 0b.</p>
+
+<div class="profilecard">
+<div class="top">
+<svg width="70" height="130" viewBox="0 0 90 170"><path d="M45 5 C20 5 12 40 15 80 C17 110 10 130 20 150 C30 165 60 165 70 150 C80 130 73 110 75 80 C78 40 70 5 45 5 Z" fill="#fce4f0" stroke="#c2478a" stroke-width="3"/><path d="M45 100 L35 130 L55 130 Z" fill="#c2478a"/></svg>
+<div>
+<h3>Magdalena Dračice</h3>
+<p><strong>Role:</strong> Slavná tanečnice, hlavní podezřelá — ale zcela nevinná</p>
+<p><strong>Příběh:</strong> Zahlédla Jáchymkovo sprchové vystoupení a od té doby ztratila taneční sebevědomí. Motiv má jasný, ale v čase činu byla na jevišti před stovkou svědků.</p>
+<p><strong>Oblíbený tanec:</strong> Tango — než přišla konkurence ve sprše</p>
+</div>
+</div>
+<div class="survey">
+<p><span class="checkbox"></span> Byl(a) jsem dnes kakat</p>
+<p><span class="checkbox"></span> Chce se mi čůrat právě teď</p>
+<p><span class="checkbox"></span> Umím udělat kolo/hvězdu</p>
+<p><span class="checkbox"></span> Dnes jsem viděl(a) kraba</p>
+<p><span class="checkbox"></span> Bojím se medúz</p>
+</div>
+</div>
+
+<div class="profilecard">
+<div class="top">
+<svg width="70" height="130" viewBox="0 0 90 170"><path d="M45 5 C20 5 12 40 15 80 C17 110 10 130 20 150 C30 165 60 165 70 150 C80 130 73 110 75 80 C78 40 70 5 45 5 Z" fill="url(#check)" stroke="#26332e" stroke-width="3"/></svg>
+<div>
+<h3>Babička</h3>
+<p><strong>Role:</strong> Nejstarší z rodiny, red herring — je zcela nevinná</p>
+<p><strong>Příběh:</strong> Sedí na terase a tvrdí, že slyší úplně všechno. Sprchový koncert si užila víc, než by přiznala.</p>
+<p><strong>Oblíbený tanec:</strong> Valčík, ale hlavně vsedě</p>
+</div>
+</div>
+<div class="survey">
+<p><span class="checkbox"></span> Byl(a) jsem dnes kakat</p>
+<p><span class="checkbox"></span> Chce se mi čůrat právě teď</p>
+<p><span class="checkbox"></span> Umím udělat kolo/hvězdu</p>
+<p><span class="checkbox"></span> Dnes jsem viděl(a) kraba</p>
+<p><span class="checkbox"></span> Bojím se medúz</p>
+</div>
+</div>
+
+<div class="profilecard">
+<div class="top">
+<svg width="70" height="130" viewBox="0 0 90 170"><path d="M45 5 C20 5 12 40 15 80 C17 110 10 130 20 150 C30 165 60 165 70 150 C80 130 73 110 75 80 C78 40 70 5 45 5 Z" fill="#fff" stroke="#26332e" stroke-width="3"/><rect x="25" y="30" width="40" height="15" fill="#26332e"/><rect x="25" y="55" width="40" height="15" fill="#26332e"/><rect x="25" y="80" width="40" height="15" fill="#26332e"/></svg>
+<div>
+<h3>Vláďa</h3>
+<p><strong>Role:</strong> Soused a vrchní vypravěč, red herring — je zcela nevinný</p>
+<p><strong>Příběh:</strong> Slyšel celý sprchový koncert, ale bere ho s humorem. Celý den drží hru pohromadě jako moderátor.</p>
+<p><strong>Oblíbený tanec:</strong> Cokoliv, hlavně když u toho nemusí zpívat</p>
+</div>
+</div>
+<div class="survey">
+<p><span class="checkbox"></span> Byl(a) jsem dnes kakat</p>
+<p><span class="checkbox"></span> Chce se mi čůrat právě teď</p>
+<p><span class="checkbox"></span> Umím udělat kolo/hvězdu</p>
+<p><span class="checkbox"></span> Dnes jsem viděl(a) kraba</p>
+<p><span class="checkbox"></span> Bojím se medúz</p>
+</div>
+</div>
+
+<div class="profilecard">
+<div class="top">
+<svg width="70" height="130" viewBox="0 0 90 170"><path d="M45 5 C20 5 12 40 15 80 C17 110 10 130 20 150 C30 165 60 165 70 150 C80 130 73 110 75 80 C78 40 70 5 45 5 Z" fill="#fff" stroke="#26332e" stroke-width="3"/><circle cx="45" cy="45" r="18" fill="none" stroke="#26332e" stroke-width="4"/><circle cx="45" cy="95" r="18" fill="none" stroke="#26332e" stroke-width="4"/></svg>
+<div>
+<h3>Lenka</h3>
+<p><strong>Role:</strong> Zastánkyně slušného chování, red herring — je zcela nevinná</p>
+<p><strong>Příběh:</strong> Mooning z okna považuje za ostudu celé rodiny. Sama by nikoho nezabila, na to je moc zásadová.</p>
+<p><strong>Oblíbený tanec:</strong> Žádný — tanec považuje za „zbytečné poskakování" (ale tajně tančí ve sprše taky)</p>
+</div>
+</div>
+<div class="survey">
+<p><span class="checkbox"></span> Byl(a) jsem dnes kakat</p>
+<p><span class="checkbox"></span> Chce se mi čůrat právě teď</p>
+<p><span class="checkbox"></span> Umím udělat kolo/hvězdu</p>
+<p><span class="checkbox"></span> Dnes jsem viděl(a) kraba</p>
+<p><span class="checkbox"></span> Bojím se medúz</p>
+</div>
+</div>
+
+<div class="profilecard">
+<div class="top">
+<svg width="70" height="130" viewBox="0 0 90 170"><path d="M45 5 C20 5 12 40 15 80 C17 110 10 130 20 150 C30 165 60 165 70 150 C80 130 73 110 75 80 C78 40 70 5 45 5 Z" fill="#fff" stroke="#26332e" stroke-width="3"/><line x1="20" y1="40" x2="70" y2="40" stroke="#26332e" stroke-width="2"/><line x1="20" y1="60" x2="70" y2="60" stroke="#26332e" stroke-width="2"/><line x1="20" y1="80" x2="70" y2="80" stroke="#26332e" stroke-width="2"/></svg>
+<div>
+<h3>Michal</h3>
+<p><strong>Role:</strong> Plavčík, red herring — je zcela nevinný</p>
+<p><strong>Příběh:</strong> Slyšel sprchový koncert z okna svého pokoje a bavil se skvěle. Jeho jediný zločin je, že si to nenatočil.</p>
+<p><strong>Oblíbený tanec:</strong> Cokoliv na dovolenkové hity od bazénu</p>
+</div>
+</div>
+<div class="survey">
+<p><span class="checkbox"></span> Byl(a) jsem dnes kakat</p>
+<p><span class="checkbox"></span> Chce se mi čůrat právě teď</p>
+<p><span class="checkbox"></span> Umím udělat kolo/hvězdu</p>
+<p><span class="checkbox"></span> Dnes jsem viděl(a) kraba</p>
+<p><span class="checkbox"></span> Bojím se medúz</p>
+</div>
+</div>
+
+<div class="profilecard">
+<div class="top">
+<svg width="70" height="130" viewBox="0 0 90 170"><path d="M45 5 C20 5 12 40 15 80 C17 110 10 130 20 150 C30 165 60 165 70 150 C80 130 73 110 75 80 C78 40 70 5 45 5 Z" fill="#fff" stroke="#26332e" stroke-width="3"/><polyline points="20,30 45,45 20,60 45,75 20,90 45,105 20,120 45,135" fill="none" stroke="#26332e" stroke-width="4"/><polyline points="70,30 45,45 70,60 45,75 70,90 45,105 70,120 45,135" fill="none" stroke="#26332e" stroke-width="4"/></svg>
+<div>
+<h3>Anička</h3>
+<p><strong>Role:</strong> Sestřenice, red herring — je zcela nevinná</p>
+<p><strong>Příběh:</strong> Natáčela na pláži video, když jí do záběru dolehl sprchový zpěv. Má nejlepší zvukovou nahrávku z celé aféry.</p>
+<p><strong>Oblíbený tanec:</strong> Cokoliv, co se dobře natáčí na telefon</p>
+</div>
+</div>
+<div class="survey">
+<p><span class="checkbox"></span> Byl(a) jsem dnes kakat</p>
+<p><span class="checkbox"></span> Chce se mi čůrat právě teď</p>
+<p><span class="checkbox"></span> Umím udělat kolo/hvězdu</p>
+<p><span class="checkbox"></span> Dnes jsem viděl(a) kraba</p>
+<p><span class="checkbox"></span> Bojím se medúz</p>
+</div>
+</div>
+
+<div class="profilecard">
+<div class="top">
+<svg width="70" height="130" viewBox="0 0 90 170"><defs><pattern id="stripes2" width="10" height="10" patternTransform="rotate(45)" patternUnits="userSpaceOnUse"><rect width="10" height="5" fill="#26332e"/></pattern></defs><path d="M45 5 C20 5 12 40 15 80 C17 110 10 130 20 150 C30 165 60 165 70 150 C80 130 73 110 75 80 C78 40 70 5 45 5 Z" fill="url(#stripes2)" stroke="#26332e" stroke-width="3"/></svg>
+<div>
+<h3>Pavel <span class="optional">volitelný</span></h3>
+<p><strong>Role:</strong> Soused, red herring — je zcela nevinný</p>
+<p><strong>Příběh:</strong> Sprchový koncert mu zkazil klidný večer. Celé ráno si na to stěžuje, ale s vraždou nemá nic společného.</p>
+<p><strong>Oblíbený tanec:</strong> Žádný — raději si dá klid</p>
+</div>
+</div>
+<div class="survey">
+<p><span class="checkbox"></span> Byl(a) jsem dnes kakat</p>
+<p><span class="checkbox"></span> Chce se mi čůrat právě teď</p>
+<p><span class="checkbox"></span> Umím udělat kolo/hvězdu</p>
+<p><span class="checkbox"></span> Dnes jsem viděl(a) kraba</p>
+<p><span class="checkbox"></span> Bojím se medúz</p>
+</div>
+</div>
+
+<div class="profilecard">
+<div class="top">
+<svg width="70" height="130" viewBox="0 0 90 170"><path d="M45 5 C20 5 12 40 15 80 C17 110 10 130 20 150 C30 165 60 165 70 150 C80 130 73 110 75 80 C78 40 70 5 45 5 Z" fill="#fff" stroke="#26332e" stroke-width="3"/><circle cx="30" cy="30" r="5"/><circle cx="55" cy="30" r="5"/><circle cx="30" cy="55" r="5"/><circle cx="55" cy="55" r="5"/><circle cx="30" cy="80" r="5"/><circle cx="55" cy="80" r="5"/><circle cx="45" cy="105" r="5"/><circle cx="30" cy="130" r="5"/><circle cx="55" cy="130" r="5"/></svg>
+<div>
+<h3>Pavla <span class="optional">volitelná</span></h3>
+<p><strong>Role:</strong> Sousedka, red herring — je zcela nevinná</p>
+<p><strong>Příběh:</strong> Volala kvůli hluku na recepci hotelu. Otráveně sleduje veškeré dění, ale s vraždou nemá nic společného.</p>
+<p><strong>Oblíbený tanec:</strong> Žádný — raději si stěžuje na ty, co tančí</p>
+</div>
+</div>
+<div class="survey">
+<p><span class="checkbox"></span> Byl(a) jsem dnes kakat</p>
+<p><span class="checkbox"></span> Chce se mi čůrat právě teď</p>
+<p><span class="checkbox"></span> Umím udělat kolo/hvězdu</p>
+<p><span class="checkbox"></span> Dnes jsem viděl(a) kraba</p>
+<p><span class="checkbox"></span> Bojím se medúz</p>
+</div>
+</div>
+
+<div class="profilecard">
+<div class="top">
+<span style="font-size:4em;">🍅👻</span>
+<div>
+<h3>Jáchymek — „Oběť"</h3>
+<p><strong>Role:</strong> Údajná oběť, ve skutečnosti nadšený spoluautor celé inscenace</p>
+<p><strong>Příběh:</strong> Vyznal Editce lásku potřetí za týden, tentokrát z okna, se zpěvem a tancem. Když mu navrhla fingovanou vraždu jako pomstu, nadšeně souhlasil — je to jeho životní role.</p>
+<p><strong>Oblíbený tanec:</strong> Cokoliv, hlavně ve sprše a nahlas</p>
+</div>
+</div>
+<div class="survey">
+<p><span class="checkbox"></span> Byl(a) jsem dnes kakat</p>
+<p><span class="checkbox"></span> Chce se mi čůrat právě teď</p>
+<p><span class="checkbox"></span> Umím udělat kolo/hvězdu</p>
+<p><span class="checkbox"></span> Dnes jsem viděl(a) kraba</p>
+<p><span class="checkbox"></span> Bojím se medúz</p>
+</div>
+</div>
+
+<h2>14. Vyšetřovací deník (vytiskni pro každý tým)</h2>
+<div class="box">
+<p><strong>Tým: </strong>______________________</p>
+<p>Indicie 1 — místo činu v koupelně: <span class="indicie-slot">&nbsp;</span></p>
+<p>Podezřelý dospělý, jehož stopa sedí (výslech): <span class="indicie-slot">&nbsp;</span></p>
+<p>Indicie 2 — druhý byt (vzkazy lásky): <span class="indicie-slot">&nbsp;</span></p>
+<p>Indicie 3 — galerie Louvre (alibi tanečnice): <span class="indicie-slot">&nbsp;</span></p>
+<p>Indicie 4 — pláž (tajný plán): <span class="indicie-slot">&nbsp;</span></p>
+<p><strong>Naše obvinění — kdo je viník?</strong></p>
+<p><span class="indicie-slot">&nbsp;</span></p>
+</div>
+
+</body>
+</html>
