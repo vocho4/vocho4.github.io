@@ -80,11 +80,11 @@
 <body>
 
 <h1>Nižbor65 – Harmonogram rekonstrukce</h1>
-<p class="subtitle">Červen – Září 2026 &nbsp;·&nbsp; Deadline: 20. 9. 2026 &nbsp;·&nbsp; aktualizováno 7. 7. 2026</p>
+<p class="subtitle">Červen – Září 2026 &nbsp;·&nbsp; Deadline: 20. 9. 2026 &nbsp;·&nbsp; aktualizováno 11. 8. 2026</p>
 
 <div class="stats">
-  <div class="stat-box"><div class="stat-val">~13,5</div><div class="stat-lbl">MD zbývá</div></div>
-  <div class="stat-box"><div class="stat-val">6</div><div class="stat-lbl">úkoly hotové ✓</div></div>
+  <div class="stat-box"><div class="stat-val">~7</div><div class="stat-lbl">MD zbývá</div></div>
+  <div class="stat-box"><div class="stat-val">11</div><div class="stat-lbl">zbývající úkoly</div></div>
   <div class="stat-box"><div class="stat-val">20. 9.</div><div class="stat-lbl">Deadline</div></div>
   <div class="stat-box"><div class="stat-val">23. 8.</div><div class="stat-lbl">Plán. dokončení</div></div>
 </div>
@@ -127,45 +127,46 @@ const WORK_DAYS = {
   '2026-06-13': [{ label: '✓ Obložení pergoly', md: 1, type: 'done' }],
   '2026-06-14': [{ label: '✓ Trám + střecha pergoly', md: 1, type: 'done' }],
 
-  // === ČERVEN – NAPLÁNOVÁNO ===
-  '2026-06-26': [{ label: 'Umyvadlo venkovní', md: 0.5, type: 'work' }],
-  '2026-06-27': [{ label: 'Lesní divadlo ①', md: 1, type: 'work' }],
-  '2026-06-28': [{ label: 'Pergola střecha+obklad', md: 1, type: 'work' }],
+  // === ČERVEN – HOTOVÉ ===
+  '2026-06-26': [{ label: '✓ Umyvadlo venkovní', md: 0.5, type: 'done' }],
+  '2026-06-27': [{ label: '✓ Lesní divadlo ①', md: 1, type: 'done' }],
+  '2026-06-28': [{ label: '✓ Pergola střecha+obklad', md: 1, type: 'done' }],
 
-  // === ČERVENEC ===
-  '2026-07-09': [{ label: 'Kuchyňská linka', md: 0.5, type: 'work' }],
-  '2026-07-10': [{ label: 'Podlaha ateliéru 🌧', md: 1, type: 'work' }],
-  '2026-07-11': [{ label: 'Vyklidit dílnu + Kůlna dveře', md: 1, type: 'work' }],
-  '2026-07-12': [
-    { label: 'Lesní divadlo ②', md: 0.5, type: 'work' },
-    { label: 'Zavlažování', md: 0.5, type: 'work' },
-  ],
-  '2026-07-13': [
-    { label: 'Kuchyňská linka', md: 0.5, type: 'work', overload: true },
-    { label: 'Pergola - zbytek stěn', md: 0.5, type: 'work', overload: true },
-  ],
-  '2026-07-14': [{ label: 'Skleník střecha', md: 0.5, type: 'work' }],
-  '2026-07-15': [{ label: 'Zavlažování2', md: 0.5, type: 'work' }],
+  // === ČERVENEC – HOTOVÉ ===
+  '2026-07-09': [{ label: '✓ Kuchyňská linka', md: 0.5, type: 'done' }],
+  '2026-07-10': [{ label: '✓ Podlaha ateliéru 🌧', md: 1, type: 'done' }],
+  '2026-07-11': [{ label: '✓ Vyklidit dílnu + Kůlna dveře', md: 1, type: 'done' }],
+  '2026-07-12': [{ label: '✓ Lesní divadlo ②', md: 0.5, type: 'done' }],
+  '2026-07-13': [{ label: '✓ Kuch. linka + Pergola stěny', md: 1, type: 'done' }],
   '2026-07-25': [{ label: '✓ Oprava jezírka', md: 1, type: 'done' }],
 
-  // === SRPEN ===
-  '2026-08-01': [{ label: 'Vybetonovat podlahu (domek)', md: 1, type: 'work' }],
+  // === SRPEN – HOTOVÉ ===
+  '2026-08-01': [{ label: '✓ Vybetonovat podlahu (domek)', md: 1, type: 'done' }],
+  '2026-08-07': [{ label: '✓ Dveře venku', md: 0.5, type: 'done' }],
+  '2026-08-08': [{ label: '✓ Obklad domku', md: 1, type: 'done' }],
+  '2026-08-23': [{ label: '✓ Schody do horní zahrady', md: 1, type: 'done' }],
+
+  // === SRPEN – ZBÝVÁ ===
+  '2026-08-17': [{ label: 'Obklad rohů 🌧', md: 0.5, type: 'work' }],
+  '2026-08-19': [{ label: 'Nábytek ateliér', md: 0.5, type: 'work' }],
+  '2026-08-21': [{ label: 'Akryl tmel', md: 0.5, type: 'work' }],
+  '2026-08-22': [{ label: 'Obklad předsíně ① 🌧', md: 1, type: 'work' }],
+  '2026-08-23': [
+    { label: 'Zbytky obkladu venku', md: 0.5, type: 'work' },
+    { label: 'Vyklidit záchod venk.', md: 0.5, type: 'work' },
+  ],
+
   '2026-08-02': [{ label: 'Rezerva', md: 1, type: 'buffer' }],
-  '2026-08-07': [{ label: 'Dveře venku', md: 0.5, type: 'work' }],
-  '2026-08-08': [{ label: 'Obklad domku', md: 1, type: 'work' }],
   '2026-08-09': [{ label: 'Rezerva', md: 1, type: 'buffer' }],
-  '2026-08-10': [{ label: 'Kabinet + Obklad rohů 🌧', md: 1, type: 'work' }],
-  '2026-08-17': [{ label: 'Rezerva', md: 1, type: 'buffer' }],
-  '2026-08-22': [{ label: 'Obklad předsíně 🌧', md: 1, type: 'work' }],
-  '2026-08-23': [{ label: 'Schody do horní zahrady', md: 1, type: 'work' }],
 
   // === ZÁŘÍ ===
   '2026-09-03': [{ label: 'Příprava', md: 0.25, type: 'prep' }],
-  '2026-09-04': [{ label: 'Rezerva', md: 0.5, type: 'buffer' }],
-  '2026-09-06': [{ label: 'Rezerva', md: 1, type: 'buffer' }],
+  '2026-09-04': [{ label: 'Dveře za dům', md: 0.5, type: 'work' }],
+  '2026-09-05': [{ label: 'Obklad předsíně ② 🌧', md: 1, type: 'work' }],
+  '2026-09-06': [{ label: 'Zavlažování', md: 1, type: 'work' }],
   '2026-09-17': [{ label: 'Příprava', md: 0.25, type: 'prep' }],
-  '2026-09-18': [{ label: 'Rezerva', md: 1, type: 'buffer' }],
-  '2026-09-19': [{ label: 'Rezerva', md: 1, type: 'buffer' }],
+  '2026-09-18': [{ label: 'Skleník střecha', md: 0.5, type: 'work' }],
+  '2026-09-19': [{ label: 'Kabinet', md: 1, type: 'work' }],
   '2026-09-20': [{ label: '🏁 Deadline', md: 0, type: 'buffer' }],
   '2026-09-26': [{ label: '🎉 Zahradní slavnost', md: 0, type: 'event' }],
 };
@@ -270,52 +271,40 @@ function renderCalendar() {
 
 // ========== ACTIVITY LIST ==========
 const ACTIVITIES = [
+  { group: '⏳ Zbývá – 11 úkolů', items: [
+    { date: '17. 8. Po', name: 'Obklad rohů 🌧', md: '0,5 MD', border: '#007aff' },
+    { date: '19. 8. St', name: 'Nábytek ateliér', md: '0,5 MD', border: '#34c759' },
+    { date: '21. 8. Pá', name: 'Akryl tmel', md: '0,5 MD', border: '#34c759' },
+    { date: '22. 8. So', name: 'Obklad předsíně ① 🌧', md: '1 MD', border: '#007aff' },
+    { date: '23. 8. Ne', name: 'Zbytky obkladu venku', md: '0,5 MD', border: '#34c759' },
+    { date: '23. 8. Ne', name: 'Vyklidit venkovní záchod', md: '0,5 MD', border: '#34c759' },
+    { date: '4. 9. Pá', name: 'Dveře za dům', md: '0,5 MD', border: '#34c759' },
+    { date: '5. 9. So', name: 'Obklad předsíně ② 🌧', md: '1 MD', border: '#007aff' },
+    { date: '6. 9. Ne', name: 'Zavlažování', md: '1 MD', border: '#34c759' },
+    { date: '18. 9. Pá', name: 'Skleník střecha', md: '0,5 MD', border: '#34c759' },
+    { date: '19. 9. So', name: 'Kabinet', md: '1 MD', border: '#34c759' },
+  ]},
+  { group: '🎉 Cíl – Zahradní slavnost', items: [
+    { date: '26. 9. So', name: '🎉 Zahradní slavnost', md: '—', border: '#ff9500', event: true },
+  ]},
   { group: '✓ Hotové', items: [
     { date: '11. 6. Čt', name: '✓ Zábradlí balkon', md: '0,25 MD', done: true, border: '#81c784' },
     { date: '12. 6. Pá', name: '✓ Wallbox', md: '0,5 MD', done: true, border: '#81c784' },
     { date: '12. 6. Pá', name: '✓ Elektřina', md: '0,5 MD', done: true, border: '#81c784' },
     { date: '13. 6. So', name: '✓ Obložení pergoly', md: '1 MD', done: true, border: '#81c784' },
     { date: '14. 6. Ne', name: '✓ Trám a střecha pergoly', md: '1 MD', done: true, border: '#81c784' },
+    { date: '26. 6. Pá', name: '✓ Umyvadlo venkovní', md: '0,5 MD', done: true, border: '#81c784' },
+    { date: '27. 6. So', name: '✓ Lesní divadlo ①', md: '1 MD', done: true, border: '#81c784' },
+    { date: '28. 6. Ne', name: '✓ Pergola střecha+obklad', md: '1 MD', done: true, border: '#81c784' },
+    { date: '9. 7. Čt', name: '✓ Kuchyňská linka', md: '0,5 MD', done: true, border: '#81c784' },
+    { date: '10. 7. Pá', name: '✓ Podlaha ateliéru', md: '1 MD', done: true, border: '#81c784' },
+    { date: '11. 7. So', name: '✓ Vyklidit dílnu + Kůlna dveře', md: '1 MD', done: true, border: '#81c784' },
+    { date: '12.–13. 7.', name: '✓ Lesní divadlo ② + Pergola stěny', md: '1,5 MD', done: true, border: '#81c784' },
     { date: '25. 7. So', name: '✓ Oprava jezírka', md: '1 MD', done: true, border: '#81c784' },
-  ]},
-  { group: '🎉 Cíl – Zahradní slavnost', items: [
-    { date: '26. 9. So', name: '🎉 Zahradní slavnost', md: '—', border: '#ff9500', event: true },
-  ]},
-  { group: 'Červen', items: [
-    { date: '26. 6. Pá', name: 'Umyvadlo venkovní', md: '0,5 MD', border: '#34c759' },
-    { date: '27. 6. So', name: 'Lesní divadlo ①', md: '1 MD', border: '#34c759' },
-    { date: '28. 6. Ne', name: 'Pergola střecha+obklad', md: '1 MD', border: '#34c759' },
-  ]},
-  { group: 'Červenec', items: [
-    { date: '9. 7. Čt', name: 'Kuchyňská linka', md: '0,5 MD', border: '#34c759' },
-    { date: '10. 7. Pá', name: 'Podlaha ateliéru 🌧', md: '1 MD', border: '#007aff' },
-    { date: '11. 7. So', name: 'Vyklidit dílnu + Kůlna dveře', md: '1 MD', border: '#34c759' },
-    { date: '12. 7. Ne', name: 'Lesní divadlo ②', md: '0,5 MD', border: '#34c759' },
-    { date: '12. 7. Ne', name: 'Zavlažování', md: '0,5 MD', border: '#34c759' },
-    { date: '13. 7. Po', name: 'Kuchyňská linka', md: '0,5 MD', border: '#ff9500', overload: true },
-    { date: '13. 7. Po', name: 'Pergola - zbytek stěn', md: '0,5 MD', border: '#ff9500', overload: true },
-    { date: '14. 7. Út', name: 'Skleník střecha', md: '0,5 MD', border: '#34c759' },
-    { date: '15. 7. St', name: 'Zavlažování2', md: '0,5 MD', border: '#34c759' },
-  ]},
-  { group: 'Srpen – exteriér', items: [
-    { date: '7. 8. Pá', name: 'Dveře venku', md: '0,5 MD', border: '#34c759' },
-  ]},
-  { group: 'Srpen – venkovní domek', items: [
-    { date: '1. 8. So', name: 'Vybetonovat podlahu', md: '1 MD', border: '#34c759' },
-    { date: '8. 8. So', name: 'Obklad domku', md: '1 MD', border: '#34c759' },
-  ]},
-  { group: 'Srpen – ostatní', items: [
-    { date: '10. 8. Po', name: 'Kabinet + Obklad rohů 🌧', md: '1 MD', border: '#007aff' },
-    { date: '22. 8. So', name: 'Obklad předsíně 🌧', md: '1 MD', border: '#007aff' },
-    { date: '23. 8. Ne', name: 'Schody do horní zahrady', md: '1 MD', border: '#34c759' },
-  ]},
-  { group: 'Rezerva / buffer', items: [
-    { date: '2. 8. Ne', name: 'Rezerva', md: '1 MD', border: '#af52de' },
-    { date: '9. 8. Ne', name: 'Rezerva', md: '1 MD', border: '#af52de' },
-    { date: '17. 8. So', name: 'Rezerva', md: '1 MD', border: '#af52de' },
-    { date: '4. 9. Pá', name: 'Rezerva', md: '0,5 MD', border: '#af52de' },
-    { date: '6. 9. Ne', name: 'Rezerva', md: '1 MD', border: '#af52de' },
-    { date: '17.–20. 9.', name: 'Rezerva / deadline buffer', md: '2,75 MD', border: '#af52de' },
+    { date: '1. 8. So', name: '✓ Vybetonovat podlahu (domek)', md: '1 MD', done: true, border: '#81c784' },
+    { date: '7. 8. Pá', name: '✓ Dveře venku', md: '0,5 MD', done: true, border: '#81c784' },
+    { date: '8. 8. So', name: '✓ Obklad domku', md: '1 MD', done: true, border: '#81c784' },
+    { date: '23. 8. Ne', name: '✓ Schody do horní zahrady', md: '1 MD', done: true, border: '#81c784' },
   ]},
 ];
 
