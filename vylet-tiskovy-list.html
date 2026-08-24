@@ -1,0 +1,162 @@
+<title>Itinerář na jednu stránku</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+  :root {
+    --paper: #ffffff;
+    --card: #ffffff;
+    --ink: #1c1b16;
+    --ink-soft: #5c5842;
+    --line: #d8d8d2;
+    --vineyard: #435635;
+    --vineyard-soft: #eef1e9;
+    --wine: #7a2e3a;
+    --gold: #a96e18;
+    --gold-soft: #f5efe1;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #16181c; --card: #1e2024; --ink: #ece9e1; --ink-soft: #a8a49a;
+      --line: #34363b; --vineyard: #93b378; --vineyard-soft: #23291f;
+      --wine: #e0a0ab; --gold: #e3ab53; --gold-soft: #26241c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #16181c; --card: #1e2024; --ink: #ece9e1; --ink-soft: #a8a49a;
+    --line: #34363b; --vineyard: #93b378; --vineyard-soft: #23291f;
+    --wine: #e0a0ab; --gold: #e3ab53; --gold-soft: #26241c;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: "Public Sans", -apple-system, "Segoe UI", sans-serif;
+    font-size: 13px; line-height: 1.35;
+  }
+  .sheet { max-width: 210mm; margin: 0 auto; padding: 10mm 12mm 14mm; }
+
+  h1 { font-family: "Fraunces", Georgia, serif; font-weight: 700; margin: 0; font-size: 1.5rem; color: var(--ink); }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace; font-size: .68rem; font-weight: 600;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--vineyard);
+  }
+  header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: .3rem 1rem; border-bottom: 2px solid var(--vineyard); padding-bottom: .5rem; margin-bottom: .9rem; }
+  header .crew { font-size: .78rem; color: var(--ink-soft); font-family: "IBM Plex Mono", monospace; }
+
+  h2 {
+    font-family: "IBM Plex Mono", monospace; font-size: .78rem; font-weight: 700;
+    letter-spacing: .06em; text-transform: uppercase; color: var(--wine);
+    margin: 0 0 .35rem; padding-bottom: .2rem; border-bottom: 1px solid var(--line);
+  }
+
+  .days { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1.1rem; margin-bottom: 1rem; }
+  table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+  .days td { padding: .2rem .2rem; vertical-align: top; border-bottom: 1px dotted var(--line); }
+  .days tr:last-child td { border-bottom: none; }
+  .days td.t { font-family: "IBM Plex Mono", monospace; font-weight: 600; color: var(--gold); white-space: nowrap; width: 26%; }
+  .days td.p strong { color: var(--ink); }
+  .days td.p span { color: var(--ink-soft); }
+
+  .facts-table td, .facts-table th {
+    padding: .3rem .4rem; border-bottom: 1px solid var(--line); font-size: .78rem; vertical-align: top;
+  }
+  .facts-table th {
+    text-align: left; font-family: "IBM Plex Mono", monospace; font-size: .66rem;
+    letter-spacing: .04em; text-transform: uppercase; color: var(--ink-soft); border-bottom: 1px solid var(--vineyard);
+  }
+  .facts-table td.name strong { color: var(--ink); }
+  .facts-table td.web { font-family: "IBM Plex Mono", monospace; font-size: .72rem; }
+  .facts-table a { color: var(--wine); }
+
+  .notes { margin-top: .8rem; font-size: .78rem; color: var(--ink-soft); }
+  .notes strong { color: var(--ink); }
+
+  footer { margin-top: .7rem; font-size: .68rem; color: var(--ink-soft); font-style: italic; }
+
+  @media print {
+    @page { size: A4; margin: 12mm; }
+    body { background: #fff; color: #000; font-size: 11.5px; }
+    .sheet { padding: 0; max-width: none; }
+    :root, :root[data-theme] { --paper:#fff; --card:#fff; --ink:#000; --ink-soft:#333; --line:#999; --vineyard:#2b3a20; --wine:#5c1f28; --gold:#7a5210; --gold-soft:#fff; }
+    a { color: #000 !important; text-decoration: underline; }
+  }
+</style>
+
+<div class="sheet">
+
+  <header>
+    <div>
+      <div class="eyebrow">Výprava do Vrbice — cesta tam</div>
+      <h1>Itinerář 26.–27.&nbsp;8. 2026</h1>
+    </div>
+    <div class="crew">2 dospělí + 5 dětí · nocleh Třeboň</div>
+  </header>
+
+  <div class="days">
+    <table>
+      <tr><td colspan="2"><h2>Den 1 — středa 26.&nbsp;8.</h2></td></tr>
+      <tr><td class="t">9:30</td><td class="p"><strong>Praha</strong> <span>— odjezd</span></td></tr>
+      <tr><td class="t">9:50–10:30</td><td class="p"><strong>Nupaky</strong> <span>— zastávka</span></td></tr>
+      <tr><td class="t">12:15–13:45</td><td class="p"><strong>Obludiště</strong>, Dolní Pěna <span>— bludiště</span></td></tr>
+      <tr><td class="t">13:55–14:40</td><td class="p"><strong>Jindřichův Hradec</strong> <span>— oběd</span></td></tr>
+      <tr><td class="t">15:00–17:00</td><td class="p"><strong>Svět obrů</strong>, Chlum u&nbsp;Třeboně</td></tr>
+      <tr><td class="t">~17:15</td><td class="p"><strong>Ubytování</strong> <span>— nocleh, Penzion Domanín</span></td></tr>
+      <tr><td class="t">19:00</td><td class="p"><strong>Třeboň</strong> <span>— kapří hranolky, Zmrzlinový svět</span></td></tr>
+    </table>
+
+    <table>
+      <tr><td colspan="2"><h2>Den 2 — čtvrtek 27.&nbsp;8.</h2></td></tr>
+      <tr><td class="t">9:30</td><td class="p"><strong>Třeboň</strong> <span>— odjezd</span></td></tr>
+      <tr><td class="t">11:00–12:15</td><td class="p"><strong>Vranov n.&nbsp;Dyjí</strong> <span>— hráz, půjčení motorové lodičky</span></td></tr>
+      <tr><td class="t">12:30–13:30</td><td class="p"><strong>Bistro U&nbsp;Mostu</strong> <span>— oběd</span></td></tr>
+      <tr><td class="t">14:00–15:00</td><td class="p"><strong>Znojmo</strong> <span>— prohlídka historické podzemí</span></td></tr>
+      <tr><td class="t">~16:00–16:15</td><td class="p"><strong>Vrbice u&nbsp;Břeclavi</strong> <span>— příjezd</span></td></tr>
+    </table>
+  </div>
+
+  <h2>Otevírací doby, ceny, kontakty</h2>
+  <table class="facts-table">
+    <tr><th>Místo</th><th>Otevřeno</th><th>Cena</th><th>Web / telefon</th></tr>
+    <tr>
+      <td class="name"><strong>Obludiště</strong>, Dolní Pěna</td>
+      <td>čvc–srp denně 9–19, poslední vstup 18</td>
+      <td>dospělí 170&nbsp;Kč · děti do&nbsp;155&nbsp;cm 140&nbsp;Kč</td>
+      <td class="web">obludiste.cz<br>+420&nbsp;381&nbsp;300&nbsp;330</td>
+    </tr>
+    <tr>
+      <td class="name"><strong>Svět obrů</strong>, Chlum u&nbsp;Třeboně</td>
+      <td>denně 9–19 (červen–říjen)</td>
+      <td>dospělí 390&nbsp;Kč · děti 290&nbsp;Kč · rodinné 970–1550&nbsp;Kč</td>
+      <td class="web">svetobru.cz</td>
+    </tr>
+    <tr>
+      <td class="name"><strong>Penzion Domanín</strong>, u&nbsp;Třeboně</td>
+      <td>check-in 14–16, check-out 9–10</td>
+      <td>cca 5 600–6 300&nbsp;Kč/noc/pokoj (2 dospělí+3 děti)</td>
+      <td class="web">booking.com/hotel/cz/<br>penzion-domanin</td>
+    </tr>
+    <tr>
+      <td class="name"><strong>Půjčovna lodiček</strong>, Vranov n.&nbsp;Dyjí</td>
+      <td>denně 8–20</td>
+      <td>150&nbsp;Kč/h veslice · 600&nbsp;Kč/h elektrolod</td>
+      <td class="web">pujcovnalodicekukarla.cz</td>
+    </tr>
+    <tr>
+      <td class="name"><strong>Bistro U&nbsp;Mostu</strong>, Vranov n.&nbsp;Dyjí</td>
+      <td>—</td>
+      <td>—</td>
+      <td class="web">bistro-umostu.cz</td>
+    </tr>
+    <tr>
+      <td class="name"><strong>Znojemské podzemí</strong></td>
+      <td>čvc–srp denně 9–18, poslední prohlídka o&nbsp;hodinu dřív</td>
+      <td>základní 150&nbsp;Kč · rodinné 400&nbsp;Kč</td>
+      <td class="web">znojemskabeseda.cz</td>
+    </tr>
+  </table>
+
+  <p class="notes"><strong>Poznámky:</strong> Penzion Domanín rezervujte přes Booking.com (víc pokojů pro celou skupinu). U&nbsp;Světa obrů je parkoviště 100&nbsp;Kč. Časy a&nbsp;km jsou orientační — ověřte v&nbsp;navigaci před odjezdem.</p>
+
+  <footer>Vytištěno pro rodinný výlet 26.–27.&nbsp;8. 2026 · trasa a&nbsp;otevírací doby k&nbsp;datu přípravy.</footer>
+
+</div>
