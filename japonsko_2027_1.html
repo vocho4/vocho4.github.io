@@ -1,0 +1,413 @@
+<title>Tokio &amp; Dauhá 2027</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+  :root{
+    --paper: #F3F0E7;
+    --card: #FBF9F3;
+    --ink: #16233D;
+    --ink-soft: #556080;
+    --ink-faint: #8A8F7E;
+    --line: #D9D2BE;
+    --gold: #B87A2E;
+    --shadow: 0 1px 2px rgba(22,35,61,.06), 0 8px 24px -12px rgba(22,35,61,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper: #10182A;
+      --card: #141D33;
+      --ink: #ECE7D9;
+      --ink-soft: #A6ADC6;
+      --ink-faint: #6E7690;
+      --line: #2A3454;
+      --gold: #E3A75C;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 28px -14px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper: #10182A;
+    --card: #141D33;
+    --ink: #ECE7D9;
+    --ink-soft: #A6ADC6;
+    --ink-faint: #6E7690;
+    --line: #2A3454;
+    --gold: #E3A75C;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 28px -14px rgba(0,0,0,.6);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height:1.5; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:860px; margin:0 auto; padding:2.2rem 1.5rem 4rem;}
+  h1,h2{font-family:'Archivo', sans-serif; text-wrap:balance; margin:0; letter-spacing:-.01em;}
+  .mono{font-family:'JetBrains Mono', ui-monospace, monospace; font-variant-numeric:tabular-nums;}
+
+  h1{font-size:clamp(1.5rem, 3.2vw, 1.9rem); font-weight:800;}
+  .lede{color:var(--ink-soft); font-size:.9rem; margin-top:.4rem;}
+
+  .group{margin-top:2.4rem;}
+  .group h2{font-size:1.15rem; font-weight:700; margin-bottom:.9rem; display:flex; align-items:baseline; gap:.6rem;}
+  .group h2 .n{color:var(--ink-faint); font-weight:500; font-size:.78rem; text-transform:uppercase; letter-spacing:.06em;}
+
+  .cards{display:flex; flex-direction:column; gap:.8rem;}
+
+  .stub{
+    background:var(--card); border:1px solid var(--line); border-radius:12px;
+    box-shadow:var(--shadow); overflow:hidden;
+  }
+  .stub.best{border-color:var(--gold); border-width:1.5px;}
+  .stub-top{padding:1.1rem 1.3rem 1rem; display:flex; justify-content:space-between; gap:1.2rem; flex-wrap:wrap;}
+  .stub-label{font-size:.68rem; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-faint); font-weight:600; display:flex; align-items:center; gap:.5rem;}
+  .badge{
+    font-family:'JetBrains Mono',monospace; font-size:.6rem; text-transform:uppercase; letter-spacing:.05em;
+    background:var(--gold); color:var(--card); padding:.1rem .4rem; border-radius:3px;
+  }
+  .stub-route{font-family:'Archivo',sans-serif; font-weight:800; font-size:1.1rem; margin-top:.25rem;}
+  .stub-price{text-align:right;}
+  .price-big{font-size:1.5rem; font-weight:700; color:var(--ink); line-height:1;}
+  .price-per{color:var(--ink-faint); font-size:.72rem; margin-top:.25rem;}
+  .stub-perf{height:0; border-top:1.5px dashed var(--line); margin:0 1.3rem;}
+  .stub-grid{padding:.9rem 1.3rem 1.05rem; display:grid; grid-template-columns:repeat(3,1fr); gap:.9rem;}
+  .stub-field .k{font-size:.64rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-faint); margin-bottom:.2rem;}
+  .stub-field .v{font-size:.86rem; font-weight:500;}
+
+  @media (max-width:560px){
+    .stub-grid{grid-template-columns:1fr 1fr;}
+  }
+
+  .sub{font-size:.8rem; font-weight:600; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-faint); margin:1.1rem 0 .6rem;}
+  .flatlist{background:var(--card); border:1px solid var(--line); border-radius:12px; box-shadow:var(--shadow); overflow:hidden;}
+  .flat-row{display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.7rem 1.1rem; border-bottom:1px solid var(--line);}
+  .flat-row:last-child{border-bottom:none;}
+  .flat-row.best{background:color-mix(in srgb, var(--gold) 10%, transparent);}
+  .flat-left .days{font-weight:600; font-size:.85rem; display:flex; align-items:center; gap:.5rem;}
+  .flat-left .dates{font-size:.74rem; color:var(--ink-faint); margin-top:.15rem;}
+  .flat-right{text-align:right;}
+  .flat-price{font-family:'JetBrains Mono',monospace; font-variant-numeric:tabular-nums; font-weight:700; font-size:.95rem;}
+  .flat-total{font-size:.68rem; color:var(--ink-faint);}
+  .flat-airline{font-size:.68rem; color:var(--ink-soft); margin-top:.1rem;}
+
+  @media (max-width:560px){
+    .flat-row{flex-direction:column; align-items:flex-start; gap:.3rem;}
+    .flat-right{text-align:left;}
+  }
+</style>
+
+<div class="wrap">
+
+  <h1>Tokio &amp; Dauhá — přehled variant, 2027</h1>
+  <p class="lede">1 dospělý + 3 děti (13, 13, 11) · Praha → Tokio → Praha, s Dauhá stopoverem (3–4 dny podle ceny) i bez něj · pro každý odlet délka Japonska 7–10 dní.</p>
+
+  <div class="group">
+    <h2>Odlet 25. 2. 2027 <span class="n">4 varianty</span></h2>
+    <div class="cards">
+      <div class="stub">
+        <div class="stub-top">
+          <div><div class="stub-label">7 dní Japonsko · 4 dny Dauhá</div><div class="stub-route">25. 2. → 8. 3. 2027</div></div>
+          <div class="stub-price"><div class="price-big mono">$1 234</div><div class="price-per">na osobu · $4 933 za 4</div></div>
+        </div>
+        <div class="stub-perf"></div>
+        <div class="stub-grid">
+          <div class="stub-field"><div class="k">Opustit Japonsko</div><div class="v mono">4. 3.</div></div>
+          <div class="stub-field"><div class="k">Návrat domů</div><div class="v mono">8. 3.</div></div>
+          <div class="stub-field"><div class="k">Aerolinka</div><div class="v">Qatar / JAL, nonstop</div></div>
+        </div>
+      </div>
+
+      <div class="stub best">
+        <div class="stub-top">
+          <div><div class="stub-label">8 dní Japonsko · 4 dny Dauhá <span class="badge">nejlevnější</span></div><div class="stub-route">25. 2. → 9. 3. 2027</div></div>
+          <div class="stub-price"><div class="price-big mono">$1 114</div><div class="price-per">na osobu · $4 454 za 4</div></div>
+        </div>
+        <div class="stub-perf"></div>
+        <div class="stub-grid">
+          <div class="stub-field"><div class="k">Opustit Japonsko</div><div class="v mono">5. 3.</div></div>
+          <div class="stub-field"><div class="k">Návrat domů</div><div class="v mono">9. 3.</div></div>
+          <div class="stub-field"><div class="k">Aerolinka</div><div class="v">Qatar / JAL, nonstop</div></div>
+        </div>
+      </div>
+
+      <div class="stub">
+        <div class="stub-top">
+          <div><div class="stub-label">9 dní Japonsko · 4 dny Dauhá</div><div class="stub-route">25. 2. → 10. 3. 2027</div></div>
+          <div class="stub-price"><div class="price-big mono">$1 134</div><div class="price-per">na osobu · $4 534 za 4</div></div>
+        </div>
+        <div class="stub-perf"></div>
+        <div class="stub-grid">
+          <div class="stub-field"><div class="k">Opustit Japonsko</div><div class="v mono">6. 3.</div></div>
+          <div class="stub-field"><div class="k">Návrat domů</div><div class="v mono">10. 3.</div></div>
+          <div class="stub-field"><div class="k">Aerolinka</div><div class="v">Qatar / JAL, nonstop</div></div>
+        </div>
+      </div>
+
+      <div class="stub">
+        <div class="stub-top">
+          <div><div class="stub-label">10 dní Japonsko · 3 dny Dauhá</div><div class="stub-route">25. 2. → 10. 3. 2027</div></div>
+          <div class="stub-price"><div class="price-big mono">$1 134</div><div class="price-per">na osobu · $4 534 za 4</div></div>
+        </div>
+        <div class="stub-perf"></div>
+        <div class="stub-grid">
+          <div class="stub-field"><div class="k">Opustit Japonsko</div><div class="v mono">7. 3.</div></div>
+          <div class="stub-field"><div class="k">Návrat domů</div><div class="v mono">10. 3.</div></div>
+          <div class="stub-field"><div class="k">Aerolinka</div><div class="v">Qatar / JAL, nonstop</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub">Bez zastávky v Dauhá (přímé round-tripy)</div>
+    <div class="flatlist">
+      <div class="flat-row">
+        <div class="flat-left"><div class="days">7 dní Japonsko</div><div class="dates">25. 2. → 4. 3. 2027</div></div>
+        <div class="flat-right"><div class="flat-price mono">$1 076</div><div class="flat-total mono">$4 303 za 4</div><div class="flat-airline">KLM, fare Light</div></div>
+      </div>
+      <div class="flat-row">
+        <div class="flat-left"><div class="days">8 dní Japonsko</div><div class="dates">25. 2. → 5. 3. 2027</div></div>
+        <div class="flat-right"><div class="flat-price mono">$1 099</div><div class="flat-total mono">$4 393 za 4</div><div class="flat-airline">Lufthansa + EVA Air, 2 mezipřistání</div></div>
+      </div>
+      <div class="flat-row best">
+        <div class="flat-left"><div class="days">9 dní Japonsko <span class="badge">nejlevnější</span></div><div class="dates">25. 2. → 6. 3. 2027</div></div>
+        <div class="flat-right"><div class="flat-price mono">$1 023</div><div class="flat-total mono">$4 092 za 4</div><div class="flat-airline">Asiana Airlines přes Soul</div></div>
+      </div>
+      <div class="flat-row">
+        <div class="flat-left"><div class="days">10 dní Japonsko</div><div class="dates">25. 2. → 7. 3. 2027</div></div>
+        <div class="flat-right"><div class="flat-price mono">$1 144</div><div class="flat-total mono">$4 574 za 4</div><div class="flat-airline">Lufthansa + EVA Air, 2 mezipřistání</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>Odlet 27. 2. 2027 <span class="n">4 varianty</span></h2>
+    <div class="cards">
+      <div class="stub">
+        <div class="stub-top">
+          <div><div class="stub-label">7 dní Japonsko · 4 dny Dauhá</div><div class="stub-route">27. 2. → 10. 3. 2027</div></div>
+          <div class="stub-price"><div class="price-big mono">$1 143</div><div class="price-per">na osobu · $4 569 za 4</div></div>
+        </div>
+        <div class="stub-perf"></div>
+        <div class="stub-grid">
+          <div class="stub-field"><div class="k">Opustit Japonsko</div><div class="v mono">6. 3.</div></div>
+          <div class="stub-field"><div class="k">Návrat domů</div><div class="v mono">10. 3.</div></div>
+          <div class="stub-field"><div class="k">Aerolinka</div><div class="v">Etihad + Pegasus, Basic/Light</div></div>
+        </div>
+      </div>
+
+      <div class="stub">
+        <div class="stub-top">
+          <div><div class="stub-label">8 dní Japonsko · 4 dny Dauhá</div><div class="stub-route">27. 2. → 11. 3. 2027</div></div>
+          <div class="stub-price"><div class="price-big mono">$1 174</div><div class="price-per">na osobu · $4 694 za 4</div></div>
+        </div>
+        <div class="stub-perf"></div>
+        <div class="stub-grid">
+          <div class="stub-field"><div class="k">Opustit Japonsko</div><div class="v mono">7. 3.</div></div>
+          <div class="stub-field"><div class="k">Návrat domů</div><div class="v mono">11. 3.</div></div>
+          <div class="stub-field"><div class="k">Aerolinka</div><div class="v">Qatar / JAL, nonstop</div></div>
+        </div>
+      </div>
+
+      <div class="stub best">
+        <div class="stub-top">
+          <div><div class="stub-label">9 dní Japonsko · 4 dny Dauhá <span class="badge">nejlevnější se stopoverem</span></div><div class="stub-route">27. 2. → 12. 3. 2027</div></div>
+          <div class="stub-price"><div class="price-big mono">$1 090</div><div class="price-per">na osobu · $4 360 za 4</div></div>
+        </div>
+        <div class="stub-perf"></div>
+        <div class="stub-grid">
+          <div class="stub-field"><div class="k">Opustit Japonsko</div><div class="v mono">8. 3.</div></div>
+          <div class="stub-field"><div class="k">Návrat domů</div><div class="v mono">12. 3.</div></div>
+          <div class="stub-field"><div class="k">Aerolinka</div><div class="v">Etihad + Pegasus, Basic/Light</div></div>
+        </div>
+      </div>
+
+      <div class="stub best">
+        <div class="stub-top">
+          <div><div class="stub-label">10 dní Japonsko · 3 dny Dauhá <span class="badge">stejně nejlevnější</span></div><div class="stub-route">27. 2. → 12. 3. 2027</div></div>
+          <div class="stub-price"><div class="price-big mono">$1 090</div><div class="price-per">na osobu · $4 360 za 4</div></div>
+        </div>
+        <div class="stub-perf"></div>
+        <div class="stub-grid">
+          <div class="stub-field"><div class="k">Opustit Japonsko</div><div class="v mono">9. 3.</div></div>
+          <div class="stub-field"><div class="k">Návrat domů</div><div class="v mono">12. 3.</div></div>
+          <div class="stub-field"><div class="k">Aerolinka</div><div class="v">Etihad + Pegasus, Basic/Light</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub">Bez zastávky v Dauhá (přímé round-tripy)</div>
+    <div class="flatlist">
+      <div class="flat-row">
+        <div class="flat-left"><div class="days">7 dní Japonsko</div><div class="dates">27. 2. → 6. 3. 2027</div></div>
+        <div class="flat-right"><div class="flat-price mono">$1 121</div><div class="flat-total mono">$4 483 za 4</div><div class="flat-airline">Lufthansa + Air China, 2 mezipřistání</div></div>
+      </div>
+      <div class="flat-row">
+        <div class="flat-left"><div class="days">8 dní Japonsko</div><div class="dates">27. 2. → 7. 3. 2027</div></div>
+        <div class="flat-right"><div class="flat-price mono">$1 105</div><div class="flat-total mono">$4 420 za 4</div><div class="flat-airline">Korean Air přes Soul</div></div>
+      </div>
+      <div class="flat-row">
+        <div class="flat-left"><div class="days">9 dní Japonsko</div><div class="dates">27. 2. → 8. 3. 2027</div></div>
+        <div class="flat-right"><div class="flat-price mono">$1 140</div><div class="flat-total mono">$4 558 za 4</div><div class="flat-airline">Lufthansa + EVA Air, 2 mezipřistání</div></div>
+      </div>
+      <div class="flat-row best">
+        <div class="flat-left"><div class="days">10 dní Japonsko <span class="badge">nejlevnější ze všech</span></div><div class="dates">27. 2. → 9. 3. 2027</div></div>
+        <div class="flat-right"><div class="flat-price mono">$1 001</div><div class="flat-total mono">$4 003 za 4</div><div class="flat-airline">Condor + Qatar, přes Frankfurt a Dauhá</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>Odlet 1. 3. 2027 <span class="n">4 varianty</span></h2>
+    <div class="cards">
+      <div class="stub">
+        <div class="stub-top">
+          <div><div class="stub-label">7 dní Japonsko · 4 dny Dauhá</div><div class="stub-route">1. 3. → 12. 3. 2027</div></div>
+          <div class="stub-price"><div class="price-big mono">$1 272</div><div class="price-per">na osobu · $5 085 za 4</div></div>
+        </div>
+        <div class="stub-perf"></div>
+        <div class="stub-grid">
+          <div class="stub-field"><div class="k">Opustit Japonsko</div><div class="v mono">8. 3.</div></div>
+          <div class="stub-field"><div class="k">Návrat domů</div><div class="v mono">12. 3.</div></div>
+          <div class="stub-field"><div class="k">Aerolinka</div><div class="v">Qatar Airways</div></div>
+        </div>
+      </div>
+
+      <div class="stub">
+        <div class="stub-top">
+          <div><div class="stub-label">8 dní Japonsko · 4 dny Dauhá</div><div class="stub-route">1. 3. → 13. 3. 2027</div></div>
+          <div class="stub-price"><div class="price-big mono">$1 243</div><div class="price-per">na osobu · $4 969 za 4</div></div>
+        </div>
+        <div class="stub-perf"></div>
+        <div class="stub-grid">
+          <div class="stub-field"><div class="k">Opustit Japonsko</div><div class="v mono">9. 3.</div></div>
+          <div class="stub-field"><div class="k">Návrat domů</div><div class="v mono">13. 3.</div></div>
+          <div class="stub-field"><div class="k">Aerolinka</div><div class="v">Qatar Airways</div></div>
+        </div>
+      </div>
+
+      <div class="stub best">
+        <div class="stub-top">
+          <div><div class="stub-label">9 dní Japonsko · 4 dny Dauhá <span class="badge">stejně nejlevnější</span></div><div class="stub-route">1. 3. → 14. 3. 2027</div></div>
+          <div class="stub-price"><div class="price-big mono">$1 211</div><div class="price-per">na osobu · $4 842 za 4</div></div>
+        </div>
+        <div class="stub-perf"></div>
+        <div class="stub-grid">
+          <div class="stub-field"><div class="k">Opustit Japonsko</div><div class="v mono">10. 3.</div></div>
+          <div class="stub-field"><div class="k">Návrat domů</div><div class="v mono">14. 3.</div></div>
+          <div class="stub-field"><div class="k">Aerolinka</div><div class="v">Qatar Airways</div></div>
+        </div>
+      </div>
+
+      <div class="stub best">
+        <div class="stub-top">
+          <div><div class="stub-label">10 dní Japonsko · 4 dny Dauhá <span class="badge">stejně nejlevnější</span></div><div class="stub-route">1. 3. → 15. 3. 2027</div></div>
+          <div class="stub-price"><div class="price-big mono">$1 211</div><div class="price-per">na osobu · $4 842 za 4</div></div>
+        </div>
+        <div class="stub-perf"></div>
+        <div class="stub-grid">
+          <div class="stub-field"><div class="k">Opustit Japonsko</div><div class="v mono">11. 3.</div></div>
+          <div class="stub-field"><div class="k">Návrat domů</div><div class="v mono">15. 3.</div></div>
+          <div class="stub-field"><div class="k">Aerolinka</div><div class="v">Qatar Airways</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub">Bez zastávky v Dauhá (přímé round-tripy)</div>
+    <div class="flatlist">
+      <div class="flat-row">
+        <div class="flat-left"><div class="days">7 dní Japonsko</div><div class="dates">1. 3. → 8. 3. 2027</div></div>
+        <div class="flat-right"><div class="flat-price mono">$1 099</div><div class="flat-total mono">$4 393 za 4</div><div class="flat-airline">Lufthansa + EVA Air, přes Mnichov a Tchaj-pej</div></div>
+      </div>
+      <div class="flat-row">
+        <div class="flat-left"><div class="days">8 dní Japonsko</div><div class="dates">1. 3. → 9. 3. 2027</div></div>
+        <div class="flat-right"><div class="flat-price mono">$1 089</div><div class="flat-total mono">$4 354 za 4</div><div class="flat-airline">Qatar Airways, přes Dauhá a Kuala Lumpur</div></div>
+      </div>
+      <div class="flat-row">
+        <div class="flat-left"><div class="days">9 dní Japonsko</div><div class="dates">1. 3. → 10. 3. 2027</div></div>
+        <div class="flat-right"><div class="flat-price mono">$1 156</div><div class="flat-total mono">$4 621 za 4</div><div class="flat-airline">KLM přes Amsterdam, fare Light</div></div>
+      </div>
+      <div class="flat-row best">
+        <div class="flat-left"><div class="days">10 dní Japonsko <span class="badge">nejlevnější</span></div><div class="dates">1. 3. → 11. 3. 2027</div></div>
+        <div class="flat-right"><div class="flat-price mono">$1 031</div><div class="flat-total mono">$4 123 za 4</div><div class="flat-airline">Hainan Airlines přes Peking</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>Odlet 3. 3. 2027 <span class="n">4 varianty</span></h2>
+    <div class="cards">
+      <div class="stub best">
+        <div class="stub-top">
+          <div><div class="stub-label">7 dní Japonsko · 4 dny Dauhá <span class="badge">stejně nejlevnější</span></div><div class="stub-route">3. 3. → 14. 3. 2027</div></div>
+          <div class="stub-price"><div class="price-big mono">$1 076</div><div class="price-per">na osobu · $4 301 za 4</div></div>
+        </div>
+        <div class="stub-perf"></div>
+        <div class="stub-grid">
+          <div class="stub-field"><div class="k">Opustit Japonsko</div><div class="v mono">10. 3.</div></div>
+          <div class="stub-field"><div class="k">Návrat domů</div><div class="v mono">14. 3.</div></div>
+          <div class="stub-field"><div class="k">Aerolinka</div><div class="v">Qatar Airways</div></div>
+        </div>
+      </div>
+
+      <div class="stub best">
+        <div class="stub-top">
+          <div><div class="stub-label">8 dní Japonsko · 4 dny Dauhá <span class="badge">stejně nejlevnější</span></div><div class="stub-route">3. 3. → 15. 3. 2027</div></div>
+          <div class="stub-price"><div class="price-big mono">$1 076</div><div class="price-per">na osobu · $4 301 za 4</div></div>
+        </div>
+        <div class="stub-perf"></div>
+        <div class="stub-grid">
+          <div class="stub-field"><div class="k">Opustit Japonsko</div><div class="v mono">11. 3.</div></div>
+          <div class="stub-field"><div class="k">Návrat domů</div><div class="v mono">15. 3.</div></div>
+          <div class="stub-field"><div class="k">Aerolinka</div><div class="v">Qatar Airways</div></div>
+        </div>
+      </div>
+
+      <div class="stub best">
+        <div class="stub-top">
+          <div><div class="stub-label">9 dní Japonsko · 4 dny Dauhá <span class="badge">stejně nejlevnější</span></div><div class="stub-route">3. 3. → 16. 3. 2027</div></div>
+          <div class="stub-price"><div class="price-big mono">$1 076</div><div class="price-per">na osobu · $4 301 za 4</div></div>
+        </div>
+        <div class="stub-perf"></div>
+        <div class="stub-grid">
+          <div class="stub-field"><div class="k">Opustit Japonsko</div><div class="v mono">12. 3.</div></div>
+          <div class="stub-field"><div class="k">Návrat domů</div><div class="v mono">16. 3.</div></div>
+          <div class="stub-field"><div class="k">Aerolinka</div><div class="v">Qatar Airways</div></div>
+        </div>
+      </div>
+
+      <div class="stub">
+        <div class="stub-top">
+          <div><div class="stub-label">10 dní Japonsko · 3 dny Dauhá</div><div class="stub-route">3. 3. → 16. 3. 2027</div></div>
+          <div class="stub-price"><div class="price-big mono">$1 230</div><div class="price-per">na osobu · $4 917 za 4</div></div>
+        </div>
+        <div class="stub-perf"></div>
+        <div class="stub-grid">
+          <div class="stub-field"><div class="k">Opustit Japonsko</div><div class="v mono">13. 3.</div></div>
+          <div class="stub-field"><div class="k">Návrat domů</div><div class="v mono">16. 3.</div></div>
+          <div class="stub-field"><div class="k">Aerolinka</div><div class="v">Vietnam Airlines + Qatar, přes Hanoj</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub">Bez zastávky v Dauhá (přímé round-tripy)</div>
+    <div class="flatlist">
+      <div class="flat-row">
+        <div class="flat-left"><div class="days">7 dní Japonsko</div><div class="dates">3. 3. → 10. 3. 2027</div></div>
+        <div class="flat-right"><div class="flat-price mono">$1 052</div><div class="flat-total mono">$4 207 za 4</div><div class="flat-airline">Qatar Airways, přes Dauhá a Hongkong</div></div>
+      </div>
+      <div class="flat-row">
+        <div class="flat-left"><div class="days">8 dní Japonsko</div><div class="dates">3. 3. → 11. 3. 2027</div></div>
+        <div class="flat-right"><div class="flat-price mono">$1 067</div><div class="flat-total mono">$4 265 za 4</div><div class="flat-airline">China Airlines přes Tchaj-pej</div></div>
+      </div>
+      <div class="flat-row">
+        <div class="flat-left"><div class="days">9 dní Japonsko</div><div class="dates">3. 3. → 12. 3. 2027</div></div>
+        <div class="flat-right"><div class="flat-price mono">$1 061</div><div class="flat-total mono">$4 244 za 4</div><div class="flat-airline">Qatar Airways, přes Dauhá a Kuala Lumpur</div></div>
+      </div>
+      <div class="flat-row best">
+        <div class="flat-left"><div class="days">10 dní Japonsko <span class="badge">nejlevnější</span></div><div class="dates">3. 3. → 13. 3. 2027</div></div>
+        <div class="flat-right"><div class="flat-price mono">$1 041</div><div class="flat-total mono">$4 164 za 4</div><div class="flat-airline">China Airlines přes Tchaj-pej</div></div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
