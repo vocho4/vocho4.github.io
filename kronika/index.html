@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kronika z Nižboru</title>
+<style>
+  :root { --bg: #f7f2e7; --text: #2b241b; --muted: #6f6253; --card: #efe6d2; --card-hover: #e6dac0; --accent: #8e2020; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #1d1a16; --text: #ece3d3; --muted: #b3a690; --card: #2a251f; --card-hover: #352f27; --accent: #d0675c; } }
+  body { font-family: Georgia, "Times New Roman", serif; background: var(--bg); color: var(--text); max-width: 640px; margin: 60px auto; padding: 0 20px; line-height: 1.55; }
+  h1 { font-size: 1.9rem; margin-bottom: 0.2rem; }
+  .podtitul { color: var(--muted); font-style: italic; margin-top: 0; }
+  h2 { font-size: 1.1rem; margin: 2rem 0 0.6rem; color: var(--muted); font-weight: normal; letter-spacing: 0.04em; text-transform: uppercase; }
+  ul { list-style: none; padding: 0; margin: 0; }
+  li { margin-bottom: 12px; }
+  a.kapitola { display: block; padding: 16px 20px; background: var(--card); border-radius: 10px; text-decoration: none; color: var(--text); transition: background 0.15s; }
+  a.kapitola:hover { background: var(--card-hover); }
+  a.kapitola span { display: block; color: var(--muted); font-size: 0.9rem; font-style: italic; }
+  .prazdne { color: var(--muted); font-style: italic; }
+  .zpet { display: inline-block; margin-top: 2.5rem; color: var(--accent); }
+</style>
+</head>
+<body>
+  <h1>Kronika z Nižboru</h1>
+  <p class="podtitul">Panoš Vladimír a písařka Lenka – rodinná kronika z časů císaře Karla IV.</p>
+
+  <h2>Kapitoly</h2>
+  <ul id="kapitoly">
+    <!-- Schválené kapitoly se přidávají sem, např.:
+    <li><a class="kapitola" href="kapitola-01.html">Kapitola I – Pět ohňů zdarma<span>duben–květen 1345</span></a></li>
+    -->
+  </ul>
+  <p class="prazdne">Zatím žádná schválená kapitola.</p>
+
+  <a class="zpet" href="../index.html">← zpět na hlavní stránku</a>
+</body>
+</html>
