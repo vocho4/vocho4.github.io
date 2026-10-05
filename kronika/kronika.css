@@ -1,0 +1,33 @@
+:root {
+  --bg: #f7f2e7; --paper: #fbf8f0; --text: #2b241b; --muted: #6f6253;
+  --rule: #d9cdb3; --accent: #8e2020; --note: #2f4f86; --note-bg: #eef1f6;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #1d1a16; --paper: #24201b; --text: #ece3d3; --muted: #b3a690;
+          --rule: #4a4136; --accent: #d0675c; --note: #9db6e3; --note-bg: #262b33; }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--text);
+  font-family: "EB Garamond", Georgia, "Times New Roman", serif; font-size: 1.18rem; line-height: 1.65; }
+.stranka { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+.horni { display: flex; justify-content: space-between; gap: 12px; font-size: 0.95rem; margin-bottom: 2rem; }
+.horni a, .navigace a { color: var(--accent); text-decoration: none; }
+.horni a:hover, .navigace a:hover { text-decoration: underline; }
+h1 { font-weight: 500; font-size: 2rem; line-height: 1.2; margin: 0 0 1.6rem; text-align: center; }
+h1 .cislo { display: block; font-size: 1rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+p { margin: 0 0 1em; text-align: justify; hyphens: auto; }
+hr { border: 0; margin: 2rem 0; text-align: center; }
+hr::after { content: "❦"; color: var(--muted); font-size: 1.3rem; }
+aside.okraj { font-family: "Caveat", "Segoe Script", cursive; font-size: 1.35rem; line-height: 1.35; color: var(--note);
+  background: var(--note-bg); border-left: 3px solid var(--note); border-radius: 0 8px 8px 0;
+  margin: 1.2rem 0 1.6rem 1.5rem; padding: 0.6rem 1rem; transform: rotate(-0.4deg); }
+aside.okraj p { margin: 0; text-align: left; }
+aside.okraj .kdo { font-family: "EB Garamond", Georgia, serif; font-size: 0.85rem; font-style: italic; color: var(--muted); display: block; margin-bottom: 0.1rem; }
+figure { margin: 1.6rem auto; max-width: 420px; text-align: center; }
+figure svg { width: 100%; height: auto; border-radius: 6px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); }
+figcaption { font-size: 0.95rem; font-style: italic; color: var(--muted); margin-top: 0.5rem; }
+.navigace { display: flex; justify-content: space-between; gap: 12px; border-top: 1px solid var(--rule);
+  margin-top: 3rem; padding-top: 1.2rem; font-size: 1rem; }
+.navigace span { color: var(--muted); }
+@media (max-width: 520px) { body { font-size: 1.08rem; } h1 { font-size: 1.6rem; } aside.okraj { margin-left: 0.5rem; } p { text-align: left; } }
