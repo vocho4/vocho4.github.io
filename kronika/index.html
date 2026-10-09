@@ -18,12 +18,21 @@
   a.kapitola span { display: block; color: var(--muted); font-size: 0.9rem; font-style: italic; }
   .prazdne { color: var(--muted); font-style: italic; }
   .prebal { margin: 0 0 2rem; text-align: center; }
-  .prebal img { width: 100%; height: auto; border-radius: 6px; box-shadow: 0 3px 14px rgba(0,0,0,0.25); }
+  .prebal img { width: 100%; height: auto; border-radius: 6px; box-shadow: 0 3px 14px rgba(0,0,0,0.25); display: block; }
+  .prebal button { all: unset; display: block; cursor: pointer; border-radius: 6px; transition: transform 0.25s; }
+  .prebal button:hover { transform: translateY(-3px); }
+  .prebal button:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+  .prebal .vyzva { margin-top: 1rem; color: var(--muted); font-style: italic; }
+  body.zavrena #obsah { display: none; }
+  body.otevrena .prebal .vyzva { display: none; }
+  #obsah { animation: odkryj 0.5s ease; }
+  @keyframes odkryj { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
   .zpet { display: inline-block; margin-top: 2.5rem; color: var(--accent); }
 </style>
 </head>
 <body>
-  <figure class="prebal"><img src="prebal.jpg" alt="Přebal: Kronika a příběh písařky Lenky a panoše Vladimíra, Nižbor l. p. 1378"></figure>
+  <figure class="prebal"><button type="button" id="otevrit" aria-controls="obsah" aria-expanded="false"><img src="prebal.jpg" alt="Přebal: Kronika a příběh písařky Lenky a panoše Vladimíra, Nižbor l. p. 1378 – kliknutím otevřete knihu"></button><figcaption class="vyzva">Klepněte na knihu a otevřete ji.</figcaption></figure>
+  <div id="obsah">
   <h1>Kronika z Nižboru</h1>
   <p class="podtitul">Panoš Vladimír a písařka Lenka – rodinná kronika z časů císaře Karla IV.</p>
 
@@ -58,5 +67,20 @@
   </ul>
 
   <a class="zpet" href="../index.html">← zpět na hlavní stránku</a>
+  </div>
+<script>
+(function () {
+  var b = document.body, btn = document.getElementById('otevrit'), ob = document.getElementById('obsah');
+  var uz = location.hash === '#obsah';
+  try { uz = uz || sessionStorage.getItem('kronika-otevrena') === '1'; } catch (e) {}
+  function otevri(scroll) {
+    b.classList.remove('zavrena'); b.classList.add('otevrena'); btn.setAttribute('aria-expanded', 'true');
+    try { sessionStorage.setItem('kronika-otevrena', '1'); } catch (e) {}
+    if (scroll) setTimeout(function () { ob.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 50);
+  }
+  if (uz) otevri(false); else b.classList.add('zavrena');
+  btn.addEventListener('click', function () { if (b.classList.contains('zavrena')) otevri(true); else ob.scrollIntoView({ behavior: 'smooth' }); });
+})();
+</script>
 </body>
 </html>
