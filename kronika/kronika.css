@@ -31,3 +31,33 @@ figcaption { font-size: 0.95rem; font-style: italic; color: var(--muted); margin
   margin-top: 3rem; padding-top: 1.2rem; font-size: 1rem; }
 .navigace span { color: var(--muted); }
 @media (max-width: 520px) { body { font-size: 1.08rem; } h1 { font-size: 1.6rem; } aside.okraj { margin-left: 0.5rem; } p { text-align: left; } }
+/* Dopisy – pergamen */
+.dopis { position: relative; margin: 1.6rem auto 1.8rem; max-width: 33rem; padding: 1.3rem 1.7rem 1.2rem;
+  color: #3a2414; font-style: italic; font-size: 1.22rem; line-height: 1.55;
+  background:
+    radial-gradient(ellipse at 20% 15%, rgba(255,250,235,0.85), rgba(255,250,235,0) 55%),
+    radial-gradient(ellipse at 85% 90%, rgba(170,120,60,0.18), rgba(170,120,60,0) 60%),
+    linear-gradient(135deg, #f1e0b8 0%, #ead3a0 55%, #e2c58c 100%);
+  border-radius: 3px 6px 4px 7px;
+  box-shadow: 0 3px 10px rgba(60,40,10,0.28), inset 0 0 28px rgba(140,95,40,0.35), inset 0 0 2px rgba(90,60,20,0.5);
+  transform: rotate(-0.5deg); }
+.dopis:nth-of-type(even) { transform: rotate(0.45deg); }
+.dopis p { margin: 0 0 0.5em; text-align: left; hyphens: manual; }
+.dopis p:last-child { margin-bottom: 0; }
+.dopis::before { content: "✒"; position: absolute; top: -0.85rem; left: 1rem; font-style: normal; font-size: 1.1rem;
+  color: #6b4a2b; background: #ead3a0; border-radius: 50%; width: 1.7rem; height: 1.7rem; line-height: 1.7rem; text-align: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.25); }
+.dopis.pecet::after { content: ""; position: absolute; right: -0.6rem; bottom: -0.7rem; width: 2.4rem; height: 2.4rem; border-radius: 50%;
+  background: radial-gradient(circle at 38% 35%, #c2453a, #8e1f18 60%, #6d140f);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.35), inset 0 0 0 4px rgba(255,255,255,0.08); }
+.dopis.pripis { max-width: 27rem; font-size: 1.12rem; padding: 0.9rem 1.3rem; }
+@media (max-width: 520px) { .dopis { padding: 1.1rem 1.1rem 1rem; font-size: 1.12rem; } .dopis.pecet::after { right: 0.2rem; } }
+/* Lísteček vložený mezi stránky */
+.listek { position: relative; margin: 2.2rem auto 1.5rem; max-width: 34rem; padding: 1.5rem 1.6rem 1.1rem;
+  background: linear-gradient(170deg, #ece6d6 0%, #e2d9c2 100%); color: #2e2a24;
+  border: 1px dashed #8d7d5e; border-radius: 2px; box-shadow: 0 4px 12px rgba(0,0,0,0.22); transform: rotate(0.6deg); }
+.listek::before { content: ""; position: absolute; top: -0.7rem; left: 50%; width: 4.5rem; height: 1.3rem; margin-left: -2.25rem;
+  background: rgba(220,205,160,0.75); box-shadow: 0 1px 2px rgba(0,0,0,0.15); transform: rotate(-3deg); }
+.listek .kdo { display: block; font-style: italic; font-size: 0.85rem; color: #6f6253; margin-bottom: 0.5rem; }
+.listek p { margin: 0 0 0.7em; font-size: 1.08rem; text-align: left; }
+.listek p:last-child { margin-bottom: 0; font-style: italic; }
