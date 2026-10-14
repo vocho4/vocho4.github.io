@@ -24,13 +24,6 @@
   .prebal button:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
   .prebal .vyzva { margin-top: 1rem; color: var(--muted); font-style: italic; }
   body.zavrena #obsah { display: none; }
-  .heslo { display: none; margin: 1.2rem auto 0; max-width: 320px; text-align: center; }
-  .heslo.videt { display: block; animation: odkryj 0.4s ease; }
-  .heslo label { display: block; color: var(--muted); font-style: italic; margin-bottom: 0.6rem; }
-  .heslo input { font: inherit; width: 100%; box-sizing: border-box; padding: 10px 12px; border: 1px solid var(--muted); border-radius: 8px; background: var(--card); color: var(--text); text-align: center; letter-spacing: 0.2em; }
-  .heslo input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
-  .heslo button { font: inherit; margin-top: 0.7rem; padding: 9px 22px; border: 0; border-radius: 8px; background: var(--accent); color: #fff; cursor: pointer; }
-  .heslo .chyba { color: var(--accent); min-height: 1.4em; margin: 0.6rem 0 0; font-style: italic; }
   body.otevrena .prebal .vyzva { display: none; }
   #obsah { animation: odkryj 0.5s ease; }
   @keyframes odkryj { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
@@ -39,7 +32,6 @@
 </head>
 <body>
   <figure class="prebal"><button type="button" id="otevrit" aria-controls="obsah" aria-expanded="false"><img src="prebal.jpg" alt="Přebal: Kronika a příběh písařky Lenky a panoše Vladimíra, Nižbor l. p. 1378 – kliknutím otevřete knihu"></button><figcaption class="vyzva">Klepněte na knihu a otevřete ji.</figcaption></figure>
-  <form class="heslo" id="heslo" autocomplete="off"><label for="hesloPole">Kniha je zamčená. Zadejte heslo.</label><input type="password" id="hesloPole" inputmode="numeric" autocomplete="off" aria-describedby="hesloChyba"><button type="submit">Odemknout</button><p class="chyba" id="hesloChyba" role="alert"></p></form>
   <div id="obsah">
   <h1>Kronika z Nižboru</h1>
   <p class="podtitul">Panoš Vladimír a písařka Lenka – rodinná kronika z časů císaře Karla IV.</p>
@@ -79,27 +71,16 @@
   </div>
 <script>
 (function () {
-  var HESLO = '26092026';
   var b = document.body, btn = document.getElementById('otevrit'), ob = document.getElementById('obsah');
-  var fm = document.getElementById('heslo'), pole = document.getElementById('hesloPole'), chyba = document.getElementById('hesloChyba');
-  var uz = false;
-  try { uz = sessionStorage.getItem('kronika-otevrena') === '1'; } catch (e) {}
+  var uz = location.hash === '#obsah';
+  try { uz = uz || sessionStorage.getItem('kronika-otevrena') === '1'; } catch (e) {}
   function otevri(scroll) {
     b.classList.remove('zavrena'); b.classList.add('otevrena'); btn.setAttribute('aria-expanded', 'true');
-    fm.classList.remove('videt');
     try { sessionStorage.setItem('kronika-otevrena', '1'); } catch (e) {}
     if (scroll) setTimeout(function () { ob.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 50);
   }
-  function ukazHeslo() { fm.classList.add('videt'); pole.focus(); }
-  if (uz) otevri(false); else { b.classList.add('zavrena'); if (location.hash === '#obsah') ukazHeslo(); }
-  btn.addEventListener('click', function () {
-    if (b.classList.contains('zavrena')) ukazHeslo(); else ob.scrollIntoView({ behavior: 'smooth' });
-  });
-  fm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    if (pole.value.trim() === HESLO) { chyba.textContent = ''; pole.value = ''; otevri(true); }
-    else { chyba.textContent = 'Heslo nesouhlasí. Zkuste to znovu.'; pole.select(); }
-  });
+  if (uz) otevri(false); else b.classList.add('zavrena');
+  btn.addEventListener('click', function () { if (b.classList.contains('zavrena')) otevri(true); else ob.scrollIntoView({ behavior: 'smooth' }); });
 })();
 </script>
 </body>
