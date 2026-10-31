@@ -76,13 +76,14 @@
   var b = document.body, btn = document.getElementById('otevrit'), ob = document.getElementById('obsah');
   var uz = location.hash === '#obsah';
   try { uz = uz || sessionStorage.getItem('kronika-otevrena') === '1'; } catch (e) {}
+  uz = uz && window.kronikaOdemceno && window.kronikaOdemceno();
   function otevri(scroll) {
     b.classList.remove('zavrena'); b.classList.add('otevrena'); btn.setAttribute('aria-expanded', 'true');
     try { sessionStorage.setItem('kronika-otevrena', '1'); } catch (e) {}
     if (scroll) setTimeout(function () { ob.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 50);
   }
   if (uz) otevri(false); else b.classList.add('zavrena');
-  btn.addEventListener('click', function () { if (b.classList.contains('zavrena')) otevri(true); else ob.scrollIntoView({ behavior: 'smooth' }); });
+  btn.addEventListener('click', function () { if (b.classList.contains('zavrena')) window.kronikaZeptejSe(function () { otevri(true); }); else ob.scrollIntoView({ behavior: 'smooth' }); });
 })();
 </script>
 </body>
