@@ -1,9 +1,8 @@
-/* Heslo ke kapitole: <script src="heslo.js" data-heslo="..."></script> v <head> kapitoly. */
+/* Jedno heslo pro celou kroniku: <script src="heslo.js"></script> v <head>. Po zadání platí do zavření prohlížeče. */
 (function () {
-  var s = document.currentScript;
-  var HESLO = s && s.getAttribute('data-heslo');
-  if (!HESLO) return;
-  var klic = 'kronika-kap-' + location.pathname.split('/').pop();
+  var HESLO = '26092026';
+  var klic = 'kronika-heslo';
+  var naIndexu = /(^|\/)(index\.html)?$/.test(location.pathname);
   try { if (sessionStorage.getItem(klic) === '1') return; } catch (e) {}
   var root = document.documentElement;
   root.classList.add('zamceno');
@@ -21,10 +20,10 @@
   function vloz() {
     var f = document.createElement('form');
     f.id = 'hesloBrana'; f.autocomplete = 'off';
-    f.innerHTML = '<label for="hesloKap">Tato kapitola je zamčená. Zadejte heslo.</label>' +
+    f.innerHTML = '<label for="hesloKap">Kronika z Nižboru je zamčená. Zadejte heslo.</label>' +
       '<input type="password" id="hesloKap" inputmode="numeric" autocomplete="off">' +
       '<button type="submit">Odemknout</button><p id="hesloKapChyba" role="alert"></p>' +
-      '<a href="index.html#obsah">← Zpět na obsah</a>';
+      (naIndexu ? '<a href="../index.html">← Zpět na hlavní stránku</a>' : '<a href="index.html">← Zpět na úvod</a>');
     document.body.appendChild(f);
     var pole = f.querySelector('input'), ch = f.querySelector('p');
     pole.focus();
