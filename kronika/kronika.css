@@ -61,3 +61,14 @@ figcaption { font-size: 0.95rem; font-style: italic; color: var(--muted); margin
 .listek .kdo { display: block; font-style: italic; font-size: 0.85rem; color: #6f6253; margin-bottom: 0.5rem; }
 .listek p { margin: 0 0 0.7em; font-size: 1.08rem; text-align: left; }
 .listek p:last-child { margin-bottom: 0; font-style: italic; }
+
+/* Ilustrace */
+figure.ilustrace { margin: 2.2rem auto; padding: 12px 12px 6px; max-width: 100%; background: #efe3c8; border: 3px double #7a2418; outline: 1px solid #b08a3e; outline-offset: 4px; box-shadow: 0 4px 16px rgba(0,0,0,0.18); text-align: center; }
+figure.ilustrace img { display: block; width: 100%; height: auto; border: 1px solid #5c2816; }
+figure.ilustrace figcaption { font-style: italic; color: #7a2418; padding: 0.6rem 0 0.3rem; font-size: 1rem; }
+figure.ilustrace figcaption::before, figure.ilustrace figcaption::after, .galerie .jmeno::before, .galerie .jmeno::after { content: " ❦ "; color: #b08a3e; }
+.galerie figure.ilustrace figcaption::before, .galerie figure.ilustrace figcaption::after { content: none; }
+@media (prefers-color-scheme: dark) { figure.ilustrace { background: #2a221a; } figure.ilustrace figcaption { color: #d0675c; } }
+.galerie figure.ilustrace { margin: 2.6rem auto; }
+.galerie .kde { display: block; font-size: 0.85rem; color: var(--muted); font-style: normal; margin-top: 0.2rem; }
+.galerie .kde a { color: var(--accent); }
